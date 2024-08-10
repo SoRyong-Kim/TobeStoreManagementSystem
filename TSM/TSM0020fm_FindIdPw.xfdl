@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM101_Login" width="1050" height="750" titletext="New Form" onsize="TSM101_Login_onsize" onload="TSM101_Login_onload">
+    <Layouts>
+      <Layout height="750" width="1050">
+        <Div id="divLogin" taborder="0" top="0" left="310" cssclass="div_LogF_Bg" text="" background="aliceblue" width="430" height="750">
+          <Layouts>
+            <Layout>
+              <Static id="staLogo" taborder="0" left="0" top="50" height="180" textAlign="center" cssclass="sta_LogF_Logo" right="0"/>
+              <Edit id="edtId" taborder="1" left="75" top="395" height="40" text="아이디" value="아이디" width="280" cssclass="edt_LogF_Id" onchanged="divLogin_edtId_onchanged"/>
+              <Edit id="edtPw" taborder="2" left="75" top="455" height="40" text="비밀번호" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged" value="비밀번호"/>
+              <Static id="staRegister" taborder="3" text="회원가입" left="271" top="570" width="142" height="57" onclick="Div01_Static02_00_onclick"/>
+              <Static id="staIdPwSearch" taborder="4" text="로그인" left="94" top="570" width="142" height="57"/>
+              <Button id="btnLogin" taborder="5" text="아이디 찾기" left="75" top="515" width="280" height="40" background="#dbe4f5" onclick="divLogin_btnLogin_onclick"/>
+              <Radio id="Radio00" taborder="6" left="99" top="327" width="232" height="47" onitemchanged="Radio00_onitemchanged" text="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">아이디 찾기</Col>
+                      <Col id="codecolumn">findId</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">비밀번호 찾기</Col>
+                      <Col id="codecolumn">findPw</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Static id="Static00" taborder="7" text="아이디/비밀번호 찾기" left="69" top="255" width="292" height="62" textAlign="center" font="24px/normal &quot;Malgun Gothic&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="USER_PASSWORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="USER_ID">test213123</Col>
+            <Col id="USER_PASSWORD">1234</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList"/>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divLogin.form.edtId" propid="value" datasetid="dsSearch" columnid="USER_ID"/>
+      <BindItem id="item1" compid="divLogin.form.edtPw" propid="value" datasetid="dsSearch" columnid="USER_PASSWORD"/>
+    </Bind>
+  </Form>
+</FDL>

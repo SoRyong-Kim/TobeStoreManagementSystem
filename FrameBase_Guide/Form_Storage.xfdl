@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Storage" width="1050" height="750" titletext="New Form">
+    <Layouts>
+      <Layout height="750" width="1050" stepcount="2">
+        <Grid id="Grid00" taborder="0" left="30" top="275" width="162" height="365" binddataset="StandA" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="60" band="head"/>
+                <Row size="60"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="L"/>
+                <Cell col="1" text="R"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:좌" textAlign="center"/>
+                <Cell col="1" text="bind:우" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="Stand A" left="31" top="170" width="160" height="76" background="#bababa" font="bold 28px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+        <Static id="Static00_00" taborder="2" text="Stand B" left="253" top="170" width="160" height="76" background="#bababa" font="bold 28px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+        <Static id="Static00_00_00" taborder="3" text="Stand C" left="472" top="170" width="160" height="76" background="#bababa" font="bold 28px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+        <Div id="Div00" taborder="4" left="681" top="11" width="259" height="619">
+          <Layouts>
+            <Layout>
+              <Edit id="Edit00" taborder="0" left="101" top="186" width="147" height="30" value="B-L-4" text="B-L-4" font="18px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+              <Static id="Static00" taborder="1" text="매대 위치" left="4" top="186" width="78" height="30" font="16px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static00_00" taborder="2" text="상품이름" left="4" top="253" width="78" height="30" font="16px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static00_01" taborder="3" text="상품 번호" left="4" top="320" width="78" height="30" font="16px/normal &quot;Malgun Gothic&quot;"/>
+              <Static id="Static00_02" taborder="4" text="수량" left="4" top="387" width="78" height="30" font="16px/normal &quot;Malgun Gothic&quot;"/>
+              <Edit id="Edit00_00" taborder="5" left="101" top="253" width="147" height="30" value="양말" text="양말" font="18px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+              <Edit id="Edit00_01" taborder="6" left="101" top="320" width="147" height="30" value="54FG84" text="54FG84" font="18px/normal &quot;Malgun Gothic&quot;" textAlign="center" onchanged="Div00_Edit00_01_onchanged"/>
+              <Edit id="Edit00_02" taborder="7" left="101" top="387" width="147" height="30" value="4" text="4" font="18px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+              <Button id="Button00" taborder="8" text="저장" left="77" top="587" width="82" height="23"/>
+              <Button id="Button00_00" taborder="9" text="취소" left="166" top="587" width="82" height="23"/>
+              <Button id="Button00_01" taborder="10" text="상품 제거" left="76" top="559" width="82" height="23"/>
+              <Button id="Button00_00_00" taborder="11" text="창고 이동" left="166" top="559" width="82" height="23"/>
+              <Edit id="Edit00_02_00" taborder="12" left="101" top="462" width="147" height="30" value="34999" text="34999" font="18px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+              <Static id="Static00_02_00" taborder="13" text="가격" left="4" top="462" width="78" height="30" font="16px/normal &quot;Malgun Gothic&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00_00" taborder="5" left="252" top="275" width="162" height="365" binddataset="StandA" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="60" band="head"/>
+                <Row size="60"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="L"/>
+                <Cell col="1" text="R"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:좌" textAlign="center"/>
+                <Cell col="1" text="bind:우" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid00_01" taborder="6" left="471" top="275" width="162" height="365" binddataset="StandA" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="60" band="head"/>
+                <Row size="60"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="L"/>
+                <Cell col="1" text="R"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:좌" textAlign="center"/>
+                <Cell col="1" text="bind:우" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button00" taborder="7" text="매장" left="33" top="22" width="335" height="137" font="36px/normal &quot;Malgun Gothic&quot;" positionstep="1"/>
+        <Static id="Static01" taborder="8" text="선택한 셀에 있는 제품이 몇 개 남았는 지 확인" left="111" top="201" width="539" height="64" textAlign="center" font="24px/normal &quot;Malgun Gothic&quot;" background="#d1d1d1" onclick="Div00_Static01_onclick" positionstep="1"/>
+        <Div id="div_search" taborder="9" left="0" top="0" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="79" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static03" taborder="0" text="법인" left="0" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp" taborder="1" text="Combo00" left="86" top="8" width="150" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="essential" visible="true"/>
+              <Combo id="cmb_dept" taborder="2" text="Combo00" left="422" top="8" width="150" height="28" innerdataset="ds_dept" codecolumn="DEPT_CODE" datacolumn="DEPT_NAME" visible="true"/>
+              <Static id="Static01" taborder="3" text="부서" left="336" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static00" taborder="4" text="성명" left="672" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="edt_name" taborder="5" left="730" top="8" width="150" height="28" visible="true"/>
+              <Static id="Static02" taborder="6" text="입사일자" left="336" top="41" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" onclick="div_search_Static02_onclick" visible="true"/>
+              <Static id="Static05" taborder="7" text="사원번호" left="0" top="41" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Calendar id="Calendar00" taborder="8" left="422" top="41" width="150" height="28" visible="true"/>
+              <Edit id="Edit00" taborder="9" left="86" top="41" width="123" height="28" visible="true"/>
+              <Button id="btn_28" taborder="10" left="208" top="41" width="28" height="28" cssclass="btn_WF_Find" onclick="div_search_btn_28_onclick" visible="true" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="StandA">
+        <ColumnInfo>
+          <Column id="좌" type="STRING" size="256"/>
+          <Column id="우" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="좌">1</Col>
+            <Col id="우">1</Col>
+          </Row>
+          <Row>
+            <Col id="좌">2</Col>
+            <Col id="우">2</Col>
+          </Row>
+          <Row>
+            <Col id="좌">3</Col>
+            <Col id="우">3</Col>
+          </Row>
+          <Row>
+            <Col id="좌">4</Col>
+            <Col id="우">4</Col>
+          </Row>
+          <Row>
+            <Col id="좌">5</Col>
+            <Col id="우">5</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="StandB"/>
+      <Dataset id="StandC"/>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_Edit00_01_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

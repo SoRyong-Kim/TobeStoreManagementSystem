@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Top" width="1280" height="50" titletext="Form_Top" onload="Form_Top_onload">
+    <Layouts>
+      <Layout width="1280" height="50" screenid="Desktop_screen">
+        <Static id="staBg" taborder="0" left="0" top="0" right="0" cssclass="sta_TF_Bg" height="50"/>
+        <Static id="Static01" taborder="1" left="0" top="0" width="200" height="50" cssclass="sta_TF_Logo"/>
+        <Static id="staName" taborder="2" text="" left="638" top="6" width="155" height="36"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\FrameBase\Form_Top.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/06
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/06     	    Education 	             최초 생성
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp 		= this.gfnGetApplication();
+this.fvTopBtnPrefix = "TOP_";
+this.fvObjApp = nexacro.getApplication();
+ 
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.Form_Top_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+//	this.divTopBtn.form.set_scrollbartype("none");
+	
+// 	// xPush
+// 	
+// 	//XPush Message 송/수신을 위한 Layout세팅         
+// 	
+// 	if ((nexacro._OS == "Android" || nexacro._OS == "iOS") && (nexacro._Browser == "Runtime"))  
+// 	{      
+// 		this.XPush00.set_layouturl("%USERAPP%XPushUrl/XPush_Message_Layout.xml");
+// 	} else   
+// 	{    
+// 		this.XPush00.set_layouturl("XPushUrl::XPush_Message_Layout.xml");
+// 	}
+// 	
+// 	this.fn_XPushStart();
+};
+ 
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ 
+ 
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ 
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ this.fnLoad = function ()
+{
+// 	this.fvObjApp.gdsMenu.filter(this.FRAME_MENUCOLUMNS.menuLevel + "==0");
+// 	this.dsMenu.copyData(this.fvObjApp.gdsMenu, true);
+// 	this.fvObjApp.gdsMenu.filter("");
+// 	this.fnSetTopMenu();
+};
+
+/**
+ * 로그인 사용자 세팅 
+ * @return 
+ * @example
+ *
+ * @memberOf 
+ */
+this.fnSetName = function()
+{
+	var sNameCol = "USER_NAME";
+	// 다국어 처리
+	var sNowLang = nexacro.getEnvironmentVariable("evLanguage");
+	if (sNowLang != "KO") {
+		sNameCol = sNameCol+sNowLang;
+	}
+	trace(sNameCol);
+	var sName  = this.fvObjApp.gdsUserInfo.getColumn(0, sNameCol);	
+	this.staName.set_text(sName + "님");	//다국어 처리 안함
+};
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+]]></Script>
+  </Form>
+</FDL>

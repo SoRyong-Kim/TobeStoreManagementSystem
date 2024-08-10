@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM_Main" width="1050" height="750" titletext="메인화면 로고" onload="TSM_Main_onload">
+    <Layouts>
+      <Layout height="750" width="1050">
+        <Static id="Static00" taborder="0" text="로고" left="0" top="0" right="0" bottom="0" textAlign="center" background="#e8e8e8" font="normal 50px/normal &quot;Arial&quot;"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.TSM_Main_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

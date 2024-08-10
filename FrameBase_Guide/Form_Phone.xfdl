@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_768" width="480" height="768" titletext="New Form" background="#a9dbf8">
+    <Layouts>
+      <Layout height="768" width="480" stepcount="2">
+        <Div id="Div00" taborder="0" text="" left="60" top="182" width="360" height="360" background="#f7f7f7"/>
+        <Static id="Static00" taborder="1" text="QR 스캔" left="60" top="62" width="360" height="80" font="40px/normal &quot;Malgun Gothic&quot;" textAlign="center"/>
+        <Static id="Static01" taborder="2" text="매장 관리 시스템" left="10" top="12" width="203" height="18"/>
+        <Radio id="Radio00" taborder="3" left="94" top="142" width="293" height="448" positionstep="1" font="bold 24px/normal &quot;Malgun Gothic&quot;" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" background="#f9f9f9" padding="10px">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn"/>
+                <Col id="datacolumn">출근</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn"/>
+                <Col id="datacolumn">퇴근</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn"/>
+                <Col id="datacolumn">휴게 시작</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn"/>
+                <Col id="datacolumn">휴게 종료</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Button id="Button00" taborder="4" text="확인" left="250" top="640" width="164" height="90" positionstep="1" font="normal 30px/normal &quot;Arial&quot;"/>
+        <Button id="Button00_00" taborder="5" text="취소" left="60" top="640" width="164" height="90" positionstep="1" font="normal 30px/normal &quot;Arial&quot;"/>
+        <Static id="Static00_00" taborder="6" text="근태 등록" left="64" top="40" width="360" height="80" font="40px/normal &quot;Malgun Gothic&quot;" textAlign="center" positionstep="1"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

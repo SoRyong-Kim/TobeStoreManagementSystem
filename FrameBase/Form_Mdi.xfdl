@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="frameMDI" left="0" top="0" width="1058" height="40" onload="form_onload" scrolltype="none" titletext="frameMDI" onsize="form_onsize" scrollbartype="none" background="#f3f5f6">
+    <Layouts>
+      <Layout>
+        <Static id="staBgLine" taborder="5" left="949" top="0" cssclass="sta_MDI_Line" right="10" bottom="0" border="0px none,0px none,1px solid #d3dce"/>
+        <Button id="btnMaximize" taborder="0" top="18" width="21" height="16" right="90" onclick="btnArrange_onclick" cssclass="btn_MDI_Max" text=""/>
+        <Button id="btnCascade" taborder="1" top="18" width="21" height="16" right="70" onclick="btnArrange_onclick" cssclass="btn_MDI_Min"/>
+        <Button id="btnCloseAll" taborder="2" width="21" height="16" right="7" onclick="btnArrange_onclick" tooltiptext="Close All" cssclass="btn_MDI_Allx" top="18"/>
+        <Button id="btnHorizontal" taborder="3" top="18" width="21" height="16" right="50" onclick="btnArrange_onclick" cssclass="btn_MDI_H"/>
+        <Button id="btnTilevertical" taborder="4" top="18" width="21" height="16" right="30" onclick="btnArrange_onclick" cssclass="btn_MDI_V"/>
+        <Tab id="tabMdi" taborder="6" tabindex="0" left="100" top="10" height="30" onchanged="tabMdi_onchanged" showextrabutton="true" onextrabuttonclick="tabMdi_onextrabuttonclick" right="109" cssclass="tab_MDI_Menu" tabbuttonheight="29" tabbuttonstartgap="2" tabbuttongap="2" onsetfocus="tabMdi_onsetfocus" usecontrolkey="false">
+          <Tabpages>
+            <Tabpage id="Tabpage0" text="Tabpage0">
+              <Layouts>
+                <Layout/>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+        <Button id="btnMain" taborder="7" text="Main" left="0" top="10" width="100" height="30" cssclass="btn_MDI_FrmMain" onclick="btnMain_onclick"/>
+        <Button id="btnTopChange" taborder="8" top="0" width="56" height="10" cssclass="btn_MDI_Collapse" right="76" onclick="btnTopChange_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro Professional Training Couse
+*  @MenuPath    Frame > FrameMdi 
+*  @FileName 	FrameMdi.xfdl 
+*  @Creator 	TOBESOFT Education
+*  @CreateDate 	2022/12/22
+*  @Desction    MDI 탭 표현
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/12/22      		 TOBESOFT Education	 	  	최초 생성 
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp = this.gfnGetApplication();
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload)
+/***********************************************************************************************/
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	this.tabMdi.removeTabpage(0);
+}
+
+ /************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * 메뉴 tab Button 동적생성
+ * @public
+ * @param {string} 메뉴키값
+ * @param {string} 메뉴명
+ * @return
+ * @example
+ * @memberOf 
+ */
+this.fnAddTab = function (formId, formTitle)
+{	
+	this.tabMdi.insertTabpage(formId, -1, "", formTitle);
+}
+
+//탭 변경시 해당 화면 포커스
+this.tabMdi_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	var sFormId = obj.tabpages[e.postindex].name;	
+	this.fvObjApp.avWorkFrame[sFormId].setFocus();	//ChildFrame에 Focus	
+	this.fvObjApp.avVFrameSet1.set_separatesize(this.fvObjApp.avWorkOpen);	
+};
+
+
+// 탭 x 버튼 클릭시 화면 종료
+this.tabMdi_onextrabuttonclick = function(obj:nexacro.Tab,e:nexacro.TabMouseEventInfo)
+{
+	this.fnFormClose(obj.tabpages[e.index].name, e.index);
+	
+};  
+
+//formid(winid)를 이용한 화면 close
+this.fnFormClose = function(sFormId, nTabIndex)
+{
+	//화면종료
+	this.fvObjApp.avWorkFrame.frames[sFormId].form.close();
+	
+	//텝 제거
+	if(this.gfnIsNull(nTabIndex)){
+		for(var i=0; i<this.tabMdi.getTabpageCount(); i++){
+			if(this.tabMdi.tabpages[i].name == sFormId){
+				this.tabMdi.removeTabpage(i);
+				break;
+			}
+		}
+	}
+	else{
+		this.tabMdi.removeTabpage(nTabIndex);
+	}
+	if(this.tabMdi.getTabpageCount() == 0)	this.fvObjApp.avVFrameSet1.set_separatesize(this.fvObjApp.avMainOpen);	
+		
+	//데이터셋 갱신
+	var nRow = this.fvObjApp.gdsOpenMenu.findRow(this.FRAME_MENUCOLUMNS.winId, sFormId);
+	this.fvObjApp.gdsOpenMenu.deleteRow(nRow);
+
+}
+
+  
+
+/**
+ * mdi arrange 처리 함수
+ * @public
+ * @return 
+ * @example
+ * @memberOf 
+ */
+this.btnArrange_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+    var strType = obj.name.replace("btn", "");
+	this.fnArrangeWin(strType);
+}
+
+/**
+ * 열려있는 윈도우 화면을 정렬
+ * @param	: 	strType: 정렬 타입
+ * @return	:   N/A
+ */
+this.fnArrangeWin = function(strType) 
+{
+    strType = strType.toLowerCase();
+	
+	// workFrame영역에 open된 childFrame 갯수
+	var iFramesCnt = this.fvObjApp.avWorkFrame.frames.length;
+
+	if (this.fvObjApp.gdsOpenMenu.getRowCount() < 1) return;
+
+	var arrWin = [];
+	switch (strType)
+	{
+		case "maximize" :
+			for (var i=0; i<iFramesCnt; i++) 
+			{
+				this.fvObjApp.avWorkFrame.frames[i].set_openstatus("maximize");		
+				this.fvObjApp.avWorkFrame.frames[i].set_showtitlebar(false);		
+				this.fvObjApp.avWorkFrame.frames[i].set_border("0px none");			
+			}        
+			break;
+		
+		case "closeall" :
+			for(var i=iFramesCnt-1; i>=0; i--) 
+			{
+				var fid = this.fvObjApp.avWorkFrame.frames[i].name;
+				//화면의 fnClose 함수 체크
+				if(!this.gfnIsNull(this.fvObjApp.avWorkFrame.frames[i].form.divWork.form.lookup("fnClose"))){
+					if(this.fvObjApp.avWorkFrame.frames[i].form.divWork.form.fnClose() == false){
+						//array에 담아 나중에 Confirm 처리
+						arrWin.push(fid);
+					}
+					else{						
+						this.fnFormClose(fid);
+					}
+				}
+				else{
+					this.fnFormClose(fid);
+				}
+			}
+			
+			if(!this.gfnIsNull(arrWin)){
+				this.gfnAlert("confirm.before.movepage", "", "msgClose", function(strId, strRtn)
+				                                                         {
+				                                                              if(strRtn){
+																				for(var i=0; i<arrWin.length; i++)
+																				{
+																					this.fnFormClose(arrWin[i]);
+																				}
+																			  }
+																		});	
+			}
+			break;
+		
+		default :
+			this.fvObjApp.avVFrameSet1.set_separatesize(this.fvObjApp.avWorkOpen);	
+			if(iFramesCnt<= 1)	break;	//화면 하나 열려있는경우 하지 않는다 
+			for (var i=0; i<iFramesCnt; i++)
+			{	
+				this.fvObjApp.avWorkFrame.frames[i].set_showtitlebar(true);
+				this.fvObjApp.avWorkFrame.frames[i].set_border("1px solid #7f7f7b");
+				this.fvObjApp.avWorkFrame.frames[i].set_borderRadius("3px 3px");
+				this.fvObjApp.avWorkFrame.frames[i].set_openstatus("normal");		
+				this.fvObjApp.avWorkFrame.frames[i].titlebar.closebutton.set_enable(false);
+			}
+			this.fvObjApp.avWorkFrame.arrange(strType);
+			break;
+	}
+}
+
+
+
+
+
+this.fnTabControl = function(winID, sType)
+{
+	if(sType == "select"){
+		for(var i=0; i<this.tabMdi.getTabpageCount(); i++)
+		{
+			if(this.tabMdi.tabpages[i].name == winID)
+			{
+				this.tabMdi.set_tabindex(i);
+				return;
+			}
+		}
+	
+	}
+	
+}
+
+
+this.btnMain_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fvObjApp.avVFrameSet1.set_separatesize(this.fvObjApp.avMainOpen);	
+};
+
+this.tabMdi_onsetfocus = function(obj:nexacro.Tab,e:nexacro.SetFocusEventInfo)
+{
+	if(obj.getTabpageCount() > 0){
+		this.fvObjApp.avVFrameSet1.set_separatesize(this.fvObjApp.avWorkOpen);	
+	}
+};
+
+this.btnTopChange_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(obj.cssclass == "btn_MDI_Collapse"){
+		obj.set_cssclass("btn_MDI_Expand");
+		this.fvObjApp.avVFrameSet.set_separatesize("0,1,*");
+	}
+	else{
+		obj.set_cssclass("btn_MDI_Collapse");
+		this.fvObjApp.avVFrameSet.set_separatesize("0,50,*");
+	}
+};]]></Script>
+  </Form>
+</FDL>

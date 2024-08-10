@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Product" width="1050" height="750" titletext="출고처리">
+    <Layouts>
+      <Layout height="750" width="1050" stepcount="3">
+        <Div id="Div00" taborder="0" text="검색 조건" left="2" top="40" height="105" cssclass="div_WF_Search" right="-2"/>
+        <Div id="Div01_00" taborder="1" left="-1" top="205" width="681" height="548" background="#8a94d5">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="2" top="0" width="706" binddataset="Dataset00" autofittype="col" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell col="2" text="Column2"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2" text="bind:Column2"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01_00_00" taborder="2" left="710" top="205" width="340" height="545" background="aqua">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="0" top="0" bottom="0" right="0" binddataset="Dataset00" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell col="2" text="Column2"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2" text="bind:Column2"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00_00" taborder="3" text="검색 조건" left="2" top="38" height="105" cssclass="div_WF_Search" right="-2" positionstep="1"/>
+        <Grid id="Grid00_00" taborder="4" left="4" top="205" width="1046" height="335" binddataset="Dataset00" autofittype="col" positionstep="1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Column0"/>
+                <Cell col="1" text="Column1"/>
+                <Cell col="2" text="Column2"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Column0"/>
+                <Cell col="1" text="bind:Column1"/>
+                <Cell col="2" text="bind:Column2"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="Div01_00_00_00" taborder="5" left="4" top="579" width="1046" height="170" background="aqua" positionstep="1">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="0" top="0" right="0" bottom="0" binddataset="Dataset00" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="Column0"/>
+                      <Cell col="1" text="Column1"/>
+                      <Cell col="2" text="Column2"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:Column0"/>
+                      <Cell col="1" text="bind:Column1"/>
+                      <Cell col="2" text="bind:Column2"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="6" text="보충 요청 리스트" left="4" top="160" width="120" positionstep="1" bottom="550"/>
+        <Static id="Static00_00" taborder="7" text="보충 허가" left="10" top="539" width="120" positionstep="1" bottom="22.80%" onclick="Static00_00_onclick"/>
+        <Div id="Div00_01" taborder="8" left="0" top="35" height="105" cssclass="div_WF_Search" right="0" positionstep="2">
+          <Layouts>
+            <Layout>
+              <Calendar id="calFrom" taborder="0" left="418" top="7" width="11.26%" height="28" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" popuptype="none" minwidth="120" maxwidth=""/>
+              <Static id="Static00" taborder="1" text="~" left="542" top="11" width="8" height="21"/>
+              <Calendar id="calTo" taborder="2" left="555" top="7" height="28" popuptype="none" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" minwidth="120" maxwidth="" width="11.26%"/>
+              <Static id="staTitle" taborder="3" text="기간선택" left="418" top="6" height="30" right="365" uWord="popup.periodselect" cssclass="sta_POP_Title"/>
+              <Edit id="Edit00" taborder="4" left="152" top="8" width="147" height="26"/>
+              <Static id="Static01" taborder="5" text="상품이름" left="84" top="8" width="68" height="26"/>
+              <Static id="Static01_00" taborder="6" text="보유 수량" left="84" top="39" width="68" height="26" onclick="Div00_01_Static01_00_onclick"/>
+              <Static id="Static01_01" taborder="7" text="판매 수량" left="84" top="70" width="68" height="26"/>
+              <Edit id="Edit00_00" taborder="8" left="152" top="39" width="147" height="26"/>
+              <Edit id="Edit00_01" taborder="9" left="152" top="70" width="147" height="26"/>
+              <Static id="Static01_02" taborder="10" text="등록일" left="349" top="8" width="68" height="26"/>
+              <Calendar id="calFrom00" taborder="11" left="418" top="38" width="11.26%" height="28" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" popuptype="none" minwidth="120" maxwidth=""/>
+              <Static id="Static00_00" taborder="12" text="~" left="542" top="42" width="8" height="21"/>
+              <Calendar id="calTo00" taborder="13" left="555" top="38" height="28" popuptype="none" ondropdown="calFrom_ondropdown" dateformat="yyyy-MM-dd" minwidth="120" maxwidth="" width="11.26%"/>
+              <Static id="staTitle00" taborder="14" text="기간선택" left="418" top="37" height="30" right="365" uWord="popup.periodselect" cssclass="sta_POP_Title"/>
+              <Static id="Static01_02_00" taborder="15" text="수정일" left="349" top="39" width="68" height="26"/>
+              <Static id="Static01_00_00" taborder="16" text="매장 id" left="723" top="8" width="68" height="26" onclick="Div00_01_Static01_00_onclick"/>
+              <Static id="Static01_01_00" taborder="17" text="보관 위치" left="723" top="39" width="68" height="26"/>
+              <Edit id="Edit00_00_00" taborder="18" left="791" top="8" width="147" height="26"/>
+              <Combo id="Combo00" taborder="19" text="Combo00" left="791" top="39" width="147" height="26"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01_00_01" taborder="9" left="17" top="200" height="548" background="#8a94d5" positionstep="2" width="1013" text="">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="2" top="0" binddataset="Dataset00_00" autofittype="col" bottom="0" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="id"/>
+                      <Cell col="1" text="상품명"/>
+                      <Cell col="2" text="보유재고"/>
+                      <Cell col="3" text="요청수량"/>
+                      <Cell col="4" text="출고수량"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:id"/>
+                      <Cell col="1" text="bind:상품명"/>
+                      <Cell col="2" text="bind:보유재고"/>
+                      <Cell col="3" text="bind:요청수량"/>
+                      <Cell col="4" text="bind:출고수량"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01_00_00_01" taborder="10" left="700" top="2" width="340" height="545" background="aqua" positionstep="1">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="0" top="0" bottom="0" right="0" binddataset="Dataset01" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="이름"/>
+                      <Cell col="1" text="재고수량"/>
+                      <Cell col="2" text="요청수량"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:이름"/>
+                      <Cell col="1" text="bind:재고수량"/>
+                      <Cell col="2" text="bind:요청수량"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="11" text="Div02" left="767" top="200" width="280" height="545" positionstep="2">
+          <Layouts>
+            <Layout>
+              <Spin id="Spin00" taborder="0" left="-203" top="25" width="133" height="25"/>
+              <Spin id="Spin00_00" taborder="1" left="-203" top="49" width="133" height="25"/>
+              <Spin id="Spin00_01" taborder="2" left="-203" top="73" width="133" height="25"/>
+              <Spin id="Spin00_02" taborder="3" left="-203" top="97" width="133" height="25"/>
+              <Spin id="Spin00_03" taborder="4" left="-203" top="121" width="133" height="25"/>
+              <Spin id="Spin00_04" taborder="5" left="-203" top="145" width="133" height="25"/>
+              <Spin id="Spin00_05" taborder="6" left="-203" top="169" width="133" height="25"/>
+              <Spin id="Spin00_06" taborder="7" left="-203" top="193" width="133" height="25"/>
+              <Spin id="Spin00_07" taborder="8" left="-203" top="217" width="133" height="25"/>
+              <Spin id="Spin00_08" taborder="9" left="-203" top="241" width="133" height="25"/>
+              <Spin id="Spin00_09" taborder="10" left="-203" top="265" width="133" height="25"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button00" taborder="12" text="조회" left="430" top="157" width="70" height="31" positionstep="2"/>
+        <Button id="Button00_00" taborder="13" text="미출고" left="880" top="157" width="70" height="31" positionstep="2"/>
+        <Button id="Button00_01" taborder="14" text="출고처리" left="967" top="157" width="70" height="31" positionstep="2"/>
+        <Static id="Static01" taborder="15" text="출고 관리" left="24" top="0" width="137" height="34" positionstep="2"/>
+        <Button id="Button00_02" taborder="16" text="취소" left="505" top="157" width="70" height="31" positionstep="2"/>
+        <Button id="Button00_03" taborder="17" text="입력" left="580" top="157" width="70" height="31" positionstep="2"/>
+        <Button id="Button00_04" taborder="18" text="저장" left="655" top="157" width="70" height="31" positionstep="2"/>
+        <Button id="Button00_05" taborder="19" text="엑셀 내보내기" left="730" top="157" width="70" height="31" positionstep="2"/>
+        <Button id="Button00_06" taborder="20" text="반송" left="805" top="157" width="70" height="31" positionstep="2"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="상품명" type="STRING" size="256"/>
+          <Column id="보유재고" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+          <Column id="출고수량" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">2qwedsfa</Col>
+            <Col id="상품명">나이키</Col>
+            <Col id="보유재고">100</Col>
+            <Col id="요청수량">5</Col>
+          </Row>
+          <Row>
+            <Col id="상품명">아이다스</Col>
+            <Col id="보유재고">22</Col>
+            <Col id="요청수량">6</Col>
+            <Col id="id">12eewrrwfs</Col>
+          </Row>
+          <Row>
+            <Col id="id">123213rtsg</Col>
+            <Col id="상품명">뉴발란스</Col>
+            <Col id="보유재고">2</Col>
+            <Col id="요청수량">3</Col>
+          </Row>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="이름" type="STRING" size="256"/>
+          <Column id="재고수량" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset00_00">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="상품명" type="STRING" size="256"/>
+          <Column id="보유재고" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+          <Column id="출고수량" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_01_Static01_00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

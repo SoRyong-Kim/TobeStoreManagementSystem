@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Left" width="200" height="670" titletext="Form_Left">
+    <Layouts>
+      <Layout width="200" height="670" screenid="Desktop_screen">
+        <Div id="divLeft" taborder="0" left="0" top="0" right="0" bottom="0" cssclass="div_LF_Bg">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="0" top="0" binddataset="목록" autofittype="col" autoenter="none" autosizebandtype="head" right="0" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="40"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="LeftFrame"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:LeftFrame"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="목록">
+        <ColumnInfo>
+          <Column id="LeftFrame" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LeftFrame">매장관리</Col>
+          </Row>
+          <Row>
+            <Col id="LeftFrame">회원관리</Col>
+          </Row>
+          <Row>
+            <Col id="LeftFrame">근태관리</Col>
+          </Row>
+          <Row>
+            <Col id="LeftFrame">상품관리</Col>
+          </Row>
+          <Row>
+            <Col id="LeftFrame">히스토리</Col>
+          </Row>
+          <Row>
+            <Col id="LeftFrame">분석</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

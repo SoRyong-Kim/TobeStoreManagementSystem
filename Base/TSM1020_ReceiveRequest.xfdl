@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM_ReceiveRequest" width="1050" height="750" titletext="상품 요청 확인 페이지">
+    <Layouts>
+      <Layout height="750" width="1050">
+        <Div id="Div01_00_01" taborder="0" left="7" top="200" height="548" background="#8a94d5" positionstep="0" width="1033" text="">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="0" left="2" top="0" binddataset="dsDetail" autofittype="col" bottom="0" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row band="head" size="24"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="상품이름"/>
+                      <Cell col="1" text="원가"/>
+                      <Cell col="2" text="판매가"/>
+                      <Cell col="3" text="제조일"/>
+                      <Cell col="4" text="요청수량"/>
+                      <Cell col="5" text="매장사진"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:상품이름"/>
+                      <Cell col="1" text="bind:원가"/>
+                      <Cell col="2" text="bind:판매가"/>
+                      <Cell col="3" text="bind:제조일"/>
+                      <Cell col="4" text="bind:요청수량"/>
+                      <Cell col="5" text="bind:매장사진"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button00_01" taborder="1" text="출고처리 이동" left="890" top="5" width="70" height="31" positionstep="0"/>
+        <Static id="Static01" taborder="2" text="* 상품 보충 요청 리스트" left="24" top="0" width="146" height="34" positionstep="0"/>
+        <Button id="Button00_03" taborder="3" text="입력" left="740" top="5" width="70" height="31" positionstep="0"/>
+        <Button id="Button00_04" taborder="4" text="저장" left="815" top="5" width="70" height="31" positionstep="0"/>
+        <Button id="Button00_05" taborder="5" text="엑셀 내보내기" left="960" top="157" width="80" height="31" positionstep="0"/>
+        <Grid id="Grid00" taborder="6" left="10" top="38" width="1036" height="113"/>
+        <Button id="Button00_07" taborder="7" text="조회" left="665" top="5" width="70" height="31" positionstep="0"/>
+        <Static id="Static01_00" taborder="8" text="* 요청 상세 정보" left="20" top="160" width="146" height="34" positionstep="0" onclick="Static01_00_onclick"/>
+        <Button id="Button00_05_00" taborder="9" text="엑셀 내보내기" left="965" top="5" width="81" height="31" positionstep="0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+          <Column id="Column4" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDetail">
+        <ColumnInfo>
+          <Column id="상품이름" type="STRING" size="256"/>
+          <Column id="원가" type="STRING" size="256"/>
+          <Column id="판매가" type="STRING" size="256"/>
+          <Column id="제조일" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+          <Column id="매장사진" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>

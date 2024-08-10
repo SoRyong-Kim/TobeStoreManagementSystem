@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM1070_history" width="1050" height="750" titletext="New Form">
+    <Layouts>
+      <Layout height="750" width="1050">
+        <Static id="Static00" taborder="0" text="--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" left="5" top="79" width="1037" height="82"/>
+        <Grid id="Grid00" taborder="1" left="514" top="200" width="536" height="549" binddataset="Dataset01" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사진"/>
+                <Cell col="1" text="제품명"/>
+                <Cell col="2" text="변동"/>
+                <Cell col="3" text="수량"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:사진"/>
+                <Cell col="1" text="bind:제품명"/>
+                <Cell col="2" text="bind:변동"/>
+                <Cell col="3" text="bind:수량"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="2" text="상세정보" left="520" top="135" width="143" height="71"/>
+        <Static id="Static01_00" taborder="3" text="기록 리스트" left="12" top="135" width="135" height="71"/>
+        <Grid id="Grid00_00" taborder="4" left="0" top="200" width="514" height="60" binddataset="Dataset00" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="유형"/>
+                <Cell col="1" text="상품이름"/>
+                <Cell col="2" text="변동"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:유형"/>
+                <Cell col="1" text="bind:상품이름"/>
+                <Cell col="2" text="bind:변동"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="Grid01" taborder="5" left="544" top="260" width="77" height="70"/>
+        <Static id="Static02" taborder="6" text="초코바" left="664" top="272" width="109" height="38"/>
+        <Static id="Static02_00" taborder="7" text="0 -&gt; 1" left="795" top="270" width="109" height="38"/>
+        <Static id="Static02_00_00" taborder="8" text="+1" left="925" top="271" width="109" height="38"/>
+        <Div id="div_search" taborder="9" left="-2" top="31" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="79" right="2">
+          <Layouts>
+            <Layout>
+              <Static id="Static03" taborder="0" text="거래처 목록" left="30" top="8" width="90" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp" taborder="1" text="Combo00" left="116" top="8" width="150" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="essential" visible="true"/>
+              <Combo id="cmb_dept" taborder="2" text="Combo00" left="542" top="8" width="150" height="28" innerdataset="ds_dept" codecolumn="DEPT_CODE" datacolumn="DEPT_NAME" visible="true"/>
+              <Static id="Static01" taborder="3" text="부서" left="456" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static00" taborder="4" text="성명" left="792" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="edt_name" taborder="5" left="850" top="8" width="150" height="28" visible="true"/>
+              <Static id="Static02" taborder="6" text="거래일자" left="456" top="41" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" onclick="div_search_Static02_onclick" visible="true"/>
+              <Static id="Static05" taborder="7" text="제품명" left="30" top="41" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Calendar id="Calendar00" taborder="8" left="542" top="41" width="150" height="28" visible="true"/>
+              <Edit id="Edit00" taborder="9" left="116" top="41" width="123" height="28" visible="true"/>
+              <Button id="btn_28" taborder="10" left="238" top="41" width="28" height="28" cssclass="btn_WF_Find" onclick="div_search_btn_28_onclick" visible="true" text=""/>
+              <Edit id="edt_name00" taborder="11" left="276" top="8" width="150" height="28" visible="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="유형" type="STRING" size="256"/>
+          <Column id="상품이름" type="STRING" size="256"/>
+          <Column id="변동" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="사진" type="STRING" size="256"/>
+          <Column id="제품명" type="STRING" size="256"/>
+          <Column id="변동" type="STRING" size="256"/>
+          <Column id="수량" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

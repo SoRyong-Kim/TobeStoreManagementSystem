@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM1030_Member" width="1050" height="750" titletext="회원관리">
+    <Layouts>
+      <Layout height="750" width="1050"/>
+    </Layouts>
+  </Form>
+</FDL>

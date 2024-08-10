@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="frameWork" left="0" top="0" width="1050" height="698" onclose="form_onclose" onsize="form_onsize" onactivate="form_onactivate" onload="form_onload" titletext="frameWork" background="#f3f5f6">
+    <Layouts>
+      <Layout>
+        <Div id="divWork" taborder="0" left="0" top="37" text="" background="#ffffff" cssclass="div_WF_Bg" right="10" bottom="10">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="divTitle" taborder="1" left="0" top="0" right="10" url="FrameBase::FrameWorkTitle.xfdl" height="38" text="" background="#ffffff" cssclass="div_WF_BgTitle"/>
+        <Static id="staLodingTime" taborder="2" top="7" width="425" height="17" font="11px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;" usedecorate="true" color="orangered" right="50" textAlign="right" text="해당 화면의 loading 시간은 0.05 Sec 입니다." visible="false" onclick="staLodingTime_onclick"/>
+        <Button id="btn00" taborder="3" text="btn00" left="666" top="12" width="32" height="19" onclick="btn00_onclick" visible="false"/>
+        <Div id="divNotice" taborder="4" width="300" height="120" right="10" bottom="10" formscrollbartype="none" cssclass="div_MF_Notice">
+          <Layouts>
+            <Layout>
+              <Static id="staNotice" taborder="0" left="65" top="30" right="10" bottom="10" textAlign="left" verticalAlign="top" text="공지사항 입니다.&#13;&#10;&#13;&#10;열심히 합시다"/>
+              <Button id="btnClose" taborder="1" top="7" width="15" height="15" onclick="divNotice_btnClose_onclick" cssclass="btn_MF_Close" right="10"/>
+              <Static id="sta00" taborder="2" left="10" top="20" width="48" height="48" cssclass="sta_MF_Notice"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.fvObjApp = this.gfnGetApplication();
+this.fvObjArgs;
+
+this.fvApp = nexacro.getApplication();
+var sMenuId   	= "";
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.form_onsize();	
+	this.divTitle.form.set_scrollbartype("none");
+	//넘어온 아규먼트 셋팅
+	this.fnSetOwnFrameArgu(this);
+	
+	// 전달된 Argument를 form 변수에 설정
+	this.fvObjArgs = this.getOwnerFrame().arguments["oArgs"];
+
+	// form로딩시 화면에 표시할 page URL 설정
+	this.divWork.set_url(this.getOwnerFrame().arguments["pageUrl"]);
+
+	// 공통버튼 사용여부
+	if (this.FRAME_IS_COMBTN_USE) this.staLodingTime.set_visible(false);
+
+	// 알림창 숨기기
+	this.divNotice.set_height(0);
+
+};
+/**
+ * form onactivate event
+ * @return 
+ * @example
+ *
+ * @memberOf 
+ */
+this.form_onactivate = function(obj:nexacro.Form,e:nexacro.ActivateEventInfo)
+{
+ 	var winID = this.getOwnerFrame().name; 
+	this.fvObjApp.avMdiFrame.form.fnTabControl(winID, "select");
+};
+
+/**
+ * workFrame_onclose event
+ * @return 
+ * @example
+ *
+ * @memberOf 
+ */
+this.form_onclose = function(obj:Form, e:nexacro.CloseEventInfo)
+{	
+	try
+	{
+		// WorkFrame 화면일때만 창 닫기
+		if (e.fromobject == "[object Form]" && e.fromobject.name == "frameWork")
+		{ 
+			var winId = this.getOwnerFrame().name;
+			if (this.fvObjApp.avMdiFrame.form.bClose){
+				this.fvObjApp.avMdiFrame.form.bClose = false;
+				this.fvObjApp.avMdiFrame.form.fnTabOnClose(winId);
+			}
+		}
+	}
+	catch(e)
+	{
+
+	}
+}
+
+/**
+ * onsize event
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.form_onsize = function(obj:Form, e:nexacro.SizeEventInfo)
+{	
+	this.resetScroll();
+}
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description 메세지 콜백
+*/
+this.fnMsgCallback = function (strId, strVal)
+{
+	if(strId == "confirm.before.movepage"){
+		if(strVal == true){
+			this.close();
+		}
+	}
+};
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ *  넘어온 아규먼트 처리 설정
+ * @param  {XaComp} this(현재form)
+ * @return
+ * @example
+ * fnSetOwnFrameArgu(this);
+ * @memberOf 
+ */
+this.fnSetOwnFrameArgu = function(o)
+{	
+	var menuId = o.getOwnerFrame().arguments["menuId"];	
+	
+	if(this.FRAME_IS_COMBTN_USE){	//공통 버튼 사용유무
+		//공통 버튼권한세팅
+		var sAuth = this.fnGetAuth(menuId, "AUTH");  //권한조회	
+		this.divTitle.form.fnSetAuthBtn(sAuth);
+	}
+}
+
+/**
+ * gdsMenu에서 버튼권한 가져오기
+ * @param {string} menuId: 메뉴Id
+ * @param {string} colId: 컬럼(권한별) Id
+ * @return 
+ * @example
+ *
+ * @memberOf 
+ */
+this.fnGetAuth = function(menuId, colId)
+{   
+	var sValue = this.fvObjApp.gdsMenu.lookupAs(this.FRAME_MENUCOLUMNS.menuId, menuId, colId);		
+	if(this.gfnIsNull(sValue))
+	{
+		sValue = "YNNNNN";
+	}
+	return sValue;	
+}
+
+/**
+ * @description workFrame close 시 처리
+*/
+this.fnWorkFrameClose = function()
+{
+	if (this.gfnIsNull(this.divWork.form.lookup("fnClose"))) {
+		//로컬환경에서 fnClose 함수 없음 알림
+		if (nexacro.getEnvironmentVariable("evRunMode") == "S" || nexacro.getEnvironmentVariable("evRunMode") == "L") {
+			trace("해당화면에 fnClose 함수가 없습니다. fnClose 함수가 없으면 데이타 변경여부 체크를 하지 않습니다.");
+		}
+	}
+	else {
+		if (this.divWork.form.fnClose() == false) {
+			var sMsgId = "confirm.before.movepage";							//메세지ID
+			var arrArg = "";												//메세지취환될값 배열[생략가능]
+			var sPopId = sMsgId;											//메세지팝업ID[생략가능]	*해당화면에서 메시지 중복사용시 구분되는값을 넣어줘야함
+			var sMsgCallback = "fnMsgCallback";								//메세지콜백[생략가능] 		* confirm성 메시지를 사용 시 반드시 필요
+			
+			// 변경된 데이터가 있습니다. 현재 화면을 닫겠습니까?
+			this.gfnAlert(sMsgId, arrArg, sPopId, sMsgCallback);	
+			return false;
+		}
+		else {	
+			//this.close();	
+		} 
+	}
+	this.close();
+}
+
+/**
+ * @description 현재 오픈된 화면의 form을 reload
+*/
+this.fnFormReload = function()
+{
+	this.divWork.form.reload();
+}
+
+
+
+ /************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 메뉴오픈 이벤트
+*/
+this.btnMenuOpen_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnLeftMenuAction();
+};
+
+
+/**
+ * @description 알림닫기 이벤트
+*/
+this.divNotice_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 알림창 동기화
+	this.fvObjApp.avTopFrame.form.fnSetNoticeShow(this, false, true);
+};
+
+this.btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	alert(this.divWork.getOffsetWidth() + " * " + this.divWork.getOffsetHeight());
+};
+
+
+// 별 모양 클릭 시 
+this.btnMyMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 별모양 변경
+	var sMyMenu = ( obj.cssclass == "btn_WF_Mymnu" ? "btn_WF_MymnuS" : "btn_WF_Mymnu");
+	obj.set_cssclass(sMyMenu);
+	
+	// MyMenu에 넣기
+	if(sMyMenu == "btn_WF_MymnuS"){
+		//gds_myMenu 에 copy <- gds_menu
+		var nNewRow = this.fvApp.gds_myMenu.addRow();
+		var nRow = this.fvApp.gds_menu.findRow("MENU_ID", sMenuId);
+		this.fvApp.gds_myMenu.copyRow(nNewRow, this.fvApp.gds_menu, nRow);
+	} else { // 삭제
+		var nRow = this.fvApp.gds_myMenu.findRow("MENU_ID", sMenuId);
+		this.fvApp.gds_myMenu.deleteRow(nRow);	
+	}
+	
+	// 로그인 정보에 따른
+	nexacro.setPrivateProfile("MY_MENU", this.fvApp.gds_myMenu.saveXML()); // 데이터셋의 타입을 변경?
+	
+};]]></Script>
+    <Objects/>
+  </Form>
+</FDL>

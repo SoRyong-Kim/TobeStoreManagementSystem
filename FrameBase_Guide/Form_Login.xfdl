@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Login" height="800" titletext="New Form" width="1280" cssclass="fm">
+    <Layouts>
+      <Layout height="800" width="1280">
+        <Div id="Div01" taborder="6" top="0" height="800" left="400" right="400">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="로고" left="90" top="193" height="127" textAlign="center" background="#dbe4f5" font="24px/normal &quot;Malgun Gothic&quot;" cssclass="staLogo" right="90"/>
+              <Edit id="Edit00" taborder="1" left="90" top="345" height="41" text="아이디" value="아이디" right="90"/>
+              <Edit id="Edit00_00" taborder="2" left="90" top="409" height="41" text="비밀번호" value="비밀번호" right="90"/>
+              <Div id="Div00" taborder="3" text="로그인" left="90" top="493" height="47" background="#dbe4f5" right="90">
+                <Layouts>
+                  <Layout/>
+                </Layouts>
+              </Div>
+              <Static id="Static02_00" taborder="4" text="회원가입" left="258" top="540" width="142" height="57" onclick="Div01_Static02_00_onclick"/>
+              <Static id="Static02_00_00" taborder="5" text="아이디/비밀번호 찾기" left="101" top="540" width="142" height="57"/>
+              <CheckBox id="CheckBox00" taborder="6" text="아이디 저장" left="90" top="450" height="47" right="90"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>

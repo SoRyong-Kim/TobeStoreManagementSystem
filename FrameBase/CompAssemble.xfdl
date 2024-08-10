@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CompAssemble" width="1920" height="1080" titletext="New Form">
+    <Layouts>
+      <Layout height="1080" width="1920">
+        <Static id="staVLine" taborder="0" left="0" top="140" height="11" cssclass="sta_WF_VLine" right="870" text=""/>
+        <Static id="staHLine" taborder="1" left="615" top="146" cssclass="sta_WF_HLine" right="1294" text="" bottom="330"/>
+        <Div id="divSearch" taborder="2" left="0" top="0" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="79" right="870">
+          <Layouts>
+            <Layout>
+              <Static id="Static03" taborder="0" text="거래처 목록" left="30" top="8" width="90" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp" taborder="1" text="Combo00" left="116" top="8" width="150" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="essential" visible="true"/>
+              <Combo id="cmb_dept" taborder="2" text="Combo00" left="542" top="8" width="150" height="28" innerdataset="ds_dept" codecolumn="DEPT_CODE" datacolumn="DEPT_NAME" visible="true"/>
+              <Static id="Static01" taborder="3" text="이름" left="456" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static00" taborder="4" text="전화번호" left="792" top="8" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="edt_name" taborder="5" left="850" top="8" width="150" height="28" visible="true"/>
+              <Static id="Static02" taborder="6" text="거래일자" left="456" top="41" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" onclick="div_search_Static02_onclick" visible="true"/>
+              <Static id="Static05" taborder="7" text="제품명" left="30" top="41" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Calendar id="Calendar00" taborder="8" left="542" top="41" width="150" height="28" visible="true"/>
+              <Edit id="Edit00" taborder="9" left="116" top="41" width="123" height="28" visible="true"/>
+              <Button id="btn_28" taborder="10" left="238" top="41" width="28" height="28" cssclass="btn_WF_Find" onclick="div_search_btn_28_onclick" visible="true" text=""/>
+              <Edit id="edt_name00" taborder="11" left="276" top="8" width="150" height="28" visible="true"/>
+              <Static id="Static00_00" taborder="12" text="이메일" left="791" top="41" width="58" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="edt_name01" taborder="13" left="849" top="41" width="150" height="28" visible="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divSearch00" taborder="3" left="15" top="187" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="86" width="1050">
+          <Layouts>
+            <Layout>
+              <Combo id="cmb_corp" taborder="0" text="Combo00" left="504" top="10" width="123" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true"/>
+              <Static id="Static05" taborder="1" text="제품명" left="15" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="Edit00" taborder="2" left="76" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search"/>
+              <Static id="Static05_00" taborder="3" text="카테고리" left="229" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="Edit00_00" taborder="4" left="290" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search"/>
+              <Static id="Static05_00_00" taborder="5" text="거래처" left="443" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00_00" taborder="6" text="거래처" left="657" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp00" taborder="7" text="Combo00" left="718" top="10" width="123" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true"/>
+              <Static id="Static05_01" taborder="8" text="보유수량" left="15" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Spin id="Spin00" taborder="9" left="77" top="50" width="60" height="28"/>
+              <Static id="Static03" taborder="10" text="~" left="143" top="50" width="34" height="28"/>
+              <Spin id="Spin00_00" taborder="11" left="158" top="50" width="60" height="28"/>
+              <Static id="Static05_01_00" taborder="12" text="판매수량" left="266" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Spin id="Spin00_01" taborder="13" left="328" top="50" width="60" height="28"/>
+              <Static id="Static03_00" taborder="14" text="~" left="394" top="50" width="34" height="28"/>
+              <Spin id="Spin00_00_00" taborder="15" left="410" top="50" width="60" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

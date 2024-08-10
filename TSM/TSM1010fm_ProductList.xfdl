@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM1010_ProductList" width="1050" height="670" titletext="상품조회" cssclass="edt_WF_Search" onload="TSM_ProductList_onload">
+    <Layouts>
+      <Layout height="670" width="1050">
+        <Static id="staHLine" taborder="0" left="0" top="155" height="11" cssclass="sta_WF_HLine" right="0" text=""/>
+        <Static id="staTitle" taborder="1" text="상품조회" left="15" top="10" width="166" height="42" cssclass="sta_WF_Title"/>
+        <Div id="divSearch" taborder="2" left="0" top="59" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="86" width="1050">
+          <Layouts>
+            <Layout>
+              <Combo id="cmb_corp" taborder="0" text="Combo00" left="504" top="10" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true"/>
+              <Static id="Static05" taborder="1" text="제품명" left="15" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="Edit00" taborder="2" left="76" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search"/>
+              <Static id="Static05_00" taborder="3" text="카테고리" left="229" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Edit id="Edit00_00" taborder="4" left="290" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search"/>
+              <Static id="Static05_00_00" taborder="5" text="거래처" left="443" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00_00" taborder="6" text="거래처" left="657" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp00" taborder="7" text="Combo00" left="718" top="10" width="123" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true"/>
+              <Static id="Static05_01" taborder="8" text="보유수량" left="15" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Spin id="Spin00" taborder="9" left="77" top="50" width="60" height="28"/>
+              <Static id="Static03" taborder="10" text="~" left="143" top="50" width="34" height="28"/>
+              <Spin id="Spin00_00" taborder="11" left="158" top="50" width="60" height="28"/>
+              <Static id="Static05_01_00" taborder="12" text="판매수량" left="266" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Spin id="Spin00_01" taborder="13" left="328" top="50" width="60" height="28"/>
+              <Static id="Static03_00" taborder="14" text="~" left="394" top="50" width="34" height="28"/>
+              <Spin id="Spin00_00_00" taborder="15" left="410" top="50" width="60" height="28"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdProduct" taborder="3" left="3" top="210" height="453" binddataset="dsProduct" autofittype="col" cssclass="grd_WF_List" oncellclick="grdProduct_oncellclick" right="3">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="60"/>
+                <Column size="60"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="60"/>
+                <Column size="60"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="제품 ID"/>
+                <Cell col="1" text="거래처 이름"/>
+                <Cell col="2" text="카테고리"/>
+                <Cell col="3" text="제품명"/>
+                <Cell col="4" text="재고 수량"/>
+                <Cell col="5" text="판매 수량"/>
+                <Cell col="6" text="제조일"/>
+                <Cell col="7" text="유통기한"/>
+                <Cell col="8" text="소유 매장"/>
+                <Cell col="9" text="매대 위치"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:product_id"/>
+                <Cell col="1" text="bind:supplier_name"/>
+                <Cell col="2" text="bind:category_name"/>
+                <Cell col="3" text="bind:product_name"/>
+                <Cell col="4" text="bind:remain_count"/>
+                <Cell col="5" text="bind:sale_count"/>
+                <Cell col="6" text="bind:created_at"/>
+                <Cell col="7" text="bind:expiration_date"/>
+                <Cell col="8" text="bind:store_id"/>
+                <Cell col="9" text="bind:stand_id"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnRetrieve" taborder="4" text="조회" left="741" top="112" width="84" height="41" onclick="btnRetrieve_onclick"/>
+        <Static id="staTitle00" taborder="5" text="상품목록" left="11" top="staHLine:0" width="166" height="42" cssclass="sta_WF_TitleSub"/>
+        <Button id="btnAdd" taborder="6" text="상품추가" left="844" top="112" width="84" height="41" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
+        <Button id="btnEdit" taborder="7" text="수정" left="948" top="112" width="84" height="41" cssclass="btn_WF_Add" onclick="btnEdit_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsProduct">
+        <ColumnInfo>
+          <Column id="product_id" type="STRING" size="256"/>
+          <Column id="supplier_name" type="STRING" size="256"/>
+          <Column id="category_name" type="STRING" size="256"/>
+          <Column id="product_name" type="STRING" size="256"/>
+          <Column id="remain_count" type="STRING" size="256"/>
+          <Column id="sale_count" type="STRING" size="256"/>
+          <Column id="created_at" type="STRING" size="256"/>
+          <Column id="expiration_date" type="STRING" size="256"/>
+          <Column id="store_id" type="STRING" size="256"/>
+          <Column id="stand_id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="product_id" type="STRING" size="256"/>
+          <Column id="supplier_id" type="STRING" size="256"/>
+          <Column id="category_id" type="STRING" size="256"/>
+          <Column id="product_name" type="STRING" size="256"/>
+          <Column id="remain_count" type="STRING" size="256"/>
+          <Column id="sale_count" type="STRING" size="256"/>
+          <Column id="created_at" type="STRING" size="256"/>
+          <Column id="expiration_date" type="STRING" size="256"/>
+          <Column id="store_id" type="STRING" size="256"/>
+          <Column id="stand_id" type="STRING" size="256"/>
+          <Column id="remainQuantity_Min" type="STRING" size="256"/>
+          <Column id="remainQuantity_Max" type="STRING" size="256"/>
+          <Column id="salesQuantity_Min" type="STRING" size="256"/>
+          <Column id="salesQuantity_Max" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsTest">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">명칭1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">명칭2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.Edit00" propid="value" datasetid="dsSearch" columnid="product_name"/>
+      <BindItem id="item1" compid="divSearch.form.Edit00_00" propid="value" datasetid="dsSearch" columnid="category_id"/>
+      <BindItem id="item2" compid="divSearch.form.Spin00" propid="value" datasetid="dsSearch" columnid="remainQuantity_Min"/>
+      <BindItem id="item3" compid="divSearch.form.Spin00_00" propid="value" datasetid="dsSearch" columnid="remainQuantity_Max"/>
+      <BindItem id="item4" compid="divSearch.form.Spin00_01" propid="value" datasetid="dsSearch" columnid="salesQuantity_Min"/>
+      <BindItem id="item5" compid="divSearch.form.Spin00_00_00" propid="value" datasetid="dsSearch" columnid="salesQuantity_Max"/>
+      <BindItem id="item6" compid="divSearch.form.cmb_corp" propid="value" datasetid="dsSearch" columnid="supplier_id"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\TSM\TSM_ProductList.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/07
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/07     	    Education 	             최초 생성
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+var fvPopupUrl = "TSM::TSM1011pu_PopProductAdd.xfdl";
+ 
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 로드 시 이벤트
+*/
+ this.TSM_ProductList_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+ 
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ 
+ 
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ 
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+ 
+/**
+ * @description 상품 조회 사용자 함수
+ * @param {String} sSvcID - 서비스 ID
+ * @param {String} sURL - 서비스 호출 URL 
+ * @param {String} [sInDs]	- 검색 조건을 담은 dsSearch
+ * @param {String} [sOutDs] - 조회된 데이터를 담은 dsProduct
+ * @param {String} [sParam]	- 서비스 호출시 전송할 sParam
+ * @param {String} [sCallBack] - 콜백 함수명
+ * @return N/A
+*/
+ this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) 
+{
+	var sSvcID    = "productList";
+	var sURL      = "SvcUrl::edu/productList.do";
+	var sInDs     = "dsSearch=dsSearch";
+	var sOutDs    = "dsProduct=dsProduct";
+	var sParam    = ""
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 조회버튼 클릭시 사용자 함수 fnSearch 호출
+*/
+this.btnRetrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * @description 추가버튼 클릭시 팝업창 오픈
+*/
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	sPopupId = "popup";
+	sUrl = "TSM::TSM1011pu_PopProductAdd.xfdl";
+	sPopupCallback = function() { this.btnAdd.setFocus(); }
+	// 상품추가 팝업 띄우기
+	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	//trace("팝업 전 : " + JSON.stringify(oArg));
+	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+	
+	//함수 callback
+	this.gfnOpenPopup("popup", fvPopupUrl, oArg, function() { this.btnAdd.setFocus(); }, oOption);
+};
+
+/**
+ * @description 수정버튼, 상품 정보 업데이트
+*/
+this.btnEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	var sSvcID    = "productUpdate";
+	var sURL      = "SvcUrl::edu/productUpdate.do";
+	var sInDs     = "dsSearch=dsSearch";
+	var sOutDs    = "dsProduct=dsProduct";
+	var sParam    = ""
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+};
+
+/**
+ * @description 상품 클릭 이벤트
+*/
+this.grdProduct_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	// 클릭한 셀의 id값을 팝업에 넘겨주기
+	var objParam = this.grdProduct.getCellValue(e.row, 0);
+	// this.dsMember.getColumn(e.row, "mem_id") 와 같다 
+	trace(objParam);
+	// 팝업 열기
+	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+	var oArg = {paramId:objParam};
+	var oOption = {title:sTitle};
+	var sPopupCallBack = "fnPopupCallback";
+	this.gfnOpenPopup( "popup", fvPopupUrl, oArg, sPopupCallBack, oOption);
+};
+]]></Script>
+  </Form>
+</FDL>

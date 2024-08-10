@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Top" width="1280" height="50" titletext="Form_Top">
+    <Layouts>
+      <Layout width="1280" height="50" screenid="Desktop_screen">
+        <Static id="Static00" taborder="0" left="0" top="0" right="0" bottom="0" cssclass="sta_TF_Bg"/>
+        <Static id="Static01" taborder="1" left="0" top="0" width="200" height="50" cssclass="sta_TF_Logo"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

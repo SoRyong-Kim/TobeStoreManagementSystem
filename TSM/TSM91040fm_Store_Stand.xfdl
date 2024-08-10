@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM_Store_Stand" width="1280" height="720" titletext="매대관리">
+    <Layouts>
+      <Layout height="720" width="1280"/>
+    </Layouts>
+  </Form>
+</FDL>
