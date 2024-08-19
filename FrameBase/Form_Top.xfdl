@@ -3,9 +3,13 @@
   <Form id="Form_Top" width="1280" height="50" titletext="Form_Top" onload="Form_Top_onload">
     <Layouts>
       <Layout width="1280" height="50" screenid="Desktop_screen">
-        <Static id="staBg" taborder="0" left="0" top="0" right="0" cssclass="sta_TF_Bg" height="50"/>
-        <Static id="Static01" taborder="1" left="0" top="0" width="200" height="50" cssclass="sta_TF_Logo"/>
-        <Static id="staName" taborder="2" text="" left="638" top="6" width="155" height="36"/>
+        <Static id="staBg" taborder="0" left="0" top="0" right="0" cssclass="sta_TF_Bg" height="50" onclick="staBg_onclick"/>
+        <Static id="Static01" taborder="1" left="-60" top="0" width="180" height="50" cssclass="sta_TF_Logo3"/>
+        <Static id="staName" taborder="2" text="" top="0" right="0" width="90" bottom="0"/>
+        <Static id="Static01_00" taborder="3" left="60" top="0" width="180" height="50" cssclass="sta_TF_Logo4"/>
+        <Static id="sta00" taborder="4" left="915" top="9" width="199" height="34" text="현재 담당 업무 : "/>
+        <Static id="staWork" taborder="5" left="931" top="9" width="199" height="34"/>
+        <Static id="sta01" taborder="6" text="근무 시작 시간" left="621" top="9" width="199" height="34"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/**
@@ -88,8 +92,8 @@ this.fnSetName = function()
 	if (sNowLang != "KO") {
 		sNameCol = sNameCol+sNowLang;
 	}
-	trace(sNameCol);
-	var sName  = this.fvObjApp.gdsUserInfo.getColumn(0, sNameCol);	
+//	trace(sNameCol);
+	var sName  = this.fvObjApp.gdsUser.getColumn(0, sNameCol);	
 	this.staName.set_text(sName + "님");	//다국어 처리 안함
 };
  

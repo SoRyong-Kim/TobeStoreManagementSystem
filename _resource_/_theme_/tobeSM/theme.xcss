@@ -2298,7 +2298,7 @@
 }
 .Static.sta_WF_HLine
 {
-	-nexa-edge : url('theme://images/sta_WF_HLine.png') 2px 2px;
+	-nexa-edge : url('theme://images/sta_WF_HLine.png') 3px 3px;
 }
 .Static.sta_LogF_Bg
 {
@@ -2317,7 +2317,7 @@
 }
 .Static.sta_LogF_Logo
 {
-	background : url('theme://images/sta_LogF_Logo.png') no-repeat center center;
+	background : url('theme://images/sta_LogF_Logo.png') no-repeat center center white;
 }
 .Edit.edt_LogF_Id
 {
@@ -2370,6 +2370,32 @@
 .ImageViewer.img_WF_Product
 {
 	background : url('theme://images/img_WF_product.png') no-repeat center center;
+}
+.Static.sta_LogF_VLine
+{
+	-nexa-edge : url('theme://images/sta_LogF_VLine.png') 3px 3px;
+	
+}
+.Static.sta_LogF_HLine
+{
+	background : url('theme://images/sta_LogF_HLine.png') no-repeat center center /cover;
+	
+}
+.Static.sta_LogF_PwChk
+{
+	color : #ff0000;
+}
+.Static.sta_MF_Logo
+{
+	background : url('theme://images/sta_MF_Logo.png') no-repeat center center;
+}
+.Static.sta_TF_Logo3
+{
+	background : url('theme://images/sta_TF_Logo3.png') no-repeat center center /contain;
+}
+.Static.sta_TF_Logo4
+{
+	background : url('theme://images/sta_TF_Logo4.png') no-repeat center center /contain;
 }
 ]]></CSSData>
   <Predefines/>

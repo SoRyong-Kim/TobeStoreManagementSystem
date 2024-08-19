@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="LeftFrame" left="0" top="0" width="200" height="760" onsize="Form_onsize" onload="form_onload" titletext="frameLeft" background="#f3f5f6">
+  <Form id="LeftFrame" left="0" top="0" width="200" height="760" onsize="Form_onsize" onload="form_onload" titletext="frameLeft">
     <Layouts>
       <Layout>
         <PopupDiv id="pdivMenuSearch" text="pdiv00" left="264" top="58" width="200" height="213">
@@ -58,8 +58,8 @@
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btnMyMenu" taborder="8" left="92" top="10" width="90" height="30" onclick="btnMyMenu_onclick" visible="true" cssclass="btn_LF_MymenuIcon" text="MyMenu"/>
-        <Button id="btnMenu" taborder="6" left="10" top="10" width="80" height="30" cssclass="btn_LF_MenuIcon" onclick="btnMenu_onclick" text="Menu"/>
+        <Button id="btnMyMenu" taborder="8" left="92" top="10" width="90" height="30" onclick="btnMyMenu_onclick" visible="false" cssclass="btn_LF_MymenuIcon" text="MyMenu"/>
+        <Button id="btnMenu" taborder="6" left="10" top="10" width="80" height="30" cssclass="btn_LF_MenuIcon" onclick="btnMenu_onclick" text="Menu" visible="false"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/**
@@ -99,7 +99,7 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 // 	if( !this.gfnIsNull(sGdsMyMenuXML)) {
 // 		this.fvObjApp.gdsMyMenu.loadXML(sGdsMyMenuXML);
 // 	}
-	//this.fnGlobalMenuCopy();
+	this.fnGlobalMenuCopy();
 };
 
 /**
@@ -163,7 +163,6 @@ trace("fnChangeMenu");
 */
 this.fnFormOpen = function (objDs,nTargetRow,objArg)
 {
-trace("fnFormOpen");
 	if( this.gfnIsNull(objDs) ) return;
 	if( this.gfnIsNull(nTargetRow) ) return;
 
@@ -180,7 +179,7 @@ trace("fnFormOpen");
 */
 this.fnGlobalMenuCopy = function ()
 {
-trace("fnGlobalMenuCopy");
+	trace("글로벌 메뉴 카피");
 	this.fvObjApp.gdsMenu.filter("MENU_URL.length > 0 && USE_YN=='Y'");
 	this.dsPdivMenu.copyData(this.fvObjApp.gdsMenu, true);
 	this.fvObjApp.gdsMenu.filter("");
@@ -194,46 +193,45 @@ trace("fnGlobalMenuCopy");
 */
 this.grdTree_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {	
-// 	//ID,NAME,URL
-// 	var objDs = obj.getBindDataset();
-// 	var strName     = objDs.getColumn(e.row, "MENU_ID");	// e.row - 이벤트 발생 위치의 로우
-// 	var strMenuName = objDs.getColumn(e.row, "MENU_NAME");
-// 	var strFormUrl  = objDs.getColumn(e.row, "FORM_URL");	
-// 
-// // 클릭시 탭 추가
-// 	var arrObj = this.fvApp.avWorkFrame.all;
-// 	for(var i=0; i<arrObj.length; i++){
-// 		if(arrObj[i].name ==strName) {
-// 			arrObj[i].setFocus();
-// 			
-// 			// myMenu 클릭시 탭 추가
-// 			//this.fvApp.avMdiFrame.form.tabMdi.set_tabindex(i);
-// 			
-// 			return;
-// 		}
-// 	}
-// 
-// 	// ChildFrame 생성하기
-// 	var objChildFrame = new ChildFrame(strName, 0, 0, null, null, 0, 0);
-// 	
-// 	// Add Object to Parent Frame
-// 	this.fvApp.avWorkFrame.addChild(strName, objChildFrame); 
-// 	
-// 	// url
-// 	objChildFrame.set_formurl("FrameBase::Form_Work.xfdl");
-// 	objChildFrame.set_dragmovetype('none');
-// 	objChildFrame.set_openstatus('maximize');
-// 	objChildFrame.set_showtitlebar(false);
-// 	trace("클릭됨");
-// 	var objFaram = {MENU_ID:strName
-// 					,MENU_NAME:strMenuName
-// 					,FORM_URL:strFormUrl};
-// 	
-// 	// Show Object  
-// 	this.fvObjApp.avWorkFrame.param = objFaram;
-// 	this.fvObjApp.avWorkFrame.show(); 
-// 	
-// //	this.fvApp.avMdiFrame.form.fnAddTab(objFaram);
+	//ID,NAME,URL
+	var objDs = obj.getBindDataset();
+	var strName     = objDs.getColumn(e.row, "MENU_ID");	// e.row - 이벤트 발생 위치의 로우
+	var strMenuName = objDs.getColumn(e.row, "MENU_NAME");
+	var strFormUrl  = objDs.getColumn(e.row, "FORM_URL");	
+
+// 클릭시 탭 추가
+	var arrObj = this.fvApp.avWorkFrame.all;
+	for(var i=0; i<arrObj.length; i++){
+		if(arrObj[i].name ==strName) {
+			arrObj[i].setFocus();
+			
+			// myMenu 클릭시 탭 추가
+			//this.fvApp.avMdiFrame.form.tabMdi.set_tabindex(i);
+			
+			return;
+		}
+	}
+
+	// ChildFrame 생성하기
+	var objChildFrame = new ChildFrame(strName, 0, 0, null, null, 0, 0);
+	
+	// Add Object to Parent Frame
+	this.fvApp.avWorkFrame.addChild(strName, objChildFrame); 
+	
+	// url
+	objChildFrame.set_formurl("FrameBase::Form_Work.xfdl");
+	objChildFrame.set_dragmovetype('none');
+	objChildFrame.set_openstatus('maximize');
+	objChildFrame.set_showtitlebar(false);
+	var objFaram = {MENU_ID:strName
+					,MENU_NAME:strMenuName
+					,FORM_URL:strFormUrl};
+	
+	// Show Object  
+	this.fvObjApp.avWorkFrame.param = objFaram;
+	this.fvObjApp.avWorkFrame.show(); 
+	
+//	this.fvApp.avMdiFrame.form.fnAddTab(objFaram);
 	// Tree 이미지 클릭시 리턴
 	if(e.clickitem == "treeitembutton") return;
 	
@@ -303,10 +301,6 @@ this.fnExceptSelfCollapse = function(obj, erow)
 	obj.set_enableevent(true);
 	obj.set_enableredraw(true);	
 }
-
-
-
-
 
 this.edtMenuSearch_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
 {

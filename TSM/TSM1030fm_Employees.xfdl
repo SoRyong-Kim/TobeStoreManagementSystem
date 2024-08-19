@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM1030_Member" width="1050" height="600" titletext="회원관리" onload="TSM1030_Member_onload">
+    <Layouts>
+      <Layout height="600" width="1050">
+        <Static id="staHLine" taborder="0" left="0" top="105" height="11" cssclass="sta_WF_HLine" right="0" text=""/>
+        <Static id="staTitle" taborder="1" text="근태 조회" left="5" top="0" width="166" height="42" cssclass="sta_WF_Title"/>
+        <Div id="divSearch" taborder="2" left="0" top="39" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="61" width="1050">
+          <Layouts>
+            <Layout>
+              <Div id="divCalFromTo" taborder="0" text="Div00" left="70" top="18" width="310" height="28" url="Cmm::CmmCalFromTo.xfdl"/>
+              <Static id="sta00" taborder="1" text="근무날짜" left="12" top="14" width="102" height="35"/>
+              <Static id="sta01" taborder="2" text="담당 업무" left="413" top="18" width="101" height="33"/>
+              <Combo id="cmbWork" taborder="3" left="499" top="18" width="149" height="33" innerdataset="gdsWork" codecolumn="WORK_ID" datacolumn="WORK_NAME" value="" index="-1" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdWork" taborder="3" left="0" top="173" binddataset="dsHistory" autofittype="col" cssclass="grd_WF_List" right="319" bottom="0">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row band="head" size="24"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="startTime"/>
+                <Cell col="1" text="endTime"/>
+                <Cell col="2" text="USER_NAME"/>
+                <Cell col="3" text="authority"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:startTime"/>
+                <Cell col="1" text="bind:endTime"/>
+                <Cell col="2" text="bind:USER_NAME"/>
+                <Cell col="3" text="bind:authority"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btnRetrieve" taborder="4" text="조회" left="958" top="12" width="84" height="41" onclick="btnRetrieve_onclick"/>
+        <Static id="staTitle00" taborder="5" text="근태 기록" left="11" top="126" width="166" height="42" cssclass="sta_WF_TitleSub"/>
+        <Static id="staWork" taborder="6" text="근무자" left="150" top="126" width="118" height="37"/>
+        <Combo id="cmbWork" taborder="7" text="cmb01" left="220" top="125" width="130" height="36"/>
+        <Static id="sta00" taborder="8" text="최고 관리자만 보이도록 설정. 조회 후 보이도록 설정. 혹은 근무날짜 포커스 종료시 자동으로 콤보목록 초기화" left="386" top="121" width="614" height="40" visible="false"/>
+        <ListBox id="lst00" taborder="9" left="grdWork:0" top="173" bottom="0" right="0" innerdataset="dsDetail" codecolumn="USER_ID" datacolumn="LIST" onitemchanged="lst00_onitemchanged"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.Edit00" propid="value" datasetid="dsSearch" columnid="product_name"/>
+      <BindItem id="item1" compid="divSearch.form.Edit00_00" propid="value" datasetid="dsSearch" columnid="category_id"/>
+      <BindItem id="item2" compid="divSearch.form.Spin00" propid="value" datasetid="dsSearch" columnid="remainQuantity_Min"/>
+      <BindItem id="item3" compid="divSearch.form.Spin00_00" propid="value" datasetid="dsSearch" columnid="remainQuantity_Max"/>
+      <BindItem id="item4" compid="divSearch.form.Spin00_01" propid="value" datasetid="dsSearch" columnid="salesQuantity_Min"/>
+      <BindItem id="item5" compid="divSearch.form.Spin00_00_00" propid="value" datasetid="dsSearch" columnid="salesQuantity_Max"/>
+      <BindItem id="item6" compid="divSearch.form.cmb_corp" propid="value" datasetid="dsSearch" columnid="supplier_id"/>
+      <BindItem id="item7" compid="divSearch.form.cmb_corp01" propid="value" datasetid="dsSearch" columnid="category_id"/>
+      <BindItem id="item8" compid="divSearch.form.divCalFromTo.form.calFrom" propid="value" datasetid="dsList" columnid="dtFrom"/>
+      <BindItem id="item9" compid="divSearch.form.divCalFromTo.form.calTo" propid="value" datasetid="dsList" columnid="dtTo"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsWork" onrowposchanged="dsWork_onrowposchanged">
+        <ColumnInfo>
+          <Column id="startTime" type="STRING" size="256"/>
+          <Column id="endTime" type="STRING" size="256"/>
+          <Column id="USER_NAME" type="STRING" size="256"/>
+          <Column id="authority" type="STRING" size="256"/>
+          <Column id="work" type="STRING" size="256"/>
+          <Column id="USER_ID" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsHistory">
+        <ColumnInfo>
+          <Column id="startTime" type="STRING" size="256"/>
+          <Column id="endTime" type="STRING" size="256"/>
+          <Column id="USER_NAME" type="STRING" size="256"/>
+          <Column id="authority" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDetail">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="LIST" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\TSM\TSM1030fm_Employees.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/17
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/17     	    Education 	             최초 생성
+********************************************************************************/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp 	  	= this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+
+this.TSM1030_Member_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+	// 호출 예시
+	currentTime = this.gfnshowCurrentTime();
+	trace(currentTime);
+	// From To 달력 값 가져오는 방법
+
+	trace(this.fvObjApp.gdsUser.getColumn(0, "authority"));
+	
+	// 관리자 구분
+	if( this.fvObjApp.gdsUser.getColumn(0, "authority") !== 10 ) 
+	{
+		// 최고 관리자가 아닐 시 안보이도록 설정
+		this.staWork.set_visible(false);
+		this.cmbWork.set_visible(false);
+	}
+	
+	
+	
+//
+// 	switch(sTarget) {
+// 	case "btnInit":
+// 		objForm.fnInit();
+// 		break;
+// 	case "btnGetFromDate":
+// 		sDate = objForm.fnGetFromDate();
+// 		this.editFromDate.set_value(sDate);
+// 		break;
+// 	case "btnGetToDate":
+// 		sDate = objForm.fnGetToDate();
+// 		this.editToDate.set_value(sDate);
+// 		break;
+// 	default:
+// 	}
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 상세정보 가져오기 
+*/
+this.fn_getAppoint = function(){
+    var sUserID = this.dsWork.getColumn(this.dsWork.rowposition, "USER_ID");	
+    var sSvcID    = "workDetail";
+    var sURL      = "SvcUrl::edu/workDetail";
+    var sInDs     = "";
+    var sOutDs    = "dsDetail=dsDetail";
+    var sParam    = "pUserID='" + sUserID + "'";
+    var sCallBack = "fn_callback";
+	this.transaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 조회 버튼 클릭시 이벤트
+*/
+this.btnRetrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 달력의 값을 데이터 셋에 설정
+	var objForm = this.divSearch.form.divCalFromTo.form;
+	sFromDate = objForm.fnGetFromDate();
+	sToDate	  = objForm.fnGetToDate();
+// 	sFromDate = objForm.fnGetFromDate() + "000000";
+// 	sToDate	  = objForm.fnGetToDate() + "999999";
+	this.dsWork.setColumn(0, "startTime", sFromDate);
+	this.dsWork.setColumn(0, "endTime", sToDate);
+	trace(this.dsWork.getColumn(0, "startTime"));
+	// transaction
+	// 관리자 구분
+
+// 	if( this.fvObjApp.gdsUser.getColumn(0, "authority") === 10 ) 
+// 	{
+// 		var sSvcID    = "getWorkHistoryAdmin";
+// 		var sURL      = "SvcUrl::edu/getWorkHistoryAdmin.do";
+// 		var sInDs     = "dsWork=dsWork";
+// 		var sOutDs    = "dsHistory=dsHistory";
+// 		var sParam    = "paramAuth=" + this.fvObjApp.gdsUser.getColumn(0, "authority")
+// 						+" paramStart=" + nexacro.wrapQuote(sFromDate)
+// 						+" paramEnd=" + nexacro.wrapQuote(sToDate);
+// 	} else 
+// 	{
+// 		var sSvcID    = "getWorkHistory";
+// 		var sURL      = "SvcUrl::edu/getWorkHistory.do";
+// 		var sInDs     = "dsWork=dsWork";
+// 		var sOutDs    = "dsHistory=dsHistory";
+// 		var sParam    = "authority=" + this.fvObjApp.gdsUser.getColumn(0, "authority")
+// 	}
+	var sSvcID    = "getWorkHistoryAdmin";
+	var sURL      = "SvcUrl::edu/getWorkHistoryAdmin.do";
+	var sInDs     = "dsWork=dsWork";
+	var sOutDs    = "dsHistory=dsHistory";
+	var sParam    = "paramAuth=" + this.fvObjApp.gdsUser.getColumn(0, "authority")
+					+" paramStart=" + nexacro.wrapQuote(sFromDate)
+					+" paramEnd=" + nexacro.wrapQuote(sToDate);
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+};
+
+/**
+ * @description 선택된 row가 달라졌을 시 발생하는 이벤트
+*/
+this.dsWork_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	//this.fn_getAppoint();
+};
+]]></Script>
+  </Form>
+</FDL>

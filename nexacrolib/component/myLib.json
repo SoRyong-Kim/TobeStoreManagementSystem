@@ -1,0 +1,9 @@
+{
+	"name": "myLib",
+	"version": "1.0.0.0",
+	"description": "Library for Nexacro",
+	"license": "",
+	"scripts": [
+        "myLib/Common.js"
+	]
+}

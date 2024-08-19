@@ -7,6 +7,7 @@
     <Module url="ListView.json"/>
     <Module url="DeviceAPI.json"/>
     <Module url="ExtJs.json"/>
+    <Module url="myLib.json"/>
   </Modules>
   <Components>
     <Component type="JavaScript" id="Button" classname="nexacro.Button" prefixid="btn"/>
@@ -53,9 +54,10 @@
     <Service prefixid="FrameBase" type="form" url="./FrameBase/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="FrameBase_Guide" type="form" url="./FrameBase_Guide/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="TSM" type="form" url="./TSM/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
-    <Service prefixid="Cmm" type="form" url="./Cmm/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="Cmm" type="form" url="./Cmm/" version="0" cachelevel="dynamic" include_subdir="false" communicationversion="0"/>
     <Service prefixid="ExtJs" type="js" url="./nexacrolib/component/ExtJs/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
-    <Service prefixid="SvcUrl" type="JSP" version="0" cachelevel="session" include_subdir="false" communicationversion="0" url="http://192.168.45.230:8088/edupack_egov/"/>
+    <Service prefixid="SvcUrl" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://192.168.35.35:8088/edupack_egov/"/>
+    <Service prefixid="myLib" type="js" url="./nexacrolib/component/myLib/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
   </Services>
   <Protocols/>
   <DeviceAdaptors/>

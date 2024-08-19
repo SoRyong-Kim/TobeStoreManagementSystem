@@ -1,78 +1,288 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Register" width="500" height="600" titletext="New Form">
+  <Form id="TSM0030fm_Register" width="1050" height="750" titletext="New Form" onload="TSM0030fm_Register_onload" onsize="TSM0030fm_Register_onsize">
     <Layouts>
-      <Layout height="600" width="500" stepcount="3">
-        <Static id="Static00" taborder="0" text="아이디/비밀번호 찾기" left="104" top="128" width="292" height="62" textAlign="center" font="24px/normal &quot;Malgun Gothic&quot;"/>
-        <Edit id="Edit00" taborder="1" left="104" top="255" width="292" height="41" text="이름" value="이름"/>
-        <Edit id="Edit00_00" taborder="2" left="104" top="319" width="292" height="41" text="전화번호" value="전화번호"/>
-        <Div id="Div00" taborder="3" text="확인" left="104" top="383" width="292" height="47" background="#dbe4f5">
+      <Layout height="750" width="1050">
+        <Div id="divRegister" taborder="0" top="0" left="138" text="" background="aliceblue" width="780" height="750">
           <Layouts>
-            <Layout/>
+            <Layout>
+              <Static id="staLogo" taborder="0" left="0" top="0" height="180" textAlign="center" cssclass="sta_LogF_Logo" right="0"/>
+              <Edit id="edtName" taborder="1" left="163" top="235" height="40" text="" width="280" cssclass="edt_LogF_Id" onchanged="divRegister_edtName_onchanged"/>
+              <Edit id="edtId" taborder="2" left="163" top="300" height="40" text="" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged"/>
+              <Button id="btnRegister" taborder="3" text="회원가입" left="162" top="643" width="280" height="40" background="#dbe4f5" onclick="divLogin_btnLogin_onclick"/>
+              <Edit id="edtPw" taborder="4" left="163" top="365" height="40" text="" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged"/>
+              <Edit id="edtPwCheck" taborder="5" left="163" top="430" height="40" text="" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged" onkillfocus="edtPwCheck_onkillfocus"/>
+              <Edit id="edtPhone" taborder="6" left="163" top="495" height="40" text="" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged"/>
+              <Edit id="edtPhoneCheck" taborder="7" left="163" top="540" height="40" text="" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged"/>
+              <Edit id="edtEmail" taborder="8" left="163" top="585" height="40" text="" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged"/>
+              <Button id="btnIdCheck" taborder="9" text="중복확인" left="464" top="301" width="76" height="38" onclick="divRegister_btnIdCheck_onclick"/>
+              <Static id="Static02" taborder="10" text="는 사용 불가능한 아이디 입니다." left="603" top="309" width="280" height="23" positionstep="0" onclick="divRegister_Static02_onclick" visible="false"/>
+              <Static id="Static02_00" taborder="11" text="* 영문 대소문자, 숫자, 특수문자 중 2가지 이상 조합" left="453" top="374" width="280" height="23" positionstep="0" visible="false"/>
+              <Static id="staPwChk" taborder="12" text="* 비밀번호가 일치하지 않습니다." left="453" top="439" width="280" height="23" positionstep="0" visible="false" cssclass="sta_LogF_PwChk"/>
+              <Static id="staHLine" taborder="13" left="20" top="194" height="1" cssclass="sta_LogF_HLine" right="20" text=""/>
+              <Static id="staName" taborder="14" text="이름 *" left="42" top="235" width="135" height="40"/>
+              <Static id="staId" taborder="15" text="아이디 *" left="42" top="300" width="135" height="40"/>
+              <Static id="staPw" taborder="16" text="비밀번호 *" left="42" top="365" width="135" height="40"/>
+              <Static id="staPwCheck" taborder="17" text="비밀번호 확인 *" left="42" top="430" width="135" height="40"/>
+              <Static id="staPhoneNum" taborder="18" text="휴대전화" left="42" top="495" width="135" height="40"/>
+              <Static id="staEmail" taborder="19" text="이메일 *" left="42" top="585" width="135" height="40"/>
+              <Static id="staPhoneNumCheck" taborder="20" text="인증번호" left="42" top="540" width="135" height="40"/>
+              <Static id="staLogin" taborder="21" text="로그인으로 돌아가기" left="243" top="692" width="120" height="37" onclick="divRegister_staLogin_onclick"/>
+            </Layout>
           </Layouts>
         </Div>
-        <Radio id="Radio00" taborder="4" left="134" top="190" width="292" height="47" onitemchanged="Radio00_onitemchanged" text="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical">
-          <Dataset id="innerdataset">
-            <ColumnInfo>
-              <Column id="codecolumn" size="256"/>
-              <Column id="datacolumn" size="256"/>
-            </ColumnInfo>
-            <Rows>
-              <Row>
-                <Col id="datacolumn">아이디 찾기</Col>
-              </Row>
-              <Row>
-                <Col id="datacolumn">비밀번호 찾기</Col>
-              </Row>
-            </Rows>
-          </Dataset>
-        </Radio>
-        <Static id="Static00_00" taborder="5" text="아이디/비밀번호 찾기" left="114" top="138" width="292" height="62" textAlign="center" font="24px/normal &quot;Malgun Gothic&quot;" positionstep="1"/>
-        <Edit id="Edit00_01" taborder="6" left="114" top="265" width="292" height="41" text="아이디" value="아이디" positionstep="1"/>
-        <Edit id="Edit00_00_00" taborder="7" left="114" top="329" width="292" height="41" text="전화번호" value="전화번호" positionstep="1"/>
-        <Div id="Div00_00" taborder="8" text="확인" left="114" top="393" width="292" height="47" background="#dbe4f5" positionstep="1">
-          <Layouts>
-            <Layout/>
-          </Layouts>
-        </Div>
-        <Radio id="Radio00_00" taborder="9" left="144" top="200" width="292" height="47" onitemchanged="Radio00_onitemchanged" text="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" positionstep="1">
-          <Dataset id="innerdataset">
-            <ColumnInfo>
-              <Column id="codecolumn" size="256"/>
-              <Column id="datacolumn" size="256"/>
-            </ColumnInfo>
-            <Rows>
-              <Row>
-                <Col id="datacolumn">아이디 찾기</Col>
-              </Row>
-              <Row>
-                <Col id="datacolumn">비밀번호 찾기</Col>
-              </Row>
-            </Rows>
-          </Dataset>
-        </Radio>
-        <Static id="Static00_00_00" taborder="10" text="회원가입" left="100" top="30" width="292" height="62" textAlign="center" font="24px/normal &quot;Malgun Gothic&quot;" positionstep="2"/>
-        <Edit id="Edit00_02" taborder="11" left="130" top="128" width="244" height="41" text="" positionstep="2"/>
-        <Static id="Static01" taborder="12" text="이름" left="35" top="128" width="65" height="41" positionstep="2"/>
-        <Static id="Static01_00" taborder="13" text="아이디" left="35" top="172" width="65" height="41" positionstep="2"/>
-        <Static id="Static01_01" taborder="14" text="비밀번호" left="35" top="216" width="65" height="41" positionstep="2"/>
-        <Static id="Static01_02" taborder="15" text="비밀번호 확인" left="35" top="280" width="85" height="41" positionstep="2"/>
-        <Static id="Static01_03" taborder="16" text="휴대폰 번호" left="35" top="344" width="65" height="41" positionstep="2"/>
-        <Static id="Static01_04" taborder="17" text="이메일" left="35" top="458" width="65" height="41" positionstep="2"/>
-        <Edit id="Edit00_02_00" taborder="18" left="130" top="172" width="244" height="41" text="" positionstep="2"/>
-        <Edit id="Edit00_02_01" taborder="19" left="130" top="216" width="244" height="41" text="" positionstep="2"/>
-        <Edit id="Edit00_02_02" taborder="20" left="130" top="280" width="244" height="41" text="" positionstep="2"/>
-        <Edit id="Edit00_02_03" taborder="21" left="130" top="344" width="244" height="41" text="010-1234-5678" positionstep="2" value="010-1234-5678"/>
-        <Edit id="Edit00_02_04" taborder="22" left="130" top="458" width="244" height="41" text="" positionstep="2"/>
-        <Button id="Button00" taborder="23" text="중복확인" left="389" top="176" width="90" height="34" positionstep="2"/>
-        <Button id="Button00_00" taborder="24" text="휴대폰 인증" left="389" top="347" width="90" height="34" positionstep="2"/>
-        <Button id="Button01" taborder="25" text="회원가입" left="179" top="513" width="146" height="47" positionstep="2"/>
-        <Static id="Static02" taborder="26" text="* 비밀번호 가이드" left="141" top="257" width="245" height="23" positionstep="2" color="#ff1919"/>
-        <Static id="Static03" taborder="27" text="* 비밀번호가 일치하지 않습니다" left="141" top="320" width="266" height="23" positionstep="2" color="#ff1919"/>
-        <Edit id="Edit00_02_03_00" taborder="28" left="250" top="395" width="122" height="41" text="인증번호" positionstep="2" value="인증번호"/>
-        <Button id="Button00_00_00" taborder="29" text="인증" left="389" top="395" width="58" height="34" positionstep="2"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Script type="xscript5.1"><![CDATA[
+/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\TSM\TSM0030fm_Register.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/13
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/13     	    Education 	             최초 생성
+*******************************************************************************
+*/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjEnv 		= nexacro.getEnvironment();
+this.fvObjApp 	  	= this.gfnGetApplication();
+this.fvObjMainframe = this.fvObjApp.mainframe;
+this.id_cnt 		= -1;	// 0이면 중복없음, 1이상 사용불가능
+this.fvNameChk		= 0;
+this.fvIdChk		= 0;
+this.fvPwChk		= 0;
+this.fvEmailChk		= 0;
+this.fvLoginFrameName = "TSM::TSM0010fm_Login.xfdl";
+
+ 
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+  * @description 화면 중앙에 배치하는 메소드
+*/
+ this.TSM0030fm_Register_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	var nLeft = ( this.width / 2 ) - ( this.divRegister.width /2 );
+    var nTop = (this.height / 2 ) - ( this.divRegister.height /2 );
+    
+    this.divRegister.set_left(nLeft);
+    this.divRegister.set_top(nTop);
+	
+};
+
+/**
+  * @description 폼 onload시 처리내역
+*/
+this.TSM0030fm_Register_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	var nStaDis = -500; // static과 edit 간의 간격
+	var sdivR = this.divRegister.form;
+	
+	this.gfnFormOnLoad(this);
+    this.TSM0030fm_Register_onsize();
+	
+	this.gfnCenterComponent(this.divRegister	, sdivR.edtName			, "center"	, "top"	, -140);	// div 중심의 이름 edit 배치
+	
+	this.gfnCenterComponent(sdivR.edtName		, sdivR.staHLine00		, "bottom"	, ""	, 15);	// 
+	this.gfnCenterComponent(sdivR.edtName		, sdivR.edtId			, "bottom"	, ""	, 20);	// 아이디
+	this.gfnCenterComponent(sdivR.edtId			, sdivR.btnIdCheck		, "left"	, ""	, 15);	// 중복체크
+	this.gfnCenterComponent(sdivR.edtId			, sdivR.edtPw			, "bottom"	, ""	, 20);	// 비밀번호
+	this.gfnCenterComponent(sdivR.edtPw			, sdivR.edtPwCheck		, "bottom"	, ""	, 20);	// 비밀번호 확인
+	this.gfnCenterComponent(sdivR.edtPwCheck	, sdivR.edtPhone		, "bottom"	, ""	, 20);	// 휴대전화 번호
+	this.gfnCenterComponent(sdivR.edtPhone		, sdivR.edtPhoneCheck	, "bottom"	, ""	, 10);	// 인증번호 확인
+	this.gfnCenterComponent(sdivR.edtPhoneCheck	, sdivR.edtEmail		, "bottom"	, ""	, 20);	// 이메일
+	this.gfnCenterComponent(sdivR.edtEmail		, sdivR.btnRegister		, "bottom"	, ""	, 20);	// 회원가입 버튼
+	
+	this.gfnCenterComponent(sdivR.edtName		, sdivR.staName			, "left"	, ""	, nStaDis);	// 이름 static
+	this.gfnCenterComponent(sdivR.edtId			, sdivR.staId			, "left"	, ""	, nStaDis);	// 이름 static
+	this.gfnCenterComponent(sdivR.edtPw			, sdivR.staPw			, "left"	, ""	, nStaDis);	// 이름 static
+	this.gfnCenterComponent(sdivR.edtPwCheck	, sdivR.staPwCheck		, "left"	, ""	, nStaDis);	// 이름 static
+	this.gfnCenterComponent(sdivR.edtPhone		, sdivR.staPhoneNum		, "left"	, ""	, nStaDis);	// 이름 static
+	this.gfnCenterComponent(sdivR.edtPhoneCheck	, sdivR.staPhoneNumCheck, "left"	, ""	, nStaDis);	// 이름 static
+	this.gfnCenterComponent(sdivR.edtEmail		, sdivR.staEmail		, "left"	, ""	, nStaDis);	// 이름 static
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * 로그인 transaction
+ * @param {string} svcID - 서비스 ID 
+ * @param {Number} errorCode - 에러코드(정상 0, 에러 음수값)
+ * @param {String} [errorMsg] - 에러메시지
+ * @return N/A
+*/
+ this.fnCallback = function(svcID, errorCode, errorMsg)
+{
+	switch(svcID)
+	{
+		case "checkId":
+			if(this.id_cnt == 0) 
+			{
+				alert("사용가능한 아이디 입니다.");
+				this.fvIdChk = 1;
+			} else 
+			{
+				alert("이미 존재하는 아이디 입니다.");
+			}
+		case "Register":
+			this.fnToLogin();
+	}
+};
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 로그인 transaction
+ * @return N/A
+*/
+this.fnLogin = function() 
+{	
+	var strSvcId    = "login";
+	var strSvcUrl   = "SvcUrl::edu/login.do";
+	var inData      = "dsSearch=dsSearch";
+	var outData     = "dsList=dsList";
+	//dsList=dsList
+	var strArg      = "paramId=" + this.divLogin.form.edtId.value;
+	var callBackFnc = "fnCallback";
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc);
+};	
+
+this.fnValidation = function() 
+{
+	var sName = this.divRegister.form.edtName;
+	var sEmail = this.divRegister.form.edtEmail;
+	
+	if (!sName.value) {
+		alert('이름을 입력하세요.');
+		return 0;
+	} else if (this.fvIdChk !== 1) {
+		alert('아이디 중복을 확인하세요.');
+		return 0;
+	} else if (this.fvPwChk === 0) {
+		alert('비밀번호가 일치하지 않습니다.');
+		return 0;
+	} else if (!sEmail.value) {
+		alert('이메일을 입력하세요');
+		return 0;
+	}
+	return 1; // 항목이 전부 통과했을 시
+}
+
+this.fnToLogin = function() 
+{
+	this.fvObjApp.avLoginFrame.set_formurl(this.fvLoginFrameName);
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+/**
+ * @description ID 중복확인
+ * @return N/A
+*/
+this.divRegister_btnIdCheck_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sSvcID    = "checkId";
+	var sURL      = "SvcUrl::edu/checkId.do";
+	var sInDs     = "";
+	var sOutDs    = "";
+	var sParam    = "paramID=" + this.divRegister.form.edtId.value
+	var sCallBack = "fnCallback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+};
+
+/**
+ * @description 비밀번호 일치 확인
+*/
+this.edtPwCheck_onkillfocus = function(obj:nexacro.Edit,e:nexacro.KillFocusEventInfo)
+{
+	var sPw = this.divRegister.form.edtPw;
+	var sChk = this.divRegister.form.edtPwCheck;
+	if(sPw.value !== sChk.value) {
+		this.fvPwChk = 0;	// 불일치
+		this.divRegister.form.staPwChk.set_visible(true);
+	} else 
+	{
+		this.fvPwChk = 1;	// 일치
+		this.divRegister.form.staPwChk.set_visible(false);
+	}
+};
+
+/**
+ * @description 회원가입 클릭
+ * @return N/A
+*/
+this.divLogin_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 필수항목 입력되었는지 확인
+	// 1이 반환되면 성공
+	if ( this.fnValidation() === 1 ) 
+	{
+		// 회원등록
+		// transaction
+		var sSvcID    = "Register";
+		var sURL      = "SvcUrl::edu/Register.do";
+		var sInDs     = "dsRegister=dsRegister";
+		var sOutDs    = "";
+		var sParam    = ""
+		var sCallBack = "fnCallback";
+		this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+	}
+}
+this.divRegister_edtName_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	this.id_cnt = 2;
+};
+
+this.divRegister_staLogin_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.fnToLogin();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="USER_PASSWORD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList"/>
+      <Dataset id="dsRegister">
+        <ColumnInfo>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="pw" type="STRING" size="256"/>
+          <Column id="phone_num" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divRegister.form.edtName" propid="value" datasetid="dsRegister" columnid="name"/>
+      <BindItem id="item1" compid="divRegister.form.edtId" propid="value" datasetid="dsRegister" columnid="id"/>
+      <BindItem id="item2" compid="divRegister.form.edtPw" propid="value" datasetid="dsRegister" columnid="pw"/>
+      <BindItem id="item3" compid="divRegister.form.edtPhone" propid="value" datasetid="dsRegister" columnid="phone_num"/>
+      <BindItem id="item4" compid="divRegister.form.edtEmail" propid="value" datasetid="dsRegister" columnid="email"/>
+    </Bind>
   </Form>
 </FDL>

@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="TSM101_Login" width="1050" height="750" titletext="New Form" onsize="TSM101_Login_onsize" onload="TSM101_Login_onload">
+  <Form id="TSM0010fm_Login" width="1050" height="750" titletext="New Form" onsize="TSM101_Login_onsize" onload="TSM101_Login_onload">
     <Layouts>
       <Layout height="750" width="1050">
-        <Div id="divLogin" taborder="0" top="0" left="310" cssclass="div_LogF_Bg" text="" background="aliceblue" width="430" height="750">
+        <Div id="divLogin" taborder="0" top="0" left="310" cssclass="div_LogF_Bg" text="" background="aliceblue" width="500" height="750">
           <Layouts>
             <Layout>
-              <Static id="staLogo" taborder="0" left="0" top="120" height="180" textAlign="center" cssclass="sta_LogF_Logo" right="0"/>
-              <Edit id="edtId" taborder="1" left="75" top="335" height="40" text="아이디" value="아이디" width="280" cssclass="edt_LogF_Id" onchanged="divLogin_edtId_onchanged"/>
-              <Edit id="edtPw" taborder="2" left="75" top="395" height="40" text="비밀번호" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged" value="비밀번호"/>
-              <Static id="staRegister" taborder="3" text="회원가입" left="271" top="510" width="142" height="57" onclick="divLogin_staRegister_onclick"/>
-              <Static id="staIdPwSearch" taborder="4" text="아이디/비밀번호 찾기" left="94" top="510" width="142" height="57" onclick="divLogin_staIdPwSearch_onclick"/>
-              <Button id="btnLogin" taborder="5" text="기존 회원 로그인" left="75" top="455" width="280" height="40" background="#dbe4f5" onclick="divLogin_btnLogin_onclick"/>
+              <Static id="staLogo" taborder="0" left="0" top="80" height="180" textAlign="center" cssclass="sta_LogF_Logo" right="0"/>
+              <Edit id="edtId" taborder="1" left="120" top="270" height="40" text="아이디" value="아이디" width="280" cssclass="edt_LogF_Id" onchanged="divLogin_edtId_onchanged"/>
+              <Edit id="edtPw" taborder="2" left="120" top="340" height="40" text="비밀번호" width="280" cssclass="edt_LogF_Pw" onchanged="divLogin_edtPw_onchanged" value="비밀번호" password="true"/>
+              <Static id="staRegister" taborder="3" text="회원가입" left="228" top="473" width="52" height="37" onclick="divLogin_staRegister_onclick"/>
+              <Button id="btnLogin" taborder="4" text="기존 회원 로그인" left="120" top="400" width="280" height="40" background="#dbe4f5" onclick="divLogin_btnLogin_onclick"/>
+              <CheckBox id="chkRememberId" taborder="5" text="아이디 기억하기" left="124" top="451" width="168" height="24"/>
             </Layout>
           </Layouts>
         </Div>
+        <Static id="sta00" taborder="1" text="아이디 : test" left="56" top="123" width="131" height="37"/>
+        <Static id="sta01" taborder="2" text="비밀번호 : 1234" left="56" top="171" width="134" height="59"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -61,10 +63,24 @@ this.fvObjMainframe = this.fvObjApp.mainframe;
 */
 this.TSM101_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.gfnFormOnLoad(this);
-	this.TSM101_Login_onsize();
-};
- 
+    this.gfnFormOnLoad(this);
+    this.TSM101_Login_onsize();
+	this.gfnCenterComponent(this.divLogin, this.divLogin.form.edtId, "center", "top", -50);	// divLogin중심의 ID edit 배치
+	this.gfnCenterComponent(this.divLogin.form.edtId, this.divLogin.form.edtPw, "bottom", "", 30);
+	this.gfnCenterComponent(this.divLogin.form.edtPw, this.divLogin.form.chkRememberId, "bottom", "", 30);
+	this.gfnCenterComponent(this.divLogin.form.chkRememberId, this.divLogin.form.btnLogin, "bottom", "", 30);
+	this.gfnCenterComponent(this.divLogin.form.btnLogin, this.divLogin.form.staRegister, "bottom", "", 30);
+	
+
+	if( this.fvObjApp.gvRmbId === "Y" )
+	{
+		var userId = this.fvObjApp.gdsUser.getColumn(0, "USER_ID"); // 첫 번째 행의 USER_ID
+		this.divLogin.form.edtId.set_value(userId); // edit 필드에 값 설정
+		// 체크박스 체크 상태 설정
+		this.divLogin.form.chkRememberId.set_value(true); // 체크박스를 체크된 상태로 설정
+	}
+}
+
 /************************************************************************************************
  * CALLBACK 콜백 처리부분(Transaction, Popup)
  ************************************************************************************************/
@@ -83,11 +99,13 @@ this.TSM101_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 		case "login":
 			if (this.dsList.rowcount == 1 ) {
 				// 사용자 정보 글로벌데이타셋에 저장
-				var dsUser = this.fvObjApp.gdsUserInfo;
+				trace("사용자정보 gds에 저장");
+				var dsUser = this.fvObjApp.gdsUser;
 				dsUser.setColumn(0,"USER_ID",    this.dsList.getColumn(0, "USER_ID"));
 				dsUser.setColumn(0,"USER_NAME",  this.dsList.getColumn(0, "USER_NAME"));
-				dsUser.setColumn(0,"USER_NAME_EN",this.dsList.getColumn(0, "USER_ENAM"));
-				trace("fnCallback")
+				dsUser.setColumn(0,"authority",  this.dsList.getColumn(0, "authority"));
+				trace("gdsUser 권한 = "+this.dsList.getColumn(0, "authority"));
+				trace("gdsUser 권한 = "+this.fvObjApp.gdsUser.getColumn(0, "authority"));
 				this.fnLoginAfter();
 			}
 			else{
@@ -105,6 +123,8 @@ this.TSM101_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 /************************************************************************************************
  * 사용자 FUNCTION 영역
  ************************************************************************************************/
+
+
 /**
  * @description로그인 transaction
  * @return N/A
@@ -138,16 +158,8 @@ this.fnLoginAfter = function()
 	this.fvObjApp.avVFrameSet.set_separatesize("0,50,*");
 
 	//gloval variable 세팅					
-	nexacro.setEnvironmentVariable("evUserId", this.fvObjApp.gdsUserInfo.getColumn(0,"USER_ID"));
-	nexacro.setEnvironmentVariable("evUserNm", this.fvObjApp.gdsUserInfo.getColumn(0,"USER_NAME"));
-	
-	// 다국어 처리
-// 	sLang = this.divLogin.form.cboLang.value;
-// 	nexacro.setEnvironmentVariable("evLanguage",sLang);
-// 	nexacro.setEnvironmentVariable("evLanguageChange",sLang);	
-// 	this.fvObjApp.avLeftFrame.form.gfnInitLang(this.fvObjApp.avLeftFrame.form);
-// 	this.fvObjApp.avLeftFrame.form.fnChangeLang();
-// 	this.fvObjApp.avTopFrame.form.gfnInitLang(this.fvObjApp.avTopFrame.form);
+	nexacro.setEnvironmentVariable("evUserId", this.fvObjApp.gdsUser.getColumn(0,"USER_ID"));
+	nexacro.setEnvironmentVariable("evUserNm", this.fvObjApp.gdsUser.getColumn(0,"USER_NAME"));
 	
 	// topframe argument setting	
 	this.fvObjApp.avTopFrame.form.fnLoad();
@@ -155,10 +167,8 @@ this.fnLoginAfter = function()
 	
 	// Topfrmae 메뉴 검색용 dataset
 	this.fvObjApp.avLeftFrame.form.fnGlobalMenuCopy();
-
-	
 };
- 
+
 /**
  * @description 운영/개발/로컬여부 셋팅(client체크).
  * @param  none
@@ -246,6 +256,9 @@ this.fnSetTraceMode = function(bTrace)
     }
 };
 
+
+
+
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역
  ************************************************************************************************/
@@ -254,21 +267,20 @@ this.fnSetTraceMode = function(bTrace)
 */
 this.divLogin_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	// 데이터베이스에서 값을 가져오고
-	// 그 값이 edtId, edtPw와 동일한 값인지 비교하고 다른 화면으로 이동
-	
+	// 체크박스가 체크되어 있는 경우
+    if (this.divLogin.form.chkRememberId.value) {
+		this.fvObjApp.gvRmbId = "Y";
+        // gdsUser 데이터셋에 사용자 정보 저장
+        var userId = this.divLogin.form.edtId.value; // 사용자가 입력한 아이디
+
+        this.fvObjApp.gdsUser.setColumn(0, "USER_ID", userId);
+    } else 
+	{
+		this.fvObjApp.gvRmbId = "N";
+	}
 	this.fnLogin();	//서버와통신
-	//this.fnLoginAfter();
+
 	
-// 	//로컬환경에서 global dataset으로 화면열기
-//  	if (nexacro.getEnvironmentVariable("evRunMode") == "S" || nexacro.getEnvironmentVariable("evRunMode") == "L") 
-//  	{	
-//  		this.fnLoginAfter();
-//  	}
-//  	else {
-// // 		this.fnLoginAfter(); 
-//  		this.fnLogin();	//서버와통신
-// 	}
 };
 
 /**
@@ -276,7 +288,7 @@ this.divLogin_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
 */
 this.divLogin_staIdPwSearch_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
 {
-	this.fvObjApp.avLoginFrame.set_formurl("TSM::TSM0020_FindIdPw.xfdl");
+	this.fvObjApp.avLoginFrame.set_formurl("TSM::TSM0020fm_FindIdPw.xfdl");
 };
 
 /**
@@ -284,7 +296,7 @@ this.divLogin_staIdPwSearch_onclick = function(obj:nexacro.Static,e:nexacro.Clic
 */
 this.divLogin_staRegister_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
 {
-	this.fvObjApp.avLoginFrame.set_formurl("TSM::TSM0030_Register.xfdl");
+	this.fvObjApp.avLoginFrame.set_formurl("TSM::TSM0030fm_Register.xfdl");
 };
 ]]></Script>
     <Objects>
@@ -300,7 +312,15 @@ this.divLogin_staRegister_onclick = function(obj:nexacro.Static,e:nexacro.ClickE
           </Row>
         </Rows>
       </Dataset>
-      <Dataset id="dsList"/>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="USER_NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item0" compid="divLogin.form.edtId" propid="value" datasetid="dsSearch" columnid="USER_ID"/>

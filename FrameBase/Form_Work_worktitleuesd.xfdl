@@ -8,7 +8,7 @@
             <Layout/>
           </Layouts>
         </Div>
-        <Div id="divTitle" taborder="1" left="0" top="0" right="10" url="FrameBase::FrameWorkTitle.xfdl" text="" background="#ffffff" cssclass="div_WF_BgTitle" height="38"/>
+        <Div id="divTitle" taborder="1" left="0" top="0" right="10" url="FrameBase::FrameWorkTitle.xfdl" height="38" text="" background="#ffffff" cssclass="div_WF_BgTitle"/>
         <Static id="staLodingTime" taborder="2" top="7" width="425" height="17" font="11px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;" usedecorate="true" color="orangered" right="50" textAlign="right" text="해당 화면의 loading 시간은 0.05 Sec 입니다." visible="false" onclick="staLodingTime_onclick"/>
         <Button id="btn00" taborder="3" text="btn00" left="666" top="12" width="32" height="19" onclick="btn00_onclick" visible="false"/>
         <Div id="divNotice" taborder="4" width="300" height="120" right="10" bottom="10" formscrollbartype="none" cssclass="div_MF_Notice">
