@@ -119,13 +119,14 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 		// 팝업 닫기
 		var arrPopFrame = nexacro.getPopupFrames();
 		//alert(arrPopFrame.length);
-		
-		for (var i=arrPopFrame.length-1; i>=0; i--) {
-			// Runtime, html5에서도 모두 작동
-			var rObj = arrPopFrame[i];	
-			rObj.destroy();
-			rObj = null;
-		}
+		var rObj = arrPopFrame[0];	
+ 			rObj.destroy();
+// 		for (var i=arrPopFrame.length-1; i>=0; i--) {
+// 			// Runtime, html5에서도 모두 작동
+// 			var rObj = arrPopFrame[i];	
+// 			rObj.destroy();
+// 			rObj = null;
+// 		}
 		
 		//this.fnGetProductInfo();
 	}

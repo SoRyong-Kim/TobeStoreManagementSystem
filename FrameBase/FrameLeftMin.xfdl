@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LeftMinFrame" left="0" top="0" width="40" height="760" onsize="Form_onsize" onload="form_onload" background="#f3f5f6">
+    <Layouts>
+      <Layout>
+        <Button id="btnMenu" taborder="0" left="5" top="40" width="30" height="30" cssclass="btn_LF_MenuIcon" onclick="btnMenu_onclick" text="Menu"/>
+        <Button id="btnMenuChange" taborder="1" left="10" top="10" width="20" height="20" cssclass="btn_LF_Pin" onclick="btnMenuChange_onclick"/>
+        <PopupDiv id="pdivMenu" visible="false" left="148" top="35" width="248" height="500" border="0px none,1px solid #3078b4,0px none,0px none" url="FrameBase::Form_Left.xfdl"/>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro Professional Training Couse
+*  @MenuPath    Frame > FrameLeftMin 
+*  @FileName 	FrameLeftMin.xfdl 
+*  @Creator 	TOBESOFT Education
+*  @CreateDate 	2022/12/22
+*  @Desction    Left 메뉴 최소화 화면
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2022/12/22      		 TOBESOFT Education	 	  	최초 생성 
+*******************************************************************************
+*/
+
+
+this.fvOpenFlag = true;	// pdiv 첫번째 오픈 여부 
+this.fvObjApp = this.gfnGetApplication();
+this.btnMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	var nH = this.fvObjApp.avLeftFrame.getOffsetHeight();
+ 	this.pdivMenu.set_height(nH);
+// 	this.pdivMenu.form.resetScroll();
+	this.pdivMenu.trackPopupByComponent(this.btnMenuChange, -10, -10);
+
+
+	//PopupDiv에 메뉴 보여줄때 Left메뉴에서 선택한 트리 형태로 적용 - 접혔을때 한번만 작용
+	if(this.fvOpenFlag){
+		var nMenuRow = this.fvObjApp.avLeftFrame.form.divLeft.form.grdTree.getBindDataset().rowposition;	
+		this.fnTreeStatus(this.pdivMenu.form.divLeft.form.grdTree, nMenuRow);
+		this.pdivMenu.form.btnMenuChange.set_cssclass("btn_LF_Pin");
+		this.fvOpenFlag = false;
+	}
+	
+};
+
+// left 또는 popupdiv에서 메뉴 선택시 서로 트리의 선택한 상태를 맞쳐주기 위한 함수
+this.fnTreeStatus = function(objGrid, nRow)
+{
+	var objDs = objGrid.getBindDataset();
+    var nRoot = 0;
+	
+	objGrid.set_treeinitstatus("collapse,null");
+    for(var i=nRow; i>0; i--){
+        if(objGrid.isTreeRootRow(i, true)){
+            nRoot = i;
+        }
+		if(objDs.getColumn(i, "MENU_LEVEL") == "1")	break;
+    }
+  
+    for(var j=nRoot; j<=nRow; j++){
+		if(!objGrid.isTreeLeafRow(j)){
+			objGrid.setTreeStatus(objGrid.getTreeRow(j),true);
+		}
+    }
+	objDs.set_rowposition(nRow);
+
+}
+
+this.btnMenuChange_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	//Left 메뉴 고정
+	this.fvObjApp.avHFrameSet.set_separatesize(this.fvObjApp.avLeftOpen);	
+	
+	// 팝업메뉴에서 선택된 상태로 Left메뉴 보여주기
+	var nMenuRow = this.pdivMenu.form.divLeft.form.grdTree.getBindDataset().rowposition;
+	this.fnTreeStatus(this.fvObjApp.avLeftFrame.form.divLeft.form.grdTree, nMenuRow);	
+	this.fvOpenFlag = true;
+};
+]]></Script>
+  </Form>
+</FDL>

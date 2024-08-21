@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM_Main" width="1050" height="750" titletext="메인화면 로고">
+    <Layouts>
+      <Layout height="750" width="1050">
+        <Static id="staLogo" taborder="0" left="0" top="0" right="0" bottom="0" textAlign="center" font="normal 50px/normal &quot;Arial&quot;" cssclass="sta_MF_Logo"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>
