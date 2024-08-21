@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Product" width="1040" height="550" titletext="출고처리">
+    <Layouts>
+      <Layout height="550" width="1040" stepcount="0"/>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="상품명" type="STRING" size="256"/>
+          <Column id="보유재고" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+          <Column id="출고수량" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="id">2qwedsfa</Col>
+            <Col id="상품명">나이키</Col>
+            <Col id="보유재고">100</Col>
+            <Col id="요청수량">5</Col>
+          </Row>
+          <Row>
+            <Col id="상품명">아이다스</Col>
+            <Col id="보유재고">22</Col>
+            <Col id="요청수량">6</Col>
+            <Col id="id">12eewrrwfs</Col>
+          </Row>
+          <Row>
+            <Col id="id">123213rtsg</Col>
+            <Col id="상품명">뉴발란스</Col>
+            <Col id="보유재고">2</Col>
+            <Col id="요청수량">3</Col>
+          </Row>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset01">
+        <ColumnInfo>
+          <Column id="이름" type="STRING" size="256"/>
+          <Column id="재고수량" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset00_00">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="상품명" type="STRING" size="256"/>
+          <Column id="보유재고" type="STRING" size="256"/>
+          <Column id="요청수량" type="STRING" size="256"/>
+          <Column id="출고수량" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_01_Static01_00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

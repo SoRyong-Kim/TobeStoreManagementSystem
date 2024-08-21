@@ -7,7 +7,7 @@
           <Frames>
             <ChildFrame id="frameLogin" formurl="TSM::TSM0010fm_Login.xfdl" showtitlebar="false" dragmovetype="none" border="0px none"/>
             <ChildFrame id="frameTop" formurl="FrameBase::Form_Top.xfdl" showtitlebar="false" dragmovetype="none" border="0px none"/>
-            <HFrameSet id="HFrameSet" separatesize="248,0,*" border="0px none">
+            <HFrameSet id="HFrameSet" separatesize="200,0,*" border="0px none">
               <Frames>
                 <ChildFrame id="frameLeft" formurl="FrameBase::Form_Left.xfdl" showtitlebar="false" dragmovetype="none" border="0px none"/>
                 <ChildFrame id="frameLeftMin" formurl="FrameBase::FrameLeftMin.xfdl" showtitlebar="false" showtitleicon="false" dragmovetype="none"/>
@@ -57,10 +57,10 @@ this.avWorkFrame   = "";
 
 this.avTopOpen   = "0,50,*";
 this.avTopClose  = "0,0,*";
-this.avLeftOpen  = "248,0,*";
+this.avLeftOpen  = "200,0,*";
 this.avLeftClose = "0,40,*";
-this.avMainOpen  = "40,*,0";
-this.avWorkOpen  = "40,0,*";
+this.avMainOpen  = "0,*,0";
+this.avWorkOpen  = "0,0,*";
  
 /***********************************************************************************************
 * Application EVENT 영역(onload, onbeforeclose)

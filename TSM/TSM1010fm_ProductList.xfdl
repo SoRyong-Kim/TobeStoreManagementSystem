@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="TSM1010_ProductList" width="1060" height="577" titletext="상품조회" cssclass="edt_WF_Search" onload="TSM_ProductList_onload">
+  <Form id="TSM1010_ProductList" width="1040" height="550" titletext="상품조회" cssclass="edt_WF_Search" onload="TSM_ProductList_onload">
     <Layouts>
-      <Layout height="577" width="1060">
+      <Layout height="550" width="1040">
         <Static id="staHLine" taborder="0" left="0" top="135" height="11" cssclass="sta_WF_HLine" right="0" text=""/>
         <Static id="staTitle" taborder="1" text="상품조회" left="5" top="0" width="166" height="42" cssclass="sta_WF_Title"/>
-        <Div id="divSearch" taborder="2" left="0" top="39" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="86" width="1050">
+        <Div id="divSearch" taborder="2" left="0" top="39" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="86" right="0">
           <Layouts>
             <Layout>
               <Combo id="cmb_corp" taborder="0" left="504" top="10" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1"/>
@@ -148,7 +148,7 @@
         </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="remain_count"></Col>
+            <Col id="remain_count"/>
             <Col id="remainQuantity_Min">1</Col>
             <Col id="remainQuantity_Max">9999</Col>
           </Row>

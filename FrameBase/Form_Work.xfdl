@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="frameWork" left="0" top="0" width="1050" height="698" onclose="form_onclose" onsize="form_onsize" onactivate="form_onactivate" onload="form_onload" titletext="frameWork" background="#f3f5f6">
+  <Form id="frameWork" left="0" top="0" width="1040" height="600" onclose="form_onclose" onsize="form_onsize" onactivate="form_onactivate" onload="form_onload" titletext="frameWork" background="#f3f5f6">
     <Layouts>
       <Layout>
-        <Div id="divWork" taborder="0" left="0" top="37" text="" background="#ffffff" cssclass="div_WF_Bg" right="10" bottom="10">
+        <Div id="divWork" taborder="0" left="0" top="0" text="" background="#ffffff" cssclass="div_WF_Bg" right="0" bottom="0">
           <Layouts>
             <Layout/>
           </Layouts>
         </Div>
-        <Div id="divTitle" taborder="1" left="0" top="0" right="10" url="Frame::FrameWorkTitle.xfdl" height="38" text="" background="#ffffff" cssclass="div_WF_BgTitle"/>
+        <Div id="divTitle" taborder="1" left="0" top="0" right="10" url="FrameBase::FrameWorkTitle.xfdl" height="38" text="" background="beige" cssclass="div_WF_BgTitle" visible="false"/>
         <Static id="staLodingTime" taborder="2" top="7" width="425" height="17" font="11px/normal &quot;Verdana&quot;,&quot;Malgun Gothic&quot;" usedecorate="true" color="orangered" right="50" textAlign="right" text="해당 화면의 loading 시간은 0.05 Sec 입니다." visible="false" onclick="staLodingTime_onclick"/>
         <Button id="btn00" taborder="3" text="btn00" left="666" top="12" width="32" height="19" onclick="btn00_onclick" visible="false"/>
         <Div id="divNotice" taborder="4" width="300" height="120" right="10" bottom="10" formscrollbartype="none" cssclass="div_MF_Notice">

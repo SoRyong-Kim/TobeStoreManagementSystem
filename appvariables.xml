@@ -634,6 +634,17 @@
           <Col id="MENU_URL">TSM::TSM1010fm_ProductList.xfdl</Col>
         </Row>
         <Row>
+          <Col id="MENU_GROUP">20</Col>
+          <Col id="MENU_ID">20</Col>
+          <Col id="MENU_PID">0</Col>
+          <Col id="MENU_LEVEL">0</Col>
+          <Col id="MENU_NAME">입고</Col>
+          <Col id="MENU_NAME_EN">InBound</Col>
+          <Col id="MENU_URL">TSM::TSM2010fm_InBound.xfdl</Col>
+          <Col id="USE_YN">Y</Col>
+          <Col id="SORT_NO">2</Col>
+        </Row>
+        <Row>
           <Col id="MENU_GROUP">40</Col>
           <Col id="MENU_ID">40</Col>
           <Col id="MENU_PID">0</Col>
@@ -665,7 +676,7 @@
           <Col id="MENU_NAME_EN"/>
           <Col id="USE_YN">N</Col>
           <Col id="MENU_PATH">개발 실습</Col>
-          <Col id="SORT_NO">4</Col>
+          <Col id="SORT_NO">6</Col>
         </Row>
         <Row>
           <Col id="MENU_GROUP">70</Col>
@@ -676,7 +687,7 @@
           <Col id="MENU_NAME_EN"/>
           <Col id="USE_YN">Y</Col>
           <Col id="MENU_PATH">개발 실습</Col>
-          <Col id="SORT_NO">4</Col>
+          <Col id="SORT_NO">7</Col>
           <Col id="MENU_URL">TSM::TSM7000fm_History.xfdl</Col>
         </Row>
       </Rows>

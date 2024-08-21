@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="LeftFrame" left="0" top="0" width="248" height="760" onsize="Form_onsize" onload="form_onload" titletext="frameLeft" background="#f3f5f6">
+  <Form id="LeftFrame" left="0" top="0" width="200" height="760" onsize="Form_onsize" onload="form_onload" titletext="frameLeft" background="#f3f5f6">
     <Layouts>
       <Layout>
-        <PopupDiv id="pdivMenuSearch" text="pdiv00" left="264" top="58" width="200" height="213">
+        <PopupDiv id="pdivMenuSearch" text="pdiv00" left="264" top="58" width="150" height="213">
           <Layouts>
             <Layout>
               <Grid id="grdMenuSearch" taborder="0" left="0" top="30" height="183" autofittype="col" binddataset="dsPdivMenu" oncellclick="pdivMenuSearch_grdMenuSearch_oncellclick" onkeydown="pdivMenuSearch_grdMenuSearch_onkeydown" cssclass="grd_LF_Detail" nodatatext="no data" scrollbardecbuttonsize="0" scrollbarincbuttonsize="0" right="0">
@@ -26,7 +26,7 @@
             </Layout>
           </Layouts>
         </PopupDiv>
-        <Div id="divLeft" taborder="9" text="div00" left="10" top="39" bottom="10" cssclass="div_LF_Bg" width="230">
+        <Div id="divLeft" taborder="9" text="div00" left="10" top="39" bottom="10" cssclass="div_LF_Bg" width="179">
           <Layouts>
             <Layout>
               <Grid id="grdTree" treeinitstatus="collapse,null" cssclass="grd_LF_Tree" left="0" top="10" autofittype="col" treeusecheckbox="false" bottom="0" oncellclick="grdTree_oncellclick" binddataset="dsMenu" treeuseline="false" treeuseimage="false" taborder="0" right="0">
@@ -73,10 +73,10 @@
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btnMyMenu" taborder="8" left="92" top="10" width="90" height="30" onclick="btnMyMenu_onclick" visible="true" cssclass="btn_LF_MymenuIcon" text="MyMenu"/>
-        <Button id="btnOpenMenuFind" taborder="9" left="190" top="16" width="20" height="20" cssclass="btn_LF_Find" onclick="btnOpenMenuFind_onclick"/>
-        <Button id="btnMenu" taborder="6" left="10" top="10" width="80" height="30" cssclass="btn_LF_MenuIcon" onclick="btnMenu_onclick" text="Menu"/>
-        <Button id="btnMenuChange" taborder="5" left="218" top="16" width="20" height="20" cssclass="btn_LF_Change" onclick="btnMenuChange_onclick"/>
+        <Button id="btnMyMenu" taborder="8" left="58" top="10" width="52" height="30" onclick="btnMyMenu_onclick" visible="true" cssclass="btn_LF_MymenuIcon" text="MyMenu"/>
+        <Button id="btnOpenMenuFind" taborder="9" left="122" top="16" width="18" height="20" cssclass="btn_LF_Find" onclick="btnOpenMenuFind_onclick"/>
+        <Button id="btnMenu" taborder="6" left="10" top="10" width="42" height="30" cssclass="btn_LF_MenuIcon" onclick="btnMenu_onclick" text="Menu"/>
+        <Button id="btnMenuChange" taborder="5" left="150" top="16" width="18" height="20" cssclass="btn_LF_Change" onclick="btnMenuChange_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/**
@@ -163,7 +163,6 @@ this.fnChangeMenu = function (topMenuId)
 	this.dsMenu.set_enableevent(false);
 	this.fvObjApp.gdsMenu.filter(filterExpr);
 	this.dsMenu.copyData(this.fvObjApp.gdsMenu, true);
-	trace(this.dsMenu.saveXML());
 	this.fvObjApp.gdsMenu.filter("");
 	this.fvObjApp.gdsMenu.set_enableevent(true);
 	

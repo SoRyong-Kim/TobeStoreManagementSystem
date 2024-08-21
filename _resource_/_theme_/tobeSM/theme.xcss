@@ -2403,7 +2403,7 @@
 {
 	font : 20pt "Arial","Pretendard Medium";
 	letter-spacing : 2px;
-	color : #dd0506;
+	color : #ff0000;
 }
 .Static.sta_WF_Blue
 {
@@ -2448,6 +2448,31 @@
 {
 	-nexa-border : 1px solid lightgray, 0px none;
 	background : transparent;
+}
+.Static.sta_WF_Title_Red
+{
+	font : 20pt "Arial","Pretendard Medium";
+	letter-spacing : 2px;
+	color : #ff0000;
+	
+}
+.Static.sta_WF_Title_Blue
+{
+	font : 20pt "Arial","Pretendard Medium";
+	letter-spacing : 2px;
+	color : #4452e7;
+}
+.Static.sta_WF_TitleSub_Red
+{
+	font : 16pt "Arial","Pretendard Medium";
+	letter-spacing : 2px;
+	color : #ff0000;
+}
+.Static.sta_WF_TitleSub_Blue
+{
+	font : 16pt "Arial","Pretendard Medium";
+	letter-spacing : 2px;
+	color : #4452e7;
 }
 ]]></CSSData>
   <Predefines/>
