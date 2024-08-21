@@ -28,6 +28,7 @@
               <Static id="staEmail" taborder="19" text="이메일 *" left="42" top="585" width="135" height="40"/>
               <Static id="staPhoneNumCheck" taborder="20" text="인증번호" left="42" top="540" width="135" height="40"/>
               <Static id="staLogin" taborder="21" text="로그인으로 돌아가기" left="243" top="692" width="120" height="37" onclick="divRegister_staLogin_onclick"/>
+              <Button id="btn00" taborder="22" text="btn00" left="503" top="672" width="120" height="50" onclick="divRegister_btn00_onclick"/>
             </Layout>
           </Layouts>
         </Div>
@@ -97,6 +98,7 @@ this.TSM0030fm_Register_onload = function(obj:nexacro.Form,e:nexacro.LoadEventIn
 	this.gfnCenterComponent(sdivR.edtId			, sdivR.btnIdCheck		, "left"	, ""	, 15);	// 중복체크
 	this.gfnCenterComponent(sdivR.edtId			, sdivR.edtPw			, "bottom"	, ""	, 20);	// 비밀번호
 	this.gfnCenterComponent(sdivR.edtPw			, sdivR.edtPwCheck		, "bottom"	, ""	, 20);	// 비밀번호 확인
+	this.gfnCenterComponent(sdivR.edtPwCheck	, sdivR.staPwChk		, "bottom"	, ""	, 0);	// 비밀번호 확인
 	this.gfnCenterComponent(sdivR.edtPwCheck	, sdivR.edtPhone		, "bottom"	, ""	, 20);	// 휴대전화 번호
 	this.gfnCenterComponent(sdivR.edtPhone		, sdivR.edtPhoneCheck	, "bottom"	, ""	, 10);	// 인증번호 확인
 	this.gfnCenterComponent(sdivR.edtPhoneCheck	, sdivR.edtEmail		, "bottom"	, ""	, 20);	// 이메일
@@ -135,8 +137,11 @@ this.TSM0030fm_Register_onload = function(obj:nexacro.Form,e:nexacro.LoadEventIn
 			{
 				alert("이미 존재하는 아이디 입니다.");
 			}
+			break;
+
 		case "Register":
 			this.fnToLogin();
+			break;
 	}
 };
 /************************************************************************************************
@@ -252,6 +257,11 @@ this.divRegister_edtName_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeE
 };
 
 this.divRegister_staLogin_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.fnToLogin();
+};
+
+this.divRegister_btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fnToLogin();
 };

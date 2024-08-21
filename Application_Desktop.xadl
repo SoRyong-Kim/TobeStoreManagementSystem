@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ADL version="2.0">
-  <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload">
+  <Application id="Application_Desktop" screenid="Desktop_screen" onload="Application_onload" licenseurl="NexacroN_client_license.xml">
     <Layout>
       <MainFrame id="mainframe" showtitlebar="true" showstatusbar="true" left="0" top="0" width="1298" height="788" titletext="FullFrame" border="0px none">
         <VFrameSet id="VFrameSet" separatesize="*,0,0">
@@ -121,8 +121,6 @@ this.Application_onload = function(obj:nexacro.Application,e:nexacro.LoadEventIn
 	}
 	
 	// 로그인 화면 open
-	
-	
 	this.avLoginFrame.set_formurl("TSM::TSM0010fm_Login.xfdl"); 
 };
  

@@ -12,8 +12,37 @@
               <Static id="Static05" taborder="1" text="제품명" left="15" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Edit id="Edit00" taborder="2" left="76" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search"/>
               <Static id="Static05_00_00" taborder="3" text="거래처" left="443" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
-              <Static id="Static05_00_00_00" taborder="4" text="거래처" left="657" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
-              <Combo id="cmb_corp00" taborder="5" text="Combo00" left="718" top="10" width="123" height="28" innerdataset="ds_corp" codecolumn="CORP_CODE" datacolumn="CORP_NAME" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true"/>
+              <Static id="Static05_00_00_00" taborder="4" text="가격" left="657" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp00" taborder="5" text="Combo00" left="718" top="10" width="123" height="28" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">~10,000</Col>
+                      <Col id="codecolumn">0</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">10,000 ~ 20,000</Col>
+                      <Col id="codecolumn">1</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">20,000 ~ 30,000</Col>
+                      <Col id="codecolumn">2</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">30,000 ~ 40,000</Col>
+                      <Col id="codecolumn">3</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">40,000 ~</Col>
+                      <Col id="codecolumn">4</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
               <Static id="Static05_01" taborder="6" text="보유수량" left="15" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Spin id="Spin00" taborder="7" left="77" top="50" width="60" height="28" value="0"/>
               <Static id="Static03" taborder="8" text="~" left="143" top="50" width="34" height="28"/>
@@ -27,21 +56,20 @@
             </Layout>
           </Layouts>
         </Div>
-        <Grid id="grdProduct" taborder="3" left="3" top="190" binddataset="dsProduct" autofittype="col" cssclass="grd_WF_List" right="3" bottom="0" oncelldblclick="grdProduct_oncelldblclick">
+        <Grid id="grdProduct" taborder="3" left="3" top="190" binddataset="dsProduct" autofittype="none" cssclass="sta_WF_History" right="3" bottom="0" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="80"/>
                 <Column size="80"/>
                 <Column size="80"/>
-                <Column size="80"/>
-                <Column size="80"/>
-                <Column size="60"/>
-                <Column size="60"/>
+                <Column size="262"/>
+                <Column size="48"/>
+                <Column size="72"/>
+                <Column size="66"/>
                 <Column size="100"/>
                 <Column size="100"/>
-                <Column size="60"/>
-                <Column size="60"/>
+                <Column size="80"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -50,29 +78,27 @@
               </Rows>
               <Band id="head">
                 <Cell text="제품 이미지"/>
-                <Cell col="1" text="제품 ID"/>
-                <Cell col="2" text="거래처 이름"/>
-                <Cell col="3" text="카테고리"/>
-                <Cell col="4" text="제품명"/>
+                <Cell col="1" text="거래처 이름"/>
+                <Cell col="2" text="카테고리"/>
+                <Cell col="3" text="제품명"/>
+                <Cell col="4" text="가격"/>
                 <Cell col="5" text="재고 수량"/>
-                <Cell col="6" text="판매 수량"/>
+                <Cell col="6" text="판매 수량" textAlign="right"/>
                 <Cell col="7" text="제조일"/>
                 <Cell col="8" text="유통기한"/>
-                <Cell col="9" text="소유 매장"/>
-                <Cell col="10" text="매대 위치"/>
+                <Cell col="9" text="제품 ID"/>
               </Band>
               <Band id="body">
-                <Cell rowspan="2" displaytype="imagecontrol" imagestretch="fixaspectratio" text="bind:product_url"/>
-                <Cell col="1" rowspan="2" text="bind:product_id"/>
-                <Cell col="2" rowspan="2" text="bind:supplier_name"/>
-                <Cell col="3" rowspan="2" text="bind:category_name"/>
-                <Cell col="4" rowspan="2" text="bind:product_name"/>
-                <Cell col="5" rowspan="2" text="bind:remain_count"/>
-                <Cell col="6" rowspan="2" text="bind:sale_count"/>
+                <Cell rowspan="2" displaytype="imagecontrol" imagestretch="fixaspectratio" text="bind:product_url" autosizerow="none" autosizecol="none"/>
+                <Cell col="1" rowspan="2" text="bind:supplier_name"/>
+                <Cell col="2" rowspan="2" text="bind:category_name"/>
+                <Cell col="3" rowspan="2" text="bind:product_name"/>
+                <Cell col="4" rowspan="2" text="bind:price"/>
+                <Cell col="5" rowspan="2" text="bind:remain_count" textAlign="right"/>
+                <Cell col="6" rowspan="2" text="bind:sale_count" textAlign="right"/>
                 <Cell col="7" rowspan="2" text="bind:created_at"/>
                 <Cell col="8" rowspan="2" text="bind:expiration_date"/>
-                <Cell col="9" rowspan="2" text="bind:store_id"/>
-                <Cell col="10" rowspan="2" text="bind:stand_id"/>
+                <Cell col="9" rowspan="2" text="bind:product_id"/>
               </Band>
             </Format>
           </Formats>
@@ -80,13 +106,11 @@
         <Button id="btnRetrieve" taborder="4" text="조회" left="741" top="92" width="84" height="41" onclick="btnRetrieve_onclick"/>
         <Static id="staTitle00" taborder="5" text="상품목록" left="11" top="staHLine:0" width="166" height="42" cssclass="sta_WF_TitleSub"/>
         <Button id="btnAdd" taborder="6" text="상품추가" left="844" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
-        <Button id="btnEdit" taborder="7" text="수정" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnEdit_onclick"/>
-        <Div id="div00" taborder="8" text="div00" left="413" top="510" width="238" height="67" background="#80e2f3"/>
-        <Div id="div00_00" taborder="9" text="div00" left="510" top="443" width="238" height="67" background="#80e2f3"/>
+        <Button id="btnDel" taborder="7" text="삭제" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnDel_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="dsProduct">
+      <Dataset id="dsProduct" onrowposchanged="dsProduct_onrowposchanged">
         <ColumnInfo>
           <Column id="product_id" type="STRING" size="256"/>
           <Column id="supplier_name" type="STRING" size="256"/>
@@ -99,6 +123,8 @@
           <Column id="store_id" type="STRING" size="256"/>
           <Column id="stand_id" type="STRING" size="256"/>
           <Column id="product_url" type="STRING" size="256"/>
+          <Column id="price" type="STRING" size="256"/>
+          <Column id="sale_price" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="dsSearch">
@@ -117,9 +143,15 @@
           <Column id="remainQuantity_Max" type="INT" size="256"/>
           <Column id="salesQuantity_Min" type="INT" size="256"/>
           <Column id="salesQuantity_Max" type="INT" size="256"/>
+          <Column id="price" type="INT" size="256"/>
+          <Column id="sale_price" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
-          <Row/>
+          <Row>
+            <Col id="remain_count"></Col>
+            <Col id="remainQuantity_Min">1</Col>
+            <Col id="remainQuantity_Max">9999</Col>
+          </Row>
         </Rows>
       </Dataset>
       <Dataset id="dsTest">
@@ -148,6 +180,7 @@
       <BindItem id="item5" compid="divSearch.form.Spin00_00_00" propid="value" datasetid="dsSearch" columnid="salesQuantity_Max"/>
       <BindItem id="item6" compid="divSearch.form.cmb_corp" propid="value" datasetid="dsSearch" columnid="supplier_id"/>
       <BindItem id="item7" compid="divSearch.form.cmb_corp01" propid="value" datasetid="dsSearch" columnid="category_id"/>
+      <BindItem id="item8" compid="divSearch.form.cmb_corp00" propid="value" datasetid="dsSearch" columnid="price"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[/**
 *  Necacro EduPack
@@ -168,6 +201,8 @@
  * FORM 변수 선언 영역
  ************************************************************************************************/
 var fvPopupUrl = "TSM::TSM1011pu_PopProductAdd.xfdl"; // 팝업창 주소
+var nRow = "";
+var sId = "";
  
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
@@ -281,14 +316,32 @@ this.btnEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 */
 this.grdProduct_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-		// 클릭한 셀의 id값을 팝업에 넘겨주기
-	var objParam = this.grdProduct.getCellValue(e.row, 0);
+	// 클릭한 셀의 id값을 팝업에 넘겨주기
+	var objParam = this.grdProduct.getCellValue(e.row, 9);
 	// 팝업 열기
 	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
 	var oArg = {paramId:objParam};
 	var oOption = {title:sTitle};
 	var sPopupCallBack = "fnPopupCallback";
 	this.gfnOpenPopup( "popup", fvPopupUrl, oArg, sPopupCallBack, oOption);
+};
+/**
+ * @description 삭제버튼 클릭 이벤트
+*/
+this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sSvcID    = "deleteProduct";
+	var sURL      = "SvcUrl::edu/deleteProduct.do";
+	var sInDs     = "";
+	var sOutDs    = "";
+	var sParam    = "paramID=" + this.dsProduct.getColumn(this.dsProduct.rowposition, "product_id");
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+};
+
+this.dsProduct_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+
 };
 ]]></Script>
   </Form>

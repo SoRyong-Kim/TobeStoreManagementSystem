@@ -14,35 +14,68 @@
               <Static id="Static05_00_00" taborder="3" text="거래처" left="443" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Static id="Static05_00_00_01" taborder="4" text="카테고리" left="233" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Combo id="cmb_corp01" taborder="5" left="294" top="10" width="123" height="28" innerdataset="gdsCategory" codecolumn="category_id" datacolumn="category_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp01_canitemchange"/>
-              <Button id="btn00" taborder="6" text="btn00" left="749" top="19" width="120" height="50" onclick="divSearch_btn00_onclick"/>
+              <Button id="btn00" taborder="6" text="조회" left="677" top="10" width="61" height="28" onclick="divSearch_btn00_onclick" visible="false"/>
             </Layout>
           </Layouts>
         </Div>
-        <Static id="staVLine" taborder="3" left="360" top="121" cssclass="sta_WF_VLine" right="679" text="" bottom="0"/>
-        <Div id="div00" taborder="4" left="staVLine:-6" top="staHLine:-6" right="0" bottom="0" text="">
+        <Static id="staVLine" taborder="3" left="360" top="121" cssclass="sta_WF_VLine" text="" bottom="0" width="11"/>
+        <Div id="divDetail" taborder="4" left="365" top="120" right="0" bottom="0" text="">
           <Layouts>
             <Layout>
               <Static id="staTitle" taborder="0" text="유형 텍스트" left="27" top="40" width="166" height="42" cssclass="sta_WF_Title"/>
               <Static id="staHLine" taborder="1" left="20" top="115" height="11" cssclass="sta_WF_HLine" right="20" text=""/>
               <Static id="sta00" taborder="2" text="입고일" left="30" top="136" width="56" height="32"/>
-              <Static id="sta00_00" taborder="3" text="날짜" left="90" top="136" width="95" height="32"/>
+              <MaskEdit id="msk00" taborder="3" left="92" top="131" width="216" height="43" format="####'년 '##'월 '##'일  '##':'##':'##" type="string" border="0px none"/>
+              <Grid id="grd00" taborder="4" left="20" top="197" right="20" bottom="5" binddataset="dsHistory" autofittype="col" cssclass="sta_WF_History">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="product_id"/>
+                      <Cell col="1" text="product_name"/>
+                      <Cell col="2" text="org_count"/>
+                      <Cell col="3" text="remain_count"/>
+                      <Cell col="4" text="수량"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:product_id"/>
+                      <Cell col="1" text="bind:product_name"/>
+                      <Cell col="2" text="bind:org_count"/>
+                      <Cell col="3" text="bind:remain_count"/>
+                      <Cell col="4" text="bind:date"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
             </Layout>
           </Layouts>
         </Div>
         <Static id="sta00" taborder="5" text="입출고 할 때 마다 기록" left="355" top="76" width="247" height="48"/>
-        <ListView id="ListView00" taborder="6" left="0" top="121" width="365" height="479" binddataset="dsHistory">
+        <ListView id="lstHistory" taborder="6" left="0" top="121" width="365" height="479" binddataset="dsHistory" border="0px none">
           <Formats>
             <Format id="default">
               <Band id="body" width="100%" height="179">
-                <Cell id="Cell01" left="10" top="10" width="180" height="24" text="bind:type"/>
-                <Cell id="Cell03" left="15" top="70" width="180" height="24" text="bind:product_id"/>
-                <Cell id="Cell05" left="15" top="100" width="180" height="24" text="bind:product_name"/>
-                <Cell id="Cell06" left="105" top="128" width="20" height="22" text="개" border="1px none #dbdee2"/>
-                <Cell id="Cell07" left="15" top="128" width="90" height="22" text="bind:org_count" border="1px none #dbdee2"/>
-                <Cell id="Cell09" left="180" top="128" width="90" height="22" text="bind:remain_count" textAlign="right"/>
-                <Cell id="Cell11" left="230" top="10" width="120" height="24" text="bind:date"/>
-                <Cell id="Cell12" left="136" top="128" width="40" height="22" text="-&gt;" textAlign="center"/>
-                <Cell id="Cell08" left="270" top="128" width="20" height="22" text="개"/>
+                <Cell id="CellType" left="80" top="20" width="180" height="24" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell03" left="15" top="70" width="180" height="24" text="bind:product_id" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell05" left="15" top="100" width="180" height="24" text="bind:product_name" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell06" left="165" top="128" width="20" height="22" text="개" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell07" left="75" top="128" width="90" height="22" text="bind:org_count" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell09" left="240" top="128" width="90" height="22" text="bind:remain_count" textAlign="right" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell11" left="230" top="10" width="120" height="24" text="bind:date" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell12" left="196" top="128" width="40" height="22" text="-&gt;" textAlign="center" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell08" left="330" top="128" width="20" height="22" text="개" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="CellImage" left="10" top="10" width="50" height="50" displaytype="imagecontrol" border="1px none #dbdee2"/>
+                <Cell id="Cell00" left="21" top="128" width="72" height="22" text="변동" cssclass="sta_WF_history_Cell"/>
               </Band>
             </Format>
           </Formats>
@@ -58,7 +91,8 @@
       <BindItem id="item5" compid="divSearch.form.Spin00_00_00" propid="value" datasetid="dsSearch" columnid="salesQuantity_Max"/>
       <BindItem id="item6" compid="divSearch.form.cmb_corp" propid="value" datasetid="dsSearch" columnid="supplier_id"/>
       <BindItem id="item7" compid="divSearch.form.cmb_corp01" propid="value" datasetid="dsSearch" columnid="category_id"/>
-      <BindItem id="item8" compid="div00.form.sta00_00" propid="text" datasetid="dsHistory" columnid="date"/>
+      <BindItem id="item8" compid="divDetail.form.sta00_00" propid="text" datasetid="dsHistory" columnid="date"/>
+      <BindItem id="item9" compid="divDetail.form.msk00" propid="value" datasetid="dsHistory" columnid="date"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[/**
 *  Necacro EduPack
@@ -93,12 +127,26 @@ this.TSM7000fm_History_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInf
 /************************************************************************************************
  * CALLBACK 콜백 처리부분(Transaction, Popup)
  ************************************************************************************************/
+ /**
+ * @param {String} svcID - 서비스 ID
+ * @param {Number} errorCode - 에러코드(정상 0, 에러 음수값)
+ * @param {String} [errorMsg] - 에러메시지
+ * @return N/A
+*/
+this.fnCallback = function(svcId, errCd, errMsg) {
 
+	var serverUrl = this.gfnGetServerUrl(); // http://localhost:8088/edupack_egov/
+	var sImageUrl = serverUrl + "upload_file/nexa_edu/type_images/";
+
+	var sExpr =	"expr:type == 'T10' ? '" + sImageUrl + "T10.png' : '" + sImageUrl + "T20.png'";		
+	this.lstHistory.setCellProperty("body", "CellImage", "text", sExpr);
+	var sExpr2 = "expr:type == 'T10' ? '입고' : '출고'"
+	this.lstHistory.setCellProperty("body", "CellType", "text", sExpr2);
+}
 
 /************************************************************************************************
  * CRUD 및 TRANSACTION 서비스 호출 처리
  ************************************************************************************************/
-
 
 /************************************************************************************************
  * 사용자 FUNCTION 영역
@@ -128,7 +176,6 @@ this.TSM7000fm_History_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInf
  * 각 COMPONENT 별 EVENT 영역
  ************************************************************************************************/
 
-
 this.divSearch_cmb_corp_canitemchange = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
 {
 	
@@ -141,9 +188,31 @@ this.divSearch_cmb_corp01_canitemchange = function(obj:nexacro.Combo,e:nexacro.I
 
 this.divSearch_Edit00_canchange = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
 {
-	
+	//####'년'-##'월'-##'일'-##':'##':'##
 };
-]]></Script>
+
+this.dsHistory_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	// rowposition이 변경될 때 staTitle의 색 변경
+	// 1. ds에서 getColumn으로 판단하기.
+	// 2. 현재 셀의 row로 getColumn
+	var sType = this.dsHistory.getColumn(this.dsHistory.rowposition, "type");
+//	var sText = this.lstHistory.getCellText(this.dsHistory.rowposition, "body", "CellType");
+	if( sType == "T10" )
+	{
+		this.divDetail.form.staTitle.set_cssclass("sta_WF_Blue");
+		this.divDetail.form.staTitle.set_text("입고내역");
+		this.divDetail.form.staHLine.set_cssclass("sta_WF_HLine_Blue");
+		
+//		this.lstHistory.setCellProperty("body", "CellType", "text", "입고");
+	} else if ( sType == "T20" )
+	{
+		this.divDetail.form.staTitle.set_cssclass("sta_WF_Red");
+		this.divDetail.form.staTitle.set_text("출고내역");
+		this.divDetail.form.staHLine.set_cssclass("sta_WF_HLine_Red");
+//		this.lstHistory.setCellProperty("body", "CellType", "text", "출고");
+	}
+};]]></Script>
     <Objects>
       <Dataset id="dsSearch">
         <ColumnInfo>
@@ -158,7 +227,7 @@ this.divSearch_Edit00_canchange = function(obj:nexacro.Edit,e:nexacro.ChangeEven
           <Row/>
         </Rows>
       </Dataset>
-      <Dataset id="dsHistory">
+      <Dataset id="dsHistory" onrowposchanged="dsHistory_onrowposchanged">
         <ColumnInfo>
           <Column id="type" type="STRING" size="256"/>
           <Column id="product_id" type="STRING" size="256"/>

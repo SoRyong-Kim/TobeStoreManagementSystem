@@ -302,7 +302,7 @@
 .Grid
 {
 	background : #ffffff;
-	-nexa-border : 2px solid #125dae, 1px solid #b7b1b2, 1px solid #b7b1b2, 1px solid #b7b1b2;
+	-nexa-border : 2px none #125dae;
 }
 
 /* head */
@@ -1212,7 +1212,9 @@
 /* Static */
 .Static,.StaticControl
 {
+	font : 10pt "Arial","Pretendard";
 	/* No style applied */
+	
 }
 
 .Static[status=disabled],.StaticControl[status=disabled]
@@ -2396,6 +2398,56 @@
 .Static.sta_TF_Logo4
 {
 	background : url('theme://images/sta_TF_Logo4.png') no-repeat center center /contain;
+}
+.Static.sta_WF_Red
+{
+	font : 20pt "Arial","Pretendard Medium";
+	letter-spacing : 2px;
+	color : #dd0506;
+}
+.Static.sta_WF_Blue
+{
+	font : 20pt "Arial","Pretendard Medium";
+	letter-spacing : 2px;
+	color : #4452e7;
+}
+.Static.sta_WF_HLine_Red
+{
+	-nexa-edge : url('theme://images/sta_WF_HLine_Red.png') 3px 3px;
+}
+.Static.sta_WF_VLine_Red
+{
+	-nexa-edge : url('theme://images/sta_WF_VLine_Red.png') 3px 3px;
+}
+.Static.sta_WF_HLine_Blue
+{
+	-nexa-edge : url('theme://images/sta_WF_HLine_Blue.png') 3px 3px;
+}
+.Static.sta_WF_VLine_Blue
+{
+	-nexa-edge : url('theme://images/sta_WF_VLine_Blue.png') 3px 3px;
+}
+.Grid.sta_WF_History
+{
+}
+.Grid.sta_WF_History .head
+{
+	-nexa-border : 0px none transparent, 0px none transparent, 1px solid darkgray;
+}
+.Grid.sta_WF_History .head .row
+{
+}
+.Grid.sta_WF_History .head .row .cell
+{
+	background : transparent;
+	-nexa-text-align : center;
+	-nexa-vertical-align : middle;
+	-nexa-border : 0px none darkgray;
+}
+.Grid.sta_WF_History .body .row .cell
+{
+	-nexa-border : 1px solid lightgray, 0px none;
+	background : transparent;
 }
 ]]></CSSData>
   <Predefines/>
