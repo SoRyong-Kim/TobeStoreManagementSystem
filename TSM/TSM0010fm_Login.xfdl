@@ -103,9 +103,6 @@ this.TSM101_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 				var dsUser = this.fvObjApp.gdsUser;
 				dsUser.setColumn(0,"USER_ID",    this.dsList.getColumn(0, "USER_ID"));
 				dsUser.setColumn(0,"USER_NAME",  this.dsList.getColumn(0, "USER_NAME"));
-				dsUser.setColumn(0,"authority",  this.dsList.getColumn(0, "authority"));
-				trace("gdsUser 권한 = "+this.dsList.getColumn(0, "authority"));
-				trace("gdsUser 권한 = "+this.fvObjApp.gdsUser.getColumn(0, "authority"));
 				this.fnLoginAfter();
 			}
 			else{
@@ -123,8 +120,6 @@ this.TSM101_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 /************************************************************************************************
  * 사용자 FUNCTION 영역
  ************************************************************************************************/
-
-
 /**
  * @description로그인 transaction
  * @return N/A
@@ -134,7 +129,7 @@ this.fnLogin = function()
 	var strSvcId    = "login";
 	var strSvcUrl   = "SvcUrl::edu/login.do";
 	var inData      = "dsSearch=dsSearch";
-	var outData     = "dsList=dsList";
+	var outData     = "dsList=dsList gdsUserAuth=gdsUserAuth";
 	//dsList=dsList
 	var strArg      = "paramId=" + this.divLogin.form.edtId.value;
 	var callBackFnc = "fnCallback";
@@ -161,9 +156,9 @@ this.fnLoginAfter = function()
 	nexacro.setEnvironmentVariable("evUserId", this.fvObjApp.gdsUser.getColumn(0,"USER_ID"));
 	nexacro.setEnvironmentVariable("evUserNm", this.fvObjApp.gdsUser.getColumn(0,"USER_NAME"));
 	
-
 	
-	// topframe argument setting	
+	
+	// topframe argument setting
 	this.fvObjApp.avTopFrame.form.fnLoad();
 	this.fvObjApp.avTopFrame.form.fnSetName();
 	

@@ -28,7 +28,6 @@
               <Static id="staEmail" taborder="19" text="이메일 *" left="42" top="585" width="135" height="40"/>
               <Static id="staPhoneNumCheck" taborder="20" text="인증번호" left="42" top="540" width="135" height="40"/>
               <Static id="staLogin" taborder="21" text="로그인으로 돌아가기" left="243" top="692" width="120" height="37" onclick="divRegister_staLogin_onclick"/>
-              <Button id="btn00" taborder="22" text="btn00" left="503" top="672" width="120" height="50" onclick="divRegister_btn00_onclick"/>
             </Layout>
           </Layouts>
         </Div>
@@ -147,27 +146,23 @@ this.TSM0030fm_Register_onload = function(obj:nexacro.Form,e:nexacro.LoadEventIn
 /************************************************************************************************
  * CRUD 및 TRANSACTION 서비스 호출 처리
  ************************************************************************************************/
-
+this.fnAuth = function()
+{
+		// 회원등록
+	// transaction
+	var sSvcID    = "Register";
+	var sURL      = "SvcUrl::edu/Register.do";
+	var sInDs     = "dsRegister=dsRegister";
+	var sOutDs    = "";
+	var sParam    = ""
+	var sCallBack = "fnCallback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
 
 /************************************************************************************************
  * 사용자 FUNCTION 영역
  ************************************************************************************************/
-/**
- * @description 로그인 transaction
- * @return N/A
-*/
-this.fnLogin = function() 
-{	
-	var strSvcId    = "login";
-	var strSvcUrl   = "SvcUrl::edu/login.do";
-	var inData      = "dsSearch=dsSearch";
-	var outData     = "dsList=dsList";
-	//dsList=dsList
-	var strArg      = "paramId=" + this.divLogin.form.edtId.value;
-	var callBackFnc = "fnCallback";
-	
-	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc);
-};	
+
 
 this.fnValidation = function() 
 {

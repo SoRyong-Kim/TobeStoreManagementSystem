@@ -49,7 +49,6 @@
         <Combo id="cmbWork" taborder="7" text="cmb01" left="220" top="125" width="130" height="36" visible="false"/>
         <Static id="sta00" taborder="8" text="최고 관리자만 보이도록 설정. 조회 후 보이도록 설정. 혹은 근무날짜 포커스 종료시 자동으로 콤보목록 초기화" left="386" top="121" width="614" height="40" visible="false"/>
         <ListBox id="lst00" taborder="9" left="grdWork:0" top="173" bottom="0" right="0" innerdataset="dsDetail" codecolumn="USER_ID" datacolumn="LIST" onitemchanged="lst00_onitemchanged"/>
-        <Static id="sta01" taborder="10" text="sta01" left="904" top="212" height="120" background="aquamarine" right="0"/>
       </Layout>
     </Layouts>
     <Bind>

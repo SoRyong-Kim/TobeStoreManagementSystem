@@ -106,7 +106,7 @@
         <Button id="btnRetrieve" taborder="4" text="조회" left="741" top="92" width="84" height="41" onclick="btnRetrieve_onclick"/>
         <Static id="staTitle00" taborder="5" text="상품목록" left="11" top="staHLine:0" width="166" height="42" cssclass="sta_WF_TitleSub"/>
         <Button id="btnAdd" taborder="6" text="상품추가" left="844" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
-        <Button id="btnDel" taborder="7" text="삭제" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnDel_onclick"/>
+        <Button id="btnDel" taborder="7" text="삭제" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnDel_onclick" visible="false"/>
       </Layout>
     </Layouts>
     <Objects>

@@ -14,51 +14,6 @@
 
 var pForm = nexacro.Form.prototype;
 
-/**
- * @description 컴포넌트간의 배치 설정
- * @param  standComp - 기준이 되는 컴포넌트 ID
- * @param  componentId - 기준 컴포넌트로부터 배치 되는 컴포넌트 ID
- * @param  state - 기준 컴포넌트로부터 배치 방법
- *                 center - 중앙
- *                 bottom - 하단
- * @param  offset - (optional) 하단 배치 시 두 컴포넌트 간의 거리
- * @return none
-*/ 
-// pForm.gfnCenterComponent = function(pstandComp, componentId, state1, state2, offset) 
-// {
-//     // 기준 컴포넌트와 타겟 컴포넌트 참조 가져오기
-//     if (pstandComp && componentId) {
-//         var nLeft, nTop;
-// 		
-//         if (state1 === "center") {
-//             // 중앙 배치
-// 			if(state2 === "left" && offset !== undefined){
-// 				nLeft = (pstandComp.width / 2) - (componentId.width / 2) + offset;
-// 			} else {
-// 				nLeft = (pstandComp.width / 2) - (componentId.width / 2);
-// 			}
-//             
-// 			if(state2 === "top" && offset !== undefined){
-// 				nTop = (pstandComp.height / 2) - (componentId.height / 2) + offset;
-// 			} else {
-// 				nTop = (pstandComp.height / 2) - (componentId.height / 2);
-// 			}
-//         } else if (state1 === "bottom" && offset !== undefined) {
-//             // 하단 배치
-//             nLeft = pstandComp.getOffsetLeft();
-//             nTop = Number(pstandComp.getOffsetTop()) + Number(pstandComp.height) + Number(offset); // 기준 컴포넌트 하단 + offset
-// 			
-// 		} else {
-//             console.error("잘못된 state 값 또는 offset이 필요합니다.");
-//             return;
-//         }
-//         // 타겟 컴포넌트를 설정된 위치에 배치
-//         componentId.set_left(nLeft);
-//         componentId.set_top(nTop);
-//     } else {
-//         console.error("컴포넌트를 찾을 수 없습니다: ");
-//     }
-// };
 pForm.gfnCenterComponent = function(pstandComp, componentId, state1, state2, offset) 
 {
     // 기준 컴포넌트와 타겟 컴포넌트 참조 가져오기
@@ -101,7 +56,8 @@ pForm.gfnCenterComponent = function(pstandComp, componentId, state1, state2, off
 };
 
 // 현재 시간을 출력하는 함수
-pForm.gfnshowCurrentTime = function() {
+pForm.gfnshowCurrentTime = function() 
+{
     var currentDate = new Date(); // 현재 날짜 및 시간 객체 생성
     var hours = currentDate.getHours(); // 시
     var minutes = currentDate.getMinutes(); // 분
@@ -116,4 +72,33 @@ pForm.gfnshowCurrentTime = function() {
     var currentTime = hours + ':' + minutes + ':' + seconds;
 	
 	return currentTime;
+}
+
+/**
+* @class 권한 체크 <br>
+* @param {Object} dsAuth - 권한을 비교할 데이터셋
+* @param {String} sChkAuth - 권한을 비교할 데이터셋
+* @return True/False
+* @example 
+* this.gfnAuthCheck(this.dsAuth, "admin");
+*/
+pForm.gfnAuthCheck = function(dsAuth, sChkAuth) 
+{
+	trace("dsAuth = "+dsAuth);
+	trace("sChkAuth = "+sChkAuth);
+	
+	// 권한이 있으면
+	if( dsAuth.getColumn(0, sChkAuth) )
+	{
+		return true;
+	} else
+	{
+		return false;
+	}
+	
+	
+	
+	
+	
+	//this.gfnAlert("msg.server.error");
 }

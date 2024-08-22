@@ -3,7 +3,7 @@
   <Form id="TSM_InBound" width="1050" height="600" titletext="입고" onload="TSM_InBound_onload">
     <Layouts>
       <Layout height="600" width="1050">
-        <Div id="divInBound" taborder="9" text="div00" left="20" top="5" width="1010" bottom="5">
+        <Div id="divInBound" taborder="9" text="div00" left="20" top="5" bottom="5" right="20">
           <Layouts>
             <Layout>
               <Static id="staHLine" taborder="0" left="0" top="45" height="11" cssclass="sta_WF_HLine_Blue" right="0" text=""/>
@@ -15,8 +15,8 @@
               </Div>
               <Static id="staHLine00" taborder="3" left="0" top="105" height="11" cssclass="sta_WF_HLine" text="" width="495"/>
               <Static id="staTitle00" taborder="4" text="제품 선택" left="0" top="58" width="166" height="42" cssclass="sta_WF_TitleSub"/>
-              <Static id="staHLine00_00" taborder="5" top="105" height="11" cssclass="sta_WF_HLine" right="0" text="" width="495"/>
-              <Static id="staTitle00_00" taborder="6" text="입고 제품" left="515" top="58" width="166" height="42" cssclass="sta_WF_TitleSub"/>
+              <Static id="staHLine00_00" taborder="5" top="105" height="11" cssclass="sta_WF_HLine" text="" width="495" left="515"/>
+              <Static id="staTitle00_00" taborder="6" text="입고 제품" left="515" top="58" width="166" height="42" cssclass="sta_WF_TitleSub_Blue"/>
               <Grid id="grdProduct" taborder="7" left="3" top="168" binddataset="dsProduct" autofittype="col" cssclass="sta_WF_History" bottom="19" autosizingtype="none" width="495" oncellclick="divInBound_grdProduct_oncellclick">
                 <Formats>
                   <Format id="default">
@@ -51,7 +51,7 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Grid id="grdProduct00" taborder="8" top="129" binddataset="dsInBound" autofittype="col" cssclass="sta_WF_History" right="0" bottom="19" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" width="495">
+              <Grid id="grdProduct00" taborder="8" top="129" binddataset="dsInBound" autofittype="col" cssclass="sta_WF_History" bottom="19" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" width="495" left="515">
                 <Formats>
                   <Format id="default">
                     <Columns>
@@ -95,14 +95,14 @@
                     </Band>
                     <Band id="summary">
                       <Cell text="품목 수: "/>
-                      <Cell col="1"/>
+                      <Cell col="1" text="expr:&quot;품목 수: &quot; + dataset.getRowCount()"/>
                       <Cell col="2"/>
                       <Cell col="3"/>
                       <Cell col="4"/>
                       <Cell col="5"/>
                       <Cell col="6"/>
                       <Cell col="7"/>
-                      <Cell col="8"/>
+                      <Cell col="8" text="expr:&quot;총 수량: &quot; + dataset.getSum('InBound_count')"/>
                     </Band>
                   </Format>
                 </Formats>
@@ -110,6 +110,8 @@
               <Combo id="cmb_corp" taborder="9" left="68" top="119" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
               <Static id="Static05_00_00" taborder="10" text="입고처" left="7" top="119" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Button id="btn00" taborder="11" text="조회" left="429" top="79" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
+              <Button id="btnInBound" taborder="12" text="입고 신청" left="940" top="79" width="61" height="28" visible="true" onclick="divInBound_btnInBound_onclick"/>
+              <Static id="sta00" taborder="13" text="입고 권한이 있는지 확인." left="94" top="3" width="214" height="38" visible="false"/>
             </Layout>
           </Layouts>
         </Div>
@@ -206,7 +208,7 @@
     <Script type="xscript5.1"><![CDATA[/**
 *  Necacro EduPack
 *  @MenuPath		Script 표준
-*  @FileName		C:\TobeStoreManagement\TSM\TSM91010fm_InBound.xfdl
+*  @FileName		C:\TobeStoreManagement\TSM\TSM2010fm_InBound.xfdl
 *  @Creator			김소룡
 *  @CreateDate		2024/08/21
 *  @Desction		스크립트 표준 및 주석 표준 정의
@@ -220,7 +222,7 @@
 /************************************************************************************************
  * FORM 변수 선언 영역
  ************************************************************************************************/
-
+this.fvObjApp 	  	= this.gfnGetApplication();
 
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
@@ -251,8 +253,6 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 	{
 		this.dsProduct.setColumn(i, "product_url",  sImageUrl+this.dsProduct.getColumn(i, "product_url") );
 	}
-			
-	trace(this.dsProduct.getColumn(0, "product_url"));
 }
 
 /************************************************************************************************
@@ -270,11 +270,33 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 */
 this.fnSearch = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) 
 {
-	trace("왜실행안함");
 	var sSvcID    = "productList";
 	var sURL      = "SvcUrl::edu/productList.do";
 	var sInDs     = "dsSearch=dsSearch";
 	var sOutDs    = "dsProduct=dsProduct";
+	var sParam    = ""
+	var sCallBack = "fnCallback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+/**
+ * @description 상품 조회 사용자 함수
+ * @param {String} sSvcID - 서비스 ID
+ * @param {String} sURL - 서비스 호출 URL 
+ * @param {String} [sInDs]	- 입고할 상품의 데이터를 담은 dsInBound
+ * @param {String} [sOutDs]
+ * @param {String} [sParam]	- 서비스 호출시 전송할 sParam
+ * @param {String} [sCallBack] - 콜백 함수명
+ * @return N/A
+*/
+this.fnInBoundTransaction = function()
+{
+	// history테이블에 INSERT
+	// products테이블에 UPDATE
+	var sSvcID    = "productInBound";
+	var sURL      = "SvcUrl::edu/productInBound.do";
+	var sInDs     = "dsInBound=dsProduct";
+	var sOutDs    = "";
 	var sParam    = ""
 	var sCallBack = "fnCallback";
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
@@ -330,14 +352,18 @@ this.divInBound_grdProduct_oncellclick = function(obj:nexacro.Grid,e:nexacro.Gri
 		this.dsInBound.setColumn(nRow, "InBound_count", 1);	// 초기값 설정
 	}
 	
-	
-	
-	
-	// 셀을 데이터셋에서 제거
-//	this.dsMenu.copyData(this.fvObjApp.gdsMenu, true);
-	// 셀을 입고 데이터 셋으로 이동
-//	trace(this.dsInBound.saveXML());
-	
+};
+
+this.divInBound_btnInBound_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 입고 권한 확인
+	var bChk = this.gfnAuthCheck(this.fvObjApp.gdsUserAuth, "A10");
+	trace("권한 여부 : " + bChk);
+	// transcation
+	if(bChk) 
+	{
+		this.fnInBoundTransaction();
+	}
 };
 ]]></Script>
   </Form>

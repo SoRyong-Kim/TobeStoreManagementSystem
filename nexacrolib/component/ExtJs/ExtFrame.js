@@ -267,7 +267,6 @@ pForm.gfnCallSDI = function(oObj)
  */
 pForm.gfnNewMdi = function(sMenuId, nRow, oArgs)
 {	
-	trace("gfnNewMdi");
 	var objApp   = pForm.gfnGetApplication();
 	var gdsOpen  = objApp.gdsOpenMenu;		//열린 dataset
 	var gdsMenu  = objApp.gdsMenu;
