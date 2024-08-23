@@ -51,7 +51,7 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Grid id="grdProduct00" taborder="8" top="129" binddataset="dsInBound" autofittype="col" cssclass="sta_WF_History" bottom="19" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" width="495" left="515">
+              <Grid id="grdProduct00" taborder="8" top="129" binddataset="dsInBound" autofittype="col" cssclass="sta_WF_History" bottom="19" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" width="495" left="515" oncellclick="divInBound_grdProduct00_oncellclick">
                 <Formats>
                   <Format id="default">
                     <Columns>
@@ -91,7 +91,7 @@
                       <Cell col="5" rowspan="2" text="bind:created_at"/>
                       <Cell col="6" rowspan="2" text="bind:expiration_date"/>
                       <Cell col="7" rowspan="2" text="bind:product_id"/>
-                      <Cell col="8" rowspan="2" text="bind:InBound_count"/>
+                      <Cell col="8" rowspan="2" text="bind:InBound_count" displaytype="number" edittype="text" editinputtype="number"/>
                     </Band>
                     <Band id="summary">
                       <Cell text="품목 수: "/>
@@ -181,7 +181,7 @@
           <Column id="supplier_name" type="STRING" size="256"/>
           <Column id="category_name" type="STRING" size="256"/>
           <Column id="product_name" type="STRING" size="256"/>
-          <Column id="remain_count" type="STRING" size="256"/>
+          <Column id="remain_count" type="INT" size="256"/>
           <Column id="sale_count" type="STRING" size="256"/>
           <Column id="created_at" type="STRING" size="256"/>
           <Column id="expiration_date" type="STRING" size="256"/>
@@ -191,6 +191,8 @@
           <Column id="price" type="STRING" size="256"/>
           <Column id="sale_price" type="STRING" size="256"/>
           <Column id="InBound_count" type="INT" size="256"/>
+          <Column id="org_count" type="INT" size="256"/>
+          <Column id="date" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>
@@ -246,12 +248,28 @@ this.TSM_InBound_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
  * @return N/A
 */
 this.fnCallback = function(svcId, errCd, errMsg) {
-
+	
 	var serverUrl = this.gfnGetServerUrl(); // http://localhost:8088/edupack_egov/
 	var sImageUrl = serverUrl + "upload_file/nexa_edu/product_images/";
 	for(var i=0; i<this.dsProduct.rowcount; i++)
 	{
 		this.dsProduct.setColumn(i, "product_url",  sImageUrl+this.dsProduct.getColumn(i, "product_url") );
+	}
+	if( svcId == "productInBound" )
+	{
+		if(errCd == 0)
+		{
+			this.gfnAlert("");
+			var nRowCnt = this.dsInBound.getRowCount();
+			for(var i=0; i<nRowCnt; i++)
+			{
+				this.dsInBound.deleteAll();
+			}
+		}
+	} else if(svcId == "productList") 
+	{
+		this.divInBound.form.grdProduct.set_enableredraw(false);
+		this.divInBound.form.grdProduct.set_enableredraw(true);
 	}
 }
 
@@ -295,10 +313,11 @@ this.fnInBoundTransaction = function()
 	// products테이블에 UPDATE
 	var sSvcID    = "productInBound";
 	var sURL      = "SvcUrl::edu/productInBound.do";
-	var sInDs     = "dsInBound=dsProduct";
+	var sInDs     = "dsProduct=dsInBound";
 	var sOutDs    = "";
 	var sParam    = ""
 	var sCallBack = "fnCallback";
+	trace(this.dsInBound.saveXML());
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
 }
 
@@ -344,6 +363,11 @@ this.divInBound_grdProduct_oncellclick = function(obj:nexacro.Grid,e:nexacro.Gri
 		// dsInBound에서 해당 id의 "InBound_count" 1 증가
 		var nCnt = this.dsInBound.getColumn(nResult, "InBound_count") + 1;
 		this.dsInBound.setColumn(nResult, "InBound_count", nCnt);	// 1 증가된 갯수를 입력
+		
+		// 기존 보유 수량에서 추가된 수량 합하기
+		var nOrgCnt = this.dsInBound.getColumn(nResult, "remain_count") + nCnt;
+		trace("nOrgCnt = " + nOrgCnt);
+		this.dsInBound.setColumn(nResult, "org_count", nOrgCnt);
 	} else 
 	{
 		// 현재 클릭된 셀의 row 인덱스 = e.row
@@ -351,20 +375,32 @@ this.divInBound_grdProduct_oncellclick = function(obj:nexacro.Grid,e:nexacro.Gri
 		this.dsInBound.copyRow(nRow, this.dsProduct, e.row);
 		this.dsInBound.setColumn(nRow, "InBound_count", 1);	// 초기값 설정
 	}
-	
 };
 
 this.divInBound_btnInBound_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	
 	// 입고 권한 확인
-	var bChk = this.gfnAuthCheck(this.fvObjApp.gdsUserAuth, "A10");
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "A10");
 	trace("권한 여부 : " + bChk);
 	// transcation
 	if(bChk) 
 	{
+		var dTime = this.gfnGetDateYYYYMMDDHHMMSS()  //날짜+시간
+		trace(dTime);
+		var nRowCnt = this.dsInBound.getRowCount();
+		for(var i=0; i<nRowCnt; i++)
+		{
+			this.dsInBound.setColumn(i, "date", dTime);
+			trace(this.dsInBound.saveXML());
+		}
 		this.fnInBoundTransaction();
 	}
 };
-]]></Script>
+
+this.divInBound_grdProduct00_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	trace(this.dsInBound.getColumn(e.row, "org_count"));
+};]]></Script>
   </Form>
 </FDL>

@@ -139,8 +139,15 @@ this.TSM0030fm_Register_onload = function(obj:nexacro.Form,e:nexacro.LoadEventIn
 			break;
 
 		case "Register":
-			this.fnToLogin();
-			break;
+			if(errorCode == 0)
+			{
+				var arrArg = [this.divRegister.form.edtName.value]
+				this.gfnAlert("msg.succ.register", arrArg)
+				this.fnAuth();
+				this.fnToLogin();
+				break;
+			}
+			
 	}
 };
 /************************************************************************************************
@@ -150,11 +157,11 @@ this.fnAuth = function()
 {
 		// 회원등록
 	// transaction
-	var sSvcID    = "Register";
-	var sURL      = "SvcUrl::edu/Register.do";
-	var sInDs     = "dsRegister=dsRegister";
+	var sSvcID    = "insertAuth";
+	var sURL      = "SvcUrl::edu/insertAuth.do";
+	var sInDs     = "";
 	var sOutDs    = "";
-	var sParam    = ""
+	var sParam    = "paramID=" + this.divRegister.form.edtId.value
 	var sCallBack = "fnCallback";
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
 }

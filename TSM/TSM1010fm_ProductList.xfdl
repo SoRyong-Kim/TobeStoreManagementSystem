@@ -78,8 +78,8 @@
               </Rows>
               <Band id="head">
                 <Cell text="제품 이미지"/>
-                <Cell col="1" text="거래처 이름"/>
-                <Cell col="2" text="카테고리"/>
+                <Cell col="1" text="거래처 이름" textAlign="left"/>
+                <Cell col="2" text="카테고리" textAlign="left"/>
                 <Cell col="3" text="제품명"/>
                 <Cell col="4" text="가격"/>
                 <Cell col="5" text="재고 수량"/>
@@ -106,7 +106,7 @@
         <Button id="btnRetrieve" taborder="4" text="조회" left="741" top="92" width="84" height="41" onclick="btnRetrieve_onclick"/>
         <Static id="staTitle00" taborder="5" text="상품목록" left="11" top="staHLine:0" width="166" height="42" cssclass="sta_WF_TitleSub"/>
         <Button id="btnAdd" taborder="6" text="상품추가" left="844" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
-        <Button id="btnDel" taborder="7" text="삭제" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnDel_onclick" visible="false"/>
+        <Button id="btnDel" taborder="7" text="삭제" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnDel_onclick" visible="true"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -203,7 +203,7 @@
 var fvPopupUrl = "TSM::TSM1011pu_PopProductAdd.xfdl"; // 팝업창 주소
 var nRow = "";
 var sId = "";
- 
+this.fvObjApp 	  	= this.gfnGetApplication();
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
  ************************************************************************************************/
@@ -267,7 +267,6 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 	var sCallBack = "fnCallback";
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
 }
-
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역
  ************************************************************************************************/
@@ -276,7 +275,13 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 */
 this.btnRetrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.fnSearch();
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "A100");//아무도 삭제 못하게.
+	trace("조회 권한 : " +bChk);
+	// transcation
+	if(bChk)
+	{
+		this.fnSearch();
+	}
 };
 
 /**
@@ -284,31 +289,21 @@ this.btnRetrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 */
 this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	sPopupId = "popup";
-	sUrl = "TSM::TSM1011pu_PopProductAdd.xfdl";
-	sPopupCallback = function() { this.btnAdd.setFocus(); }
-	// 상품추가 팝업 띄우기
-	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
-	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
-	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
-	
-	//함수 callback
-	this.gfnOpenPopup("popup", fvPopupUrl, oArg, function() { this.btnAdd.setFocus(); }, oOption);
-};
-
-/**
- * @description 수정버튼, 상품 정보 업데이트
-*/
-this.btnEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	
-	var sSvcID    = "productUpdate";
-	var sURL      = "SvcUrl::edu/productUpdate.do";
-	var sInDs     = "dsSearch=dsSearch";
-	var sOutDs    = "dsProduct=dsProduct";
-	var sParam    = ""
-	var sCallBack = "fn_callback";
-	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "A110");//아무도 삭제 못하게.
+	trace("상품추가 권한 : " +bChk);
+	if(bChk)
+	{
+		sPopupId = "popup";
+		sUrl = "TSM::TSM1011pu_PopProductAdd.xfdl";
+		sPopupCallback = function() { this.btnAdd.setFocus(); }
+		// 상품추가 팝업 띄우기
+		var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+		var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+		var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬 //"top=20,left=370"
+		
+		//함수 callback
+		this.gfnOpenPopup("popup", fvPopupUrl, oArg, function() { this.btnAdd.setFocus(); }, oOption);
+	}
 };
 
 /**
@@ -316,32 +311,41 @@ this.btnEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 */
 this.grdProduct_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-	// 클릭한 셀의 id값을 팝업에 넘겨주기
-	var objParam = this.grdProduct.getCellValue(e.row, 9);
-	// 팝업 열기
-	var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
-	var oArg = {paramId:objParam};
-	var oOption = {title:sTitle};
-	var sPopupCallBack = "fnPopupCallback";
-	this.gfnOpenPopup( "popup", fvPopupUrl, oArg, sPopupCallBack, oOption);
+
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "A110");//아무도 삭제 못하게.
+	trace("상품추가 권한 : " +bChk);
+	if(bChk)
+	{
+		// 클릭한 셀의 id값을 팝업에 넘겨주기
+		var objParam = this.grdProduct.getCellValue(e.row, 9);
+		// 팝업 열기
+		var sTitle = this.gfnGetWord("popup.modal");	// 모달팝업
+		var oArg = {paramId:objParam};
+		var oOption = {title:sTitle};
+		var sPopupCallBack = "fnPopupCallback";	
+		this.gfnOpenPopup( "popup", fvPopupUrl, oArg, sPopupCallBack, oOption);
+	}
 };
 /**
  * @description 삭제버튼 클릭 이벤트
 */
 this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var sSvcID    = "deleteProduct";
-	var sURL      = "SvcUrl::edu/deleteProduct.do";
-	var sInDs     = "";
-	var sOutDs    = "";
-	var sParam    = "paramID=" + this.dsProduct.getColumn(this.dsProduct.rowposition, "product_id");
-	var sCallBack = "fn_callback";
-	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
-};
-
-this.dsProduct_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
-{
-
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "A1201");//아무도 삭제 못하게.
+	trace("삭제 권한 : " +bChk);
+	// transcation
+	if(bChk)
+	{
+		// 실행 내용
+		var sSvcID    = "deleteProduct";
+		var sURL      = "SvcUrl::edu/deleteProduct.do";
+		var sInDs     = "";
+		var sOutDs    = "";
+		var sParam    = "paramID=" + this.dsProduct.getColumn(this.dsProduct.rowposition, "product_id");
+		var sCallBack = "fn_callback";
+		this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+	}
+	
 };
 ]]></Script>
   </Form>

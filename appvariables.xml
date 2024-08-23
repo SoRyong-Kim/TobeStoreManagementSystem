@@ -568,6 +568,23 @@
           <Col id="MSG_TEXT_EN">Code already exsits!</Col>
           <Col id="MSG_TYPE">A</Col>
         </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.InBound</Col>
+          <Col id="MSG_TEXT">상품 입고에 성공하였습니다.</Col>
+          <Col id="MSG_TEXT_EN">Success to InBound</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_ID">msg.err.authorize</Col>
+          <Col id="MSG_TEXT">해당 권한이 없습니다.</Col>
+          <Col id="MSG_TYPE">A</Col>
+          <Col id="MSG_TEXT_EN">No Permission</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.register</Col>
+          <Col id="MSG_TEXT">{0}님 축하합니다! 회원가입이 성공적으로 완료되었습니다. 로그인 후 매장을 관리해보세요!</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
       </Rows>
     </Dataset>
     <Dataset id="gdsOpenMenu">

@@ -6,9 +6,9 @@
         <Div id="divDetail" taborder="0" left="0" top="0" text="" bottom="0" right="0">
           <Layouts>
             <Layout>
-              <ImageViewer id="imgProduct" taborder="0" left="345" top="59" width="85" height="82" cssclass="img_WF_Product" onclick="divDetail_imgProduct_onclick"/>
+              <ImageViewer id="imgProduct" taborder="0" left="345" top="59" width="85" height="82" cssclass="img_WF_Product" onclick="divDetail_imgProduct_onclick" stretch="fixaspectratio"/>
               <Static id="sta00" taborder="1" text="제품 ID" left="17" top="58" width="72" height="26"/>
-              <Edit id="edtId" taborder="2" left="101" top="58" width="229" height="26" onchanged="div00_edt00_onchanged"/>
+              <Edit id="edtId" taborder="2" left="101" top="58" width="159" height="26" onchanged="div00_edt00_onchanged"/>
               <Edit id="edtName" taborder="3" left="101" top="94" width="229" height="26"/>
               <Static id="sta00_00" taborder="4" text="제품명" left="17" top="94" width="72" height="26"/>
               <Static id="sta00_01" taborder="5" text="거래처 ID" left="17" top="130" width="72" height="26"/>
@@ -33,6 +33,7 @@
               <Static id="sta00_02_00_04" taborder="24" text="가격" left="18" top="274" width="72" height="26"/>
               <Edit id="edtEmail01_05" taborder="25" left="101" top="310" width="229" height="26"/>
               <Static id="sta00_02_00_05" taborder="26" text="할인 가격" left="18" top="310" width="72" height="26"/>
+              <Button id="btnAutoId" taborder="27" text="자동생성" left="270" top="58" width="60" height="26" onclick="divDetail_btnAutoId_onclick"/>
             </Layout>
           </Layouts>
         </Div>
@@ -96,6 +97,7 @@ this.TSM1011_PopProductAdd_onload = function(obj:nexacro.Form,e:nexacro.LoadEven
 	else {
 		// 멤버와 파일 정보를 get
 		this.fnGetProductInfo();
+		this.divDetail.form.btnAutoId.set_enable(false);
 	}
 };
  
@@ -115,20 +117,17 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 		    sImageUrl += this.dsProduct.getColumn(0, "product_url");
 		this.divDetail.form.imgProduct.set_image(sImageUrl);
 	} else if( svcId == "insertProduct" || svcId == "updateProduct" ) {
-		this.gfnAlert("msg.save.success", "", "msgInsert", "fnMsgCallback");
-		// 팝업 닫기
-		var arrPopFrame = nexacro.getPopupFrames();
-		//alert(arrPopFrame.length);
-		var rObj = arrPopFrame[0];	
- 			rObj.destroy();
-// 		for (var i=arrPopFrame.length-1; i>=0; i--) {
-// 			// Runtime, html5에서도 모두 작동
-// 			var rObj = arrPopFrame[i];	
-// 			rObj.destroy();
-// 			rObj = null;
-// 		}
-		
-		//this.fnGetProductInfo();
+		if(errCd == 0)
+		{
+			this.gfnAlert("msg.save.success", "", "msgInsert", "fnMsgCallback");
+			// 팝업 닫기
+			var arrPopFrame = nexacro.getPopupFrames();
+			//alert(arrPopFrame.length);
+			var rObj = arrPopFrame[0];	
+				rObj.destroy();
+			
+			//this.fnGetProductInfo();
+		}
 	}
 	
 	
@@ -268,6 +267,12 @@ this.FileUpTransfer_onsuccess = function(obj:nexacro.FileUpTransfer, e:nexacro.F
 this.FileUpTransfer_onerror = function(obj:nexacro.FileUpTransfer,e:nexacro.FileUpTransferErrorEventInfo)
 {
 	trace("업로드 실패");
+};
+
+this.divDetail_btnAutoId_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	sRanId = this.gfnGenerateId(15);	// 랜덤한 ID 생성
+	this.divDetail.form.edtId.set_value(sRanId);
 };
 ]]></Script>
     <Objects>

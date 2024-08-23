@@ -77,12 +77,12 @@ pForm.gfnshowCurrentTime = function()
 /**
 * @class 권한 체크 <br>
 * @param {Object} dsAuth - 권한을 비교할 데이터셋
-* @param {String} sChkAuth - 권한을 비교할 데이터셋
+* @param {String} sChkAuth - 확인할 권한 코드
 * @return True/False
 * @example 
 * this.gfnAuthCheck(this.dsAuth, "admin");
 */
-pForm.gfnAuthCheck = function(dsAuth, sChkAuth) 
+pForm.gfnCheckAuth = function(dsAuth, sChkAuth) 
 {
 	trace("dsAuth = "+dsAuth);
 	trace("sChkAuth = "+sChkAuth);
@@ -93,12 +93,42 @@ pForm.gfnAuthCheck = function(dsAuth, sChkAuth)
 		return true;
 	} else
 	{
+		this.gfnAlert("msg.err.authorize");
 		return false;
 	}
-	
-	
-	
-	
-	
-	//this.gfnAlert("msg.server.error");
+}
+
+pForm.gfnGetDateYYYYMMDDHHMMSS = function()
+{
+
+	// 현재 날짜 시간 구하기
+	var now = new Date();
+
+	// 년
+	var year = now.getFullYear();
+	// 월
+	var month = (now.getMonth() + 1).toString().padStart(2, '0');
+	// 일
+	var day = now.getDate().toString().padStart(2, '0');
+	// 시
+	var hours = now.getHours().toString().padStart(2, '0');
+	// 분
+	var minutes = now.getMinutes().toString().padStart(2, '0');
+	// 초
+	var seconds = now.getSeconds().toString().padStart(2, '0');
+
+	return year + month + day + hours + minutes + seconds;
+}
+
+pForm.gfnGenerateId = function(nlength)
+{
+	var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'; // 사용할 문자 집합
+    var result = '';
+
+    for (var i = 0; i < nlength; i++) {
+        var randomIndex = Math.floor(Math.random() * characters.length); // 랜덤 인덱스 생성
+        result += characters[randomIndex]; // 랜덤 문자 추가
+    }
+
+    return result;
 }

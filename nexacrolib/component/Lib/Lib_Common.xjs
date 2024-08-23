@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath    
+*  @FileName 	Lib_Common.xjs
+*  @Creator 	Education
+*  @CreateDate 	2022.05.02
+*  @Desction    include 방식의 공통 script 정의
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2017.10.17     	Education		 	        최초 생성
+*******************************************************************************
+*/]]></Script>
