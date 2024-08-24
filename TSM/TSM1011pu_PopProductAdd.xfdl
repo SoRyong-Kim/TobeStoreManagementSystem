@@ -6,7 +6,7 @@
         <Div id="divDetail" taborder="0" left="0" top="0" text="" bottom="0" right="0">
           <Layouts>
             <Layout>
-              <ImageViewer id="imgProduct" taborder="0" left="345" top="59" width="85" height="82" cssclass="img_WF_Product" onclick="divDetail_imgProduct_onclick" stretch="fixaspectratio"/>
+              <ImageViewer id="imgProduct" taborder="0" left="345" top="59" width="85" height="85" cssclass="img_WF_Product" onclick="divDetail_imgProduct_onclick" stretch="fixaspectratio"/>
               <Static id="sta00" taborder="1" text="제품 ID" left="17" top="58" width="72" height="26"/>
               <Edit id="edtId" taborder="2" left="101" top="58" width="159" height="26" onchanged="div00_edt00_onchanged"/>
               <Edit id="edtName" taborder="3" left="101" top="94" width="229" height="26"/>

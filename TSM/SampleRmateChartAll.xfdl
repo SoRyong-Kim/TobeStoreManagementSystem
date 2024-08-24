@@ -56,116 +56,116 @@ this.chartData4;
  ************************************************************************************************/
  this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
 {
-	// 스트링 형식으로 레이아웃 정의.
-	this.layoutStr1 = '<rMateChart backgroundColor="#FFFFFF"  borderThickness="1" borderStyle="none">'
-		 +'<Options>'
-			  +'<Caption text="Rainfall" textAlign="center" />'
-				+'<SubCaption text="( mm )" textAlign="right" />'
-			 +'<Legend />'
-		 +'</Options>'
-		 +'<NumberFormatter id="numFmt" precision="0"/>'
-		   +'<Line2DChart showDataTips="true" dataTipDisplayMode="axis" paddingTop="0">'
-			 +'<horizontalAxis>'
-				   +'<CategoryAxis categoryField="Month"/>'
-			  +'</horizontalAxis>'
-			  +'<verticalAxis>'
-				 +'<LinearAxis minimum="0" maximum="100" interval="10" />'
-			 +'</verticalAxis>'
-				+'<series>'
-				   +'<Line2DSeries yField="Vancouver" displayName="Vancouver">'
-				  +'</Line2DSeries>'
-				+'</series>'
-			  +'<annotationElements>'
-				   +'<CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{numFmt}" horizontalStrokeEnable="false"/>'
-			   +'</annotationElements>'
-		  +'</Line2DChart>'
-	 +'</rMateChart>';
-	 
-	// 차트 데이터
-	this.chartData1 = [  {"Month":"Jan","Vancouver":40},
-						{"Month":"Feb","Vancouver":50},
-						{"Month":"Mar","Vancouver":47},
-						{"Month":"Apr","Vancouver":57},
-						{"Month":"May","Vancouver":68},
-						{"Month":"Jun","Vancouver":52},
-						{"Month":"Jul","Vancouver":36},
-						{"Month":"Aug","Vancouver":42},
-						{"Month":"Sep","Vancouver":33},
-						{"Month":"Oct","Vancouver":39},
-						{"Month":"Nov","Vancouver":45},
-						{"Month":"Dec","Vancouver":40}];
-
-	// 스트링 형식으로 레이아웃 정의.
-	this.layoutStr2 = 
-					'<rMateChart backgroundColor="#FFFFFF"  borderStyle="none">'
-					  +'<Options>'
-						  +'<Caption text="Rainfall" textAlign="center" />'
-							+'<SubCaption text="( mm )" textAlign="right" />'
-						 +'<Legend />'
-					 +'</Options>'
-					 +'<Bar2DChart showDataTips="true">'
-						   +'<horizontalAxis>'
-							   +'<LinearAxis maximum="100"/>'
-							+'</horizontalAxis>'
-						  +'<verticalAxis>'
-							 +'<CategoryAxis categoryField="Month"/>'
-						 +'</verticalAxis>'
-							+'<series>'
-							   +'<Bar2DSeries labelPosition="inside" xField="Vancouver" displayName="Vancouver" showValueLabels="[6,7]" color="#ffffff" insideLabelYOffset="-2">'
-									+'<showDataEffect>'
-									   +'<SeriesInterpolate/>'
-								  +'</showDataEffect>'
-							  +'</Bar2DSeries>'
-						 +'</series>'
-					  +'</Bar2DChart>'
-				  +'</rMateChart>';
-	 
-	// 차트 데이터
-	this.chartData2 = [  {"Month":"Jan", "Vancouver":21},
-						{"Month":"Feb", "Vancouver":29},
-						{"Month":"Mar", "Vancouver":48},
-						{"Month":"Apr", "Vancouver":38},
-						{"Month":"May", "Vancouver":59},
-						{"Month":"Jun", "Vancouver":77.2},
-						{"Month":"Jul", "Vancouver":68},
-						{"Month":"Aug", "Vancouver":58},
-						{"Month":"Sep", "Vancouver":44},
-						{"Month":"Oct", "Vancouver":23}];
-					
-
-	// 스트링 형식으로 레이아웃 정의.
-	this.layoutStr3 = 
-					'<rMateChart backgroundColor="#FFFFFF"  borderStyle="none">'
-					  +'<Options>'
-						  +'<Caption text="World Top 10 - Fastest Growing Economies (2017)" textAlign="center" />'
-						 +'<SubCaption text="GDP Growth (In %)" textAlign="center" />'
-					 +'</Options>'
-					 +'<SeriesInterpolate id="ss"/>'
-					   +'<Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.48">'
-						   +'<horizontalAxis>'
-							   +'<CategoryAxis categoryField="Country"/>'
-							+'</horizontalAxis>'
-						  +'<verticalAxis>'
-							 +'<LinearAxis maximum="100" interval="10"/>'
-						  +'</verticalAxis>'
-							+'<series>'
-							   +'<Column2DSeries labelPosition="outside" yField="GDP" displayName="GDP Growth (In %)" showDataEffect="{ss}" showValueLabels="[4]">'
-							  +'</Column2DSeries>'
-						  +'</series>'
-					  +'</Column2DChart>'
-				   +'</rMateChart>';
-	 
-	// 차트 데이터
-	this.chartData3 = [  {"Country":"SouthSudan", "GDP":20},
-						{"Country":"Libya", "GDP":30},
-						{"Country":"SierraLeone", "GDP":51.2},
-						{"Country":"Mongolia", "GDP":44.5},
-						{"Country":"Paraguay", "GDP":62.35},
-						{"Country":"TimorLeste", "GDP":84.46},
-						{"Country":"Iraq", "GDP":48.9},
-						{"Country":"Panama", "GDP":38},
-						{"Country":"Gambia", "GDP":60.5},
-						{"Country":"Mozam-bique", "GDP":40.1}];
+// 	// 스트링 형식으로 레이아웃 정의.
+// 	this.layoutStr1 = '<rMateChart backgroundColor="#FFFFFF"  borderThickness="1" borderStyle="none">'
+// 		 +'<Options>'
+// 			  +'<Caption text="Rainfall" textAlign="center" />'
+// 				+'<SubCaption text="( mm )" textAlign="right" />'
+// 			 +'<Legend />'
+// 		 +'</Options>'
+// 		 +'<NumberFormatter id="numFmt" precision="0"/>'
+// 		   +'<Line2DChart showDataTips="true" dataTipDisplayMode="axis" paddingTop="0">'
+// 			 +'<horizontalAxis>'
+// 				   +'<CategoryAxis categoryField="Month"/>'
+// 			  +'</horizontalAxis>'
+// 			  +'<verticalAxis>'
+// 				 +'<LinearAxis minimum="0" maximum="100" interval="10" />'
+// 			 +'</verticalAxis>'
+// 				+'<series>'
+// 				   +'<Line2DSeries yField="Vancouver" displayName="Vancouver">'
+// 				  +'</Line2DSeries>'
+// 				+'</series>'
+// 			  +'<annotationElements>'
+// 				   +'<CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{numFmt}" horizontalStrokeEnable="false"/>'
+// 			   +'</annotationElements>'
+// 		  +'</Line2DChart>'
+// 	 +'</rMateChart>';
+// 	 
+// 	// 차트 데이터
+// 	this.chartData1 = [  {"Month":"Jan","Vancouver":40},
+// 						{"Month":"Feb","Vancouver":50},
+// 						{"Month":"Mar","Vancouver":47},
+// 						{"Month":"Apr","Vancouver":57},
+// 						{"Month":"May","Vancouver":68},
+// 						{"Month":"Jun","Vancouver":52},
+// 						{"Month":"Jul","Vancouver":36},
+// 						{"Month":"Aug","Vancouver":42},
+// 						{"Month":"Sep","Vancouver":33},
+// 						{"Month":"Oct","Vancouver":39},
+// 						{"Month":"Nov","Vancouver":45},
+// 						{"Month":"Dec","Vancouver":40}];
+// 
+// 	// 스트링 형식으로 레이아웃 정의.
+// 	this.layoutStr2 = 
+// 					'<rMateChart backgroundColor="#FFFFFF"  borderStyle="none">'
+// 					  +'<Options>'
+// 						  +'<Caption text="Rainfall" textAlign="center" />'
+// 							+'<SubCaption text="( mm )" textAlign="right" />'
+// 						 +'<Legend />'
+// 					 +'</Options>'
+// 					 +'<Bar2DChart showDataTips="true">'
+// 						   +'<horizontalAxis>'
+// 							   +'<LinearAxis maximum="100"/>'
+// 							+'</horizontalAxis>'
+// 						  +'<verticalAxis>'
+// 							 +'<CategoryAxis categoryField="Month"/>'
+// 						 +'</verticalAxis>'
+// 							+'<series>'
+// 							   +'<Bar2DSeries labelPosition="inside" xField="Vancouver" displayName="Vancouver" showValueLabels="[6,7]" color="#ffffff" insideLabelYOffset="-2">'
+// 									+'<showDataEffect>'
+// 									   +'<SeriesInterpolate/>'
+// 								  +'</showDataEffect>'
+// 							  +'</Bar2DSeries>'
+// 						 +'</series>'
+// 					  +'</Bar2DChart>'
+// 				  +'</rMateChart>';
+// 	 
+// 	// 차트 데이터
+// 	this.chartData2 = [  {"Month":"Jan", "Vancouver":21},
+// 						{"Month":"Feb", "Vancouver":29},
+// 						{"Month":"Mar", "Vancouver":48},
+// 						{"Month":"Apr", "Vancouver":38},
+// 						{"Month":"May", "Vancouver":59},
+// 						{"Month":"Jun", "Vancouver":77.2},
+// 						{"Month":"Jul", "Vancouver":68},
+// 						{"Month":"Aug", "Vancouver":58},
+// 						{"Month":"Sep", "Vancouver":44},
+// 						{"Month":"Oct", "Vancouver":23}];
+// 					
+// 
+// 	// 스트링 형식으로 레이아웃 정의.
+// 	this.layoutStr3 = 
+// 					'<rMateChart backgroundColor="#FFFFFF"  borderStyle="none">'
+// 					  +'<Options>'
+// 						  +'<Caption text="World Top 10 - Fastest Growing Economies (2017)" textAlign="center" />'
+// 						 +'<SubCaption text="GDP Growth (In %)" textAlign="center" />'
+// 					 +'</Options>'
+// 					 +'<SeriesInterpolate id="ss"/>'
+// 					   +'<Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.48">'
+// 						   +'<horizontalAxis>'
+// 							   +'<CategoryAxis categoryField="Country"/>'
+// 							+'</horizontalAxis>'
+// 						  +'<verticalAxis>'
+// 							 +'<LinearAxis maximum="100" interval="10"/>'
+// 						  +'</verticalAxis>'
+// 							+'<series>'
+// 							   +'<Column2DSeries labelPosition="outside" yField="GDP" displayName="GDP Growth (In %)" showDataEffect="{ss}" showValueLabels="[4]">'
+// 							  +'</Column2DSeries>'
+// 						  +'</series>'
+// 					  +'</Column2DChart>'
+// 				   +'</rMateChart>';
+// 	 
+// 	// 차트 데이터
+// 	this.chartData3 = [  {"Country":"SouthSudan", "GDP":20},
+// 						{"Country":"Libya", "GDP":30},
+// 						{"Country":"SierraLeone", "GDP":51.2},
+// 						{"Country":"Mongolia", "GDP":44.5},
+// 						{"Country":"Paraguay", "GDP":62.35},
+// 						{"Country":"TimorLeste", "GDP":84.46},
+// 						{"Country":"Iraq", "GDP":48.9},
+// 						{"Country":"Panama", "GDP":38},
+// 						{"Country":"Gambia", "GDP":60.5},
+// 						{"Country":"Mozam-bique", "GDP":40.1}];
 
 	this.layoutStr4 = '<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
 					  +'<Options>'
@@ -202,9 +202,9 @@ this.chartData4;
 						{"Month":"Apr", "Profit":170},
 						{"Month":"May", "Profit":280}];
 
-	this.Div00.form.fnSetChart("chart1", this.layoutStr1, this.rMateChartDataSetToXml(this.dsData));
-	this.Div01.form.fnSetChart("chart2", this.layoutStr2, this.rMateChartDataSetToXml(this.dsData));
-	this.Div02.form.fnSetChart("chart3", this.layoutStr3, this.chartData3);
+// 	this.Div00.form.fnSetChart("chart1", this.layoutStr1, this.rMateChartDataSetToXml(this.dsData));
+// 	this.Div01.form.fnSetChart("chart2", this.layoutStr2, this.rMateChartDataSetToXml(this.dsData));
+// 	this.Div02.form.fnSetChart("chart3", this.layoutStr3, this.chartData3);
 	this.Div03.form.fnSetChart("chart4", this.layoutStr4, this.chartData4);
 }
 

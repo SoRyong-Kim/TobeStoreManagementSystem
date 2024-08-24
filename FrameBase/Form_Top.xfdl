@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Top" width="1280" height="50" titletext="Form_Top" onload="Form_Top_onload">
+  <Form id="Form_Top" width="1280" height="50" titletext="Form_Top" onload="Form_Top_onload" ontimer="Form_Top_ontimer">
     <Layouts>
       <Layout width="1280" height="50" screenid="Desktop_screen">
-        <Static id="staBg" taborder="0" left="0" top="0" right="0" cssclass="sta_TF_Bg" height="50" onclick="staBg_onclick"/>
+        <Static id="staBg" taborder="0" left="0" top="0" right="0" cssclass="sta_TF_Bg" height="50" onclick="staBg_onclick" text=""/>
         <Static id="Static01" taborder="1" left="-60" top="0" width="180" height="50" cssclass="sta_TF_Logo3"/>
-        <Static id="staName" taborder="2" text="" top="0" right="0" width="90" bottom="0"/>
+        <MaskEdit id="mskStartTime" taborder="5" left="1152" top="0" format="##'시간 '##'분 '##'초'" type="string" border="0px none" readonly="true" cssclass="msk_WF_RO" bottom="0" value="000000" right="0"/>
+        <Static id="staName" taborder="2" text="이름" top="0" right="mskStartTime:182" width="50" bottom="0" cssclass="sta_TF_Name"/>
         <Static id="Static01_00" taborder="3" left="60" top="0" width="180" height="50" cssclass="sta_TF_Logo4"/>
-        <Static id="sta00" taborder="4" left="915" top="9" width="199" height="34" text="현재 담당 업무 : "/>
-        <Static id="staWork" taborder="5" left="931" top="9" width="199" height="34"/>
-        <Static id="sta01" taborder="6" text="근무 시작 시간" left="621" top="9" width="199" height="34"/>
+        <Static id="sta01" taborder="4" text="총 근무 시간 : " left="1061" top="0" bottom="0" right="mskStartTime:12"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[/**
@@ -32,7 +31,7 @@
  ************************************************************************************************/
 this.fvObjApp 		= this.gfnGetApplication();
 this.fvTopBtnPrefix = "TOP_";
-this.fvObjApp = nexacro.getApplication();
+//var sSTime = this.fvObjApp.gdsUser.getColumn(0, "startTime");	// gdsUser에서 시작시간을 가져옴
  
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
@@ -54,8 +53,16 @@ this.Form_Top_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 // 	}
 // 	
 // 	this.fn_XPushStart();
+
+
 };
- 
+
+// 1초마다 근무시간 초기화
+this.Form_Top_ontimer = function(obj:nexacro.Form,e:nexacro.TimerEventInfo)
+{
+	this.fnSetWorkTime();
+};
+
 /************************************************************************************************
  * CALLBACK 콜백 처리부분(Transaction, Popup)
  ************************************************************************************************/
@@ -95,11 +102,29 @@ this.fnSetName = function()
 //	trace(sNameCol);
 	var sName  = this.fvObjApp.gdsUser.getColumn(0, sNameCol);	
 	this.staName.set_text(sName + "님");	//다국어 처리 안함
+	
+	// 근무 시간 timer 설정
+	this.setTimer( 0, 1000 );
 };
- 
+
+this.fnSetWorkTime = function() 
+{
+	// 시간 설정
+	// String 타입
+//	trace("sSTime = " + sSTime);
+	var sCTime = this.gfnGetFullTime();
+//	trace("sCTime = " + sCTime);
+	var sWorkTime = this.gfnGetWorkTime(this.fvObjApp.gdsUser.getColumn(0, "startTime"), sCTime);
+	
+	this.mskStartTime.set_value(sWorkTime);
+}
+
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역
  ************************************************************************************************/
 ]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="mskStartTime" propid="value" datasetid="dsHistory" columnid="date"/>
+    </Bind>
   </Form>
 </FDL>

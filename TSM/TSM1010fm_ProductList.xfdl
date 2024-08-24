@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="TSM1010_ProductList" width="1040" height="550" titletext="상품조회" cssclass="edt_WF_Search" onload="TSM_ProductList_onload">
+  <Form id="TSM1010_ProductList" width="1040" height="600" titletext="상품조회" cssclass="edt_WF_Search" onload="TSM_ProductList_onload" border="0px none #cbccd3">
     <Layouts>
-      <Layout height="550" width="1040">
+      <Layout height="600" width="1040">
         <Static id="staHLine" taborder="0" left="0" top="135" height="11" cssclass="sta_WF_HLine" right="0" text=""/>
         <Static id="staTitle" taborder="1" text="상품조회" left="5" top="0" width="166" height="42" cssclass="sta_WF_Title"/>
         <Div id="divSearch" taborder="2" left="0" top="39" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" text="" cssclass="div_WF_Search" visible="true" height="86" right="0">
           <Layouts>
             <Layout>
               <Combo id="cmb_corp" taborder="0" left="504" top="10" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1"/>
-              <Static id="Static05" taborder="1" text="제품명" left="15" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05" taborder="1" text="제품명" left="15" top="10" width="55" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Edit id="Edit00" taborder="2" left="76" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search"/>
-              <Static id="Static05_00_00" taborder="3" text="거래처" left="443" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
-              <Static id="Static05_00_00_00" taborder="4" text="가격" left="657" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
-              <Combo id="cmb_corp00" taborder="5" text="Combo00" left="718" top="10" width="123" height="28" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+              <Static id="Static05_00_00" taborder="3" text="거래처" left="413" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00_00" taborder="4" text="가격" left="627" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp00" taborder="5" left="718" top="10" width="123" height="28" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" value="" index="-1">
                 <Dataset id="innerdataset">
                   <ColumnInfo>
                     <Column id="codecolumn" size="256"/>
@@ -43,20 +43,20 @@
                   </Rows>
                 </Dataset>
               </Combo>
-              <Static id="Static05_01" taborder="6" text="보유수량" left="15" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_01" taborder="6" text="보유수량" left="-5" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Spin id="Spin00" taborder="7" left="77" top="50" width="60" height="28" value="0"/>
               <Static id="Static03" taborder="8" text="~" left="143" top="50" width="34" height="28"/>
               <Spin id="Spin00_00" taborder="9" left="158" top="50" width="60" height="28" value="9999"/>
-              <Static id="Static05_01_00" taborder="10" text="판매수량" left="266" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_01_00" taborder="10" text="판매수량" left="246" top="50" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Spin id="Spin00_01" taborder="11" left="328" top="50" width="60" height="28"/>
               <Static id="Static03_00" taborder="12" text="~" left="394" top="50" width="34" height="28"/>
               <Spin id="Spin00_00_00" taborder="13" left="410" top="50" width="60" height="28"/>
-              <Static id="Static05_00_00_01" taborder="14" text="카테고리" left="233" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00_01" taborder="14" text="카테고리" left="220" top="10" width="64" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Combo id="cmb_corp01" taborder="15" left="294" top="10" width="123" height="28" innerdataset="gdsCategory" codecolumn="category_id" datacolumn="category_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1"/>
             </Layout>
           </Layouts>
         </Div>
-        <Grid id="grdProduct" taborder="3" left="3" top="190" binddataset="dsProduct" autofittype="none" cssclass="sta_WF_History" right="3" bottom="0" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none">
+        <Grid id="grdProduct" taborder="3" left="3" top="190" binddataset="dsProduct" autofittype="none" cssclass="sta_WF_History" right="3" bottom="0" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" nodatatext="상품이 존재하지 않습니다. 다시 조회해주세요.">
           <Formats>
             <Format id="default">
               <Columns>
@@ -103,10 +103,10 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btnRetrieve" taborder="4" text="조회" left="741" top="92" width="84" height="41" onclick="btnRetrieve_onclick"/>
+        <Button id="btnRetrieve" taborder="4" text="조회" left="741" top="92" width="86" height="38" onclick="btnRetrieve_onclick"/>
         <Static id="staTitle00" taborder="5" text="상품목록" left="11" top="staHLine:0" width="166" height="42" cssclass="sta_WF_TitleSub"/>
-        <Button id="btnAdd" taborder="6" text="상품추가" left="844" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
-        <Button id="btnDel" taborder="7" text="삭제" left="948" top="92" width="84" height="41" cssclass="btn_WF_Add" onclick="btnDel_onclick" visible="true"/>
+        <Button id="btnAdd" taborder="6" text="상품추가" left="844" top="92" width="86" height="38" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
+        <Button id="btnDel" taborder="7" left="948" top="92" width="86" height="38" cssclass="btn_WF_Del" onclick="btnDel_onclick" visible="true" text="삭제"/>
       </Layout>
     </Layouts>
     <Objects>

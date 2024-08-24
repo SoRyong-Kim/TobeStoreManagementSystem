@@ -74,6 +74,47 @@ pForm.gfnshowCurrentTime = function()
 	return currentTime;
 }
 
+pForm.gfnGetTime = function()
+{
+	var currentDate = new Date(); // 현재 날짜 및 시간 객체 생성
+    var hours = currentDate.getHours(); // 시
+    var minutes = currentDate.getMinutes(); // 분
+    var seconds = currentDate.getSeconds(); // 초
+
+    // 시간 형식 조정 (2자리 수로)
+    if (hours < 10) hours = '0' + hours;
+    if (minutes < 10) minutes = '0' + minutes;
+    if (seconds < 10) seconds = '0' + seconds;
+
+    // 현재 시간 문자열 생성
+    var currentTime = hours + '' + minutes + '' + seconds;
+	
+	return currentTime;
+}
+
+pForm.gfnGetFullTime = function()
+{
+	var currentDate = new Date(); // 현재 날짜 및 시간 객체 생성
+	var year = currentDate.getFullYear(); // 연도
+    var month = currentDate.getMonth() + 1; // 월 (0부터 시작하므로 1 더함)
+    var day = currentDate.getDate(); // 일
+    var hours = currentDate.getHours(); // 시
+    var minutes = currentDate.getMinutes(); // 분
+    var seconds = currentDate.getSeconds(); // 초
+	
+	// 월과 일이 2자리 수로 조정
+    if (month < 10) month = '0' + month;
+    if (day < 10) day = '0' + day;
+	if (hours < 10) hours = '0' + hours;
+    if (minutes < 10) minutes = '0' + minutes;
+    if (seconds < 10) seconds = '0' + seconds;
+	
+	// 현재 시간 문자열로 생성
+	var currentDateStr = year + '' + month + '' + day + '' + hours + '' + minutes + '' + seconds;
+	
+	return currentDateStr;
+}
+
 /**
 * @class 권한 체크 <br>
 * @param {Object} dsAuth - 권한을 비교할 데이터셋
@@ -98,27 +139,40 @@ pForm.gfnCheckAuth = function(dsAuth, sChkAuth)
 	}
 }
 
-pForm.gfnGetDateYYYYMMDDHHMMSS = function()
+// 근무한 시간
+// 시작시간과 현재 시간을 뺀 숫자를 문자열로 반환
+pForm.gfnGetWorkTime = function(startDateStr, endDateStr)
 {
+	// 문자열을 Date 객체로 변환
+    var startYear = parseInt(startDateStr.substring(0, 4));
+    var startMonth = parseInt(startDateStr.substring(4, 6)) - 1; // 월은 0부터 시작
+    var startDay = parseInt(startDateStr.substring(6, 8));
+    var startHour = parseInt(startDateStr.substring(8, 10));
+    var startMinute = parseInt(startDateStr.substring(10, 12));
+    var startSecond = parseInt(startDateStr.substring(12, 14));
+    var startDate = new Date(startYear, startMonth, startDay, startHour, startMinute, startSecond);
 
-	// 현재 날짜 시간 구하기
-	var now = new Date();
+    var endYear = parseInt(endDateStr.substring(0, 4));
+    var endMonth = parseInt(endDateStr.substring(4, 6)) - 1;
+    var endDay = parseInt(endDateStr.substring(6, 8));
+    var endHour = parseInt(endDateStr.substring(8, 10));
+    var endMinute = parseInt(endDateStr.substring(10, 12));
+    var endSecond = parseInt(endDateStr.substring(12, 14));
+    var endDate = new Date(endYear, endMonth, endDay, endHour, endMinute, endSecond);
 
-	// 년
-	var year = now.getFullYear();
-	// 월
-	var month = (now.getMonth() + 1).toString().padStart(2, '0');
-	// 일
-	var day = now.getDate().toString().padStart(2, '0');
-	// 시
-	var hours = now.getHours().toString().padStart(2, '0');
-	// 분
-	var minutes = now.getMinutes().toString().padStart(2, '0');
-	// 초
-	var seconds = now.getSeconds().toString().padStart(2, '0');
+    // 두 날짜의 차이를 밀리초로 계산
+    var differenceInTime = endDate - startDate;
 
-	return year + month + day + hours + minutes + seconds;
+    // 밀리초를 초로 변환
+    var differenceInSeconds = differenceInTime / 1000;
+
+    var formattedTime = Math.abs(differenceInSeconds).toString().padStart(6, '0');
+
+    return formattedTime;
 }
+
+
+
 
 pForm.gfnGenerateId = function(nlength)
 {
