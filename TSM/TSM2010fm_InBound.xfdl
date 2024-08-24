@@ -51,7 +51,7 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Grid id="grdInBound" taborder="8" top="129" binddataset="dsInBound" autofittype="col" cssclass="sta_WF_History" bottom="19" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" width="495" left="515" oncellclick="divInBound_grdInBound_oncellclick">
+              <Grid id="grdInBound" taborder="8" top="168" binddataset="dsInBound" autofittype="col" cssclass="sta_WF_History" bottom="19" oncelldblclick="grdProduct_oncelldblclick" autosizingtype="none" width="495" left="515" oncellclick="divInBound_grdInBound_oncellclick">
                 <Formats>
                   <Format id="default">
                     <Columns>
@@ -109,8 +109,8 @@
               </Grid>
               <Combo id="cmb_corp" taborder="9" left="68" top="119" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
               <Static id="Static05_00_00" taborder="10" text="입고처" left="7" top="119" width="63" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
-              <Button id="btn00" taborder="11" text="조회" left="429" top="79" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
-              <Button id="btnInBound" taborder="12" text="입고 신청" left="930" top="79" width="75" height="28" visible="true" onclick="divInBound_btnInBound_onclick"/>
+              <Button id="btn00" taborder="11" text="조회" left="429" top="119" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
+              <Button id="btnInBound" taborder="12" text="입고 신청" left="930" top="119" width="75" height="28" visible="true" onclick="divInBound_btnInBound_onclick"/>
               <Static id="sta00" taborder="13" text="입고 권한이 있는지 확인." left="94" top="3" width="214" height="38" visible="false"/>
             </Layout>
           </Layouts>
@@ -184,7 +184,7 @@
           <Column id="remain_count" type="INT" size="256"/>
           <Column id="product_url" type="STRING" size="256"/>
           <Column id="InBound_count" type="INT" size="256"/>
-          <Column id="org_count" type="INT" size="256"/>
+          <Column id="total_count" type="INT" size="256"/>
           <Column id="date" type="STRING" size="256"/>
           <Column id="user_id" type="STRING" size="256"/>
           <Column id="name" type="STRING" size="256" description="사용자 이름"/>
@@ -362,7 +362,7 @@ this.divInBound_grdProduct_oncellclick = function(obj:nexacro.Grid,e:nexacro.Gri
 		// 기존 보유 수량에서 추가된 수량 합하기
 		var nOrgCnt = this.dsInBound.getColumn(nResult, "remain_count") + nCnt;
 //		trace("nOrgCnt = " + nOrgCnt);
-		this.dsInBound.setColumn(nResult, "org_count", nOrgCnt);
+		this.dsInBound.setColumn(nResult, "total_count", nOrgCnt);
 	} else 
 	{
 		// 현재 클릭된 셀의 row 인덱스 = e.row

@@ -9,10 +9,10 @@
           <Layouts>
             <Layout>
               <Combo id="cmb_corp" taborder="0" left="504" top="10" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
-              <Static id="Static05" taborder="1" text="제품명" left="15" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05" taborder="1" text="제품명" left="5" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Edit id="Edit00" taborder="2" left="76" top="10" width="123" height="28" visible="true" cssclass="edt_WF_Search" canchange="divSearch_Edit00_canchange"/>
-              <Static id="Static05_00_00" taborder="3" text="거래처" left="443" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
-              <Static id="Static05_00_00_01" taborder="4" text="카테고리" left="233" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00" taborder="3" text="거래처" left="433" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00_01" taborder="4" text="카테고리" left="218" top="10" width="86" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Combo id="cmb_corp01" taborder="5" left="294" top="10" width="123" height="28" innerdataset="gdsCategory" codecolumn="category_id" datacolumn="category_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp01_canitemchange"/>
               <Button id="btn00" taborder="6" text="조회" left="677" top="10" width="61" height="28" onclick="divSearch_btn00_onclick" visible="false"/>
             </Layout>
@@ -50,7 +50,7 @@
                     <Band id="body">
                       <Cell text="bind:product_url"/>
                       <Cell col="1" text="bind:product_name"/>
-                      <Cell col="2" text="bind:org_count"/>
+                      <Cell col="2" text="bind:total_count"/>
                       <Cell col="3" text="bind:remain_count"/>
                       <Cell col="4" text="bind:remain_count"/>
                     </Band>
@@ -66,16 +66,17 @@
             <Format id="default">
               <Band id="body" width="100%" height="179">
                 <Cell id="CellType" left="80" top="20" width="50" height="24" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell03" left="15" top="70" width="180" height="24" text="bind:product_id" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell05" left="15" top="100" width="180" height="24" text="bind:product_name" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell06" left="235" top="128" width="20" height="22" text="개" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell07" left="143" top="128" width="90" height="22" text="bind:org_count" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell09" left="248" top="128" width="90" height="22" text="bind:remain_count" textAlign="right" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell11" left="230" top="10" width="120" height="24" text="bind:date" border="0px none" cssclass="sta_WF_history_Cell"/>
-                <Cell id="Cell12" left="256" top="128" width="40" height="22" text="-&gt;" textAlign="center" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell05" left="75" top="70" width="180" height="24" text="bind:product_name" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell06" left="265" top="128" width="20" height="22" text="개" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell07" left="173" top="128" width="90" height="22" text="bind:remain_count" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell09" left="248" top="128" width="90" height="22" text="bind:total_count" textAlign="right" border="0px none" cssclass="sta_WF_history_Cell"/>
+                <Cell id="Cell11" left="170" top="10" width="183" height="24" text="bind:date" border="0px none" cssclass="sta_WF_history_Cell" displaytype="maskeditcontrol" maskeditformat="####'년 '##'월 '##'일  '##':'##':'##" edittype="mask" accessibilityenable="false" maskeditlimitbymask="both" maskedittype="string" color="black"/>
+                <Cell id="Cell12" left="276" top="128" width="40" height="22" text="-&gt;" textAlign="center" border="0px none" cssclass="sta_WF_history_Cell"/>
                 <Cell id="Cell08" left="340" top="128" width="20" height="22" text="개" border="0px none" cssclass="sta_WF_history_Cell"/>
                 <Cell id="CellImage" left="10" top="10" width="50" height="50" displaytype="imagecontrol" border="1px none #dbdee2"/>
-                <Cell id="Cell00" left="141" top="128" width="72" height="22" text="변동" cssclass="sta_WF_history_Cell" border="1px none #dbdee2"/>
+                <Cell id="Cell00" left="161" top="128" width="72" height="22" text="수량 변동 : " cssclass="sta_WF_history_Cell" border="1px none #dbdee2"/>
+                <Cell id="Cell01" left="4" top="70" width="72" height="24" text="상품이름" cssclass="sta_WF_history_Cell" border="1px none #dbdee2"/>
+                <Cell id="Cell02" left="112" top="10" width="72" height="24" text="변동 시간" cssclass="sta_WF_history_Cell" border="1px none #dbdee2"/>
               </Band>
             </Format>
           </Formats>
@@ -225,7 +226,7 @@ this.dsHistory_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DS
           <Column id="type" type="STRING" size="256"/>
           <Column id="product_id" type="STRING" size="256"/>
           <Column id="product_name" type="STRING" size="256"/>
-          <Column id="org_count" type="STRING" size="256"/>
+          <Column id="total_count" type="STRING" size="256"/>
           <Column id="remain_count" type="STRING" size="256"/>
           <Column id="date" type="STRING" size="256"/>
         </ColumnInfo>
@@ -238,7 +239,7 @@ this.dsHistory_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DS
           <Column id="type" type="STRING" size="256"/>
           <Column id="product_id" type="STRING" size="256"/>
           <Column id="product_name" type="STRING" size="256"/>
-          <Column id="org_count" type="INT" size="256"/>
+          <Column id="total_count" type="INT" size="256"/>
           <Column id="remain_count" type="INT" size="256"/>
           <Column id="date" type="STRING" size="256"/>
           <Column id="product_url" type="STRING" size="256"/>
