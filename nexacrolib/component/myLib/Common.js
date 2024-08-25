@@ -123,20 +123,21 @@ pForm.gfnGetFullTime = function()
 * @example 
 * this.gfnAuthCheck(this.dsAuth, "admin");
 */
-pForm.gfnCheckAuth = function(dsAuth, sChkAuth) 
+pForm.gfnCheckAuth = function(dsAuth, nChkAuth) 
 {
 	trace("dsAuth = "+dsAuth);
-	trace("sChkAuth = "+sChkAuth);
+	trace("nChkAuth = "+nChkAuth);
 	
-	// 권한이 있으면
-	if( dsAuth.getColumn(0, sChkAuth) )
+	var nRowCnt = dsAuth.getRowCount();
+	for(var i=0; i<nRowCnt; i++)
 	{
-		return true;
-	} else
-	{
-		this.gfnAlert("msg.err.authorize");
-		return false;
+		if( dsAuth.getColumn(i, "permission_id") == nChkAuth )
+		{
+			return true;
+		}
 	}
+	this.gfnAlert("msg.err.authorize");
+	return false;
 }
 
 // 근무한 시간

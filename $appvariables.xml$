@@ -685,8 +685,17 @@
         </Row>
         <Row>
           <Col id="MENU_GROUP">40</Col>
+          <Col id="MENU_ID">4020</Col>
+          <Col id="MENU_PID">20</Col>
+          <Col id="MENU_LEVEL">1</Col>
+          <Col id="MENU_NAME">직원 권한</Col>
+          <Col id="MENU_URL">TSM::TSM1050fm_Authority.xfdl</Col>
+          <Col id="USE_YN">Y</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_GROUP">40</Col>
           <Col id="MENU_ID">4030</Col>
-          <Col id="MENU_PID">40</Col>
+          <Col id="MENU_PID">30</Col>
           <Col id="MENU_LEVEL">1</Col>
           <Col id="MENU_NAME">근태조회</Col>
           <Col id="MENU_NAME_EN"/>
@@ -1867,19 +1876,12 @@
     </Dataset>
     <Dataset id="gdsUserAuth">
       <ColumnInfo>
-        <Column id="USER_ID" type="STRING" size="256"/>
-        <Column id="A00" type="INT" size="256"/>
-        <Column id="A10" type="INT" size="256"/>
-        <Column id="A20" type="INT" size="256"/>
-        <Column id="A30" type="INT" size="256"/>
-        <Column id="A40" type="INT" size="256"/>
-        <Column id="A50" type="INT" size="256"/>
-        <Column id="A60" type="INT" size="256"/>
-        <Column id="A70" type="INT" size="256"/>
+        <Column id="user_id" type="STRING" size="256"/>
+        <Column id="role_id" type="STRING" size="256"/>
+        <Column id="permission_id" type="STRING" size="256"/>
+        <Column id="permission_name" type="STRING" size="256"/>
+        <Column id="permission_description" type="STRING" size="256"/>
       </ColumnInfo>
-      <Rows>
-        <Row/>
-      </Rows>
     </Dataset>
     <Dataset id="gdsStore">
       <ColumnInfo>

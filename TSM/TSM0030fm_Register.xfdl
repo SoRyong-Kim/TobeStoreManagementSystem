@@ -155,17 +155,17 @@ this.TSM0030fm_Register_onload = function(obj:nexacro.Form,e:nexacro.LoadEventIn
  ************************************************************************************************/
 this.fnAuth = function()
 {
-		// 회원등록
+	// 권한 등록
 	// transaction
-	var sSvcID    = "insertAuth";
-	var sURL      = "SvcUrl::edu/insertAuth.do";
+	var sSvcID    = "insertUserRole";
+	var sURL      = "SvcUrl::edu/insertUserRole.do";
 	var sInDs     = "";
 	var sOutDs    = "";
 	var sParam    = "paramID=" + this.divRegister.form.edtId.value
+					+" paramRoleId=" + nexacro.wrapQuote(3)
 	var sCallBack = "fnCallback";
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
 }
-
 /************************************************************************************************
  * 사용자 FUNCTION 영역
  ************************************************************************************************/

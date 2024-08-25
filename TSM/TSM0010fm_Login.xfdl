@@ -161,6 +161,7 @@ this.fnLoginAfter = function()
 	trace("sTime = " + sTime);
 	this.fvObjApp.gdsUser.setColumn(0, "startTime", sTime);
 	
+	trace(this.fvObjApp.gdsUserAuth.saveXML());
 	
 	// topframe argument setting
 	this.fvObjApp.avTopFrame.form.fnLoad();
