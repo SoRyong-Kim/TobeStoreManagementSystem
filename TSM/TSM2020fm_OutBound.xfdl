@@ -94,8 +94,8 @@
                       <Cell col="8" rowspan="2" text="bind:OutBound_count" displaytype="number" edittype="text" editinputtype="number"/>
                     </Band>
                     <Band id="summary">
-                      <Cell text="품목 수: "/>
-                      <Cell col="1" text="expr:&quot;품목 수: &quot; + dataset.getRowCount()"/>
+                      <Cell/>
+                      <Cell col="1" text="expr:&quot;품목 수: &quot; + dataset.getRowCount()" padding="0px 0px 0px 10px" textAlign="left"/>
                       <Cell col="2"/>
                       <Cell col="3"/>
                       <Cell col="4"/>

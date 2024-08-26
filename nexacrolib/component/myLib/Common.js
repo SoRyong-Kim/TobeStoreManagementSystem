@@ -139,12 +139,8 @@ pForm.gfnCheckAuth = function(dsAuth, nChkAuth)
 	this.gfnAlert("msg.err.authorize");
 	return false;
 }
-
-// 근무한 시간
-// 시작시간과 현재 시간을 뺀 숫자를 문자열로 반환
-pForm.gfnGetWorkTime = function(startDateStr, endDateStr)
-{
-	// 문자열을 Date 객체로 변환
+pForm.gfnGetWorkTime = function(startDateStr, endDateStr) {
+    // 문자열을 Date 객체로 변환
     var startYear = parseInt(startDateStr.substring(0, 4));
     var startMonth = parseInt(startDateStr.substring(4, 6)) - 1; // 월은 0부터 시작
     var startDay = parseInt(startDateStr.substring(6, 8));
@@ -161,13 +157,19 @@ pForm.gfnGetWorkTime = function(startDateStr, endDateStr)
     var endSecond = parseInt(endDateStr.substring(12, 14));
     var endDate = new Date(endYear, endMonth, endDay, endHour, endMinute, endSecond);
 
-    // 두 날짜의 차이를 밀리초로 계산
-    var differenceInTime = endDate - startDate;
+    // 두 날짜의 차이를 초 단위로 계산
+    var differenceInTime = Math.abs(endDate - startDate) / 1000;
 
-    // 밀리초를 초로 변환
-    var differenceInSeconds = differenceInTime / 1000;
+    // 시간, 분, 초 계산
+    var hours = Math.floor(differenceInTime / 3600);
+    differenceInTime %= 3600;
+    var minutes = Math.floor(differenceInTime / 60);
+    var seconds = Math.floor(differenceInTime % 60);
 
-    var formattedTime = Math.abs(differenceInSeconds).toString().padStart(6, '0');
+    // 여섯 자리 숫자로 포맷팅
+    var formattedTime = (hours.toString().padStart(2, '0') +
+                         minutes.toString().padStart(2, '0') +
+                         seconds.toString().padStart(2, '0'));
 
     return formattedTime;
 }

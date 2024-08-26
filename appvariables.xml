@@ -1876,9 +1876,9 @@
     </Dataset>
     <Dataset id="gdsUserAuth">
       <ColumnInfo>
-        <Column id="user_id" type="STRING" size="256"/>
-        <Column id="role_id" type="STRING" size="256"/>
-        <Column id="permission_id" type="STRING" size="256"/>
+        <Column id="user_id" type="INT" size="256"/>
+        <Column id="role_id" type="INT" size="256"/>
+        <Column id="permission_id" type="INT" size="256"/>
         <Column id="permission_name" type="STRING" size="256"/>
         <Column id="permission_description" type="STRING" size="256"/>
       </ColumnInfo>
@@ -1904,6 +1904,49 @@
         <Row>
           <Col id="store_id">IT29F6SUTE4PALA</Col>
           <Col id="store_name">명동역점</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gdsRole">
+      <ColumnInfo>
+        <Column id="role_id" type="INT" size="256"/>
+        <Column id="role_name" type="STRING" size="256"/>
+        <Column id="description" type="STRING" size="256"/>
+      </ColumnInfo>
+    </Dataset>
+    <Dataset id="gdsPermission">
+      <ColumnInfo>
+        <Column id="permission_id" type="STRING" size="256"/>
+        <Column id="name" type="STRING" size="256"/>
+        <Column id="description" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="name">안녕</Col>
+        </Row>
+        <Row>
+          <Col id="name">1</Col>
+        </Row>
+        <Row>
+          <Col id="name">2</Col>
+        </Row>
+        <Row>
+          <Col id="name">3</Col>
+        </Row>
+        <Row>
+          <Col id="name">4</Col>
+        </Row>
+        <Row>
+          <Col id="name">5</Col>
+        </Row>
+        <Row>
+          <Col id="name">6</Col>
+        </Row>
+        <Row>
+          <Col id="name">7</Col>
+        </Row>
+        <Row>
+          <Col id="name">8</Col>
         </Row>
       </Rows>
     </Dataset>

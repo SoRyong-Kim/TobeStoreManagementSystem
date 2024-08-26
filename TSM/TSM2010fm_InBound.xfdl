@@ -94,8 +94,8 @@
                       <Cell col="8" rowspan="2" text="bind:InBound_count" displaytype="number" edittype="text" editinputtype="number"/>
                     </Band>
                     <Band id="summary">
-                      <Cell text="품목 수: "/>
-                      <Cell col="1" text="expr:&quot;품목 수: &quot; + dataset.getRowCount()"/>
+                      <Cell/>
+                      <Cell col="1" text="expr:&quot;품목 수: &quot; + dataset.getRowCount()" textAlign="left" padding="0px 0px 0px 10px"/>
                       <Cell col="2"/>
                       <Cell col="3"/>
                       <Cell col="4"/>
@@ -108,7 +108,7 @@
                 </Formats>
               </Grid>
               <Combo id="cmb_corp" taborder="9" left="68" top="119" width="123" height="28" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
-              <Static id="Static05_00_00" taborder="10" text="입고처" left="7" top="119" width="63" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Static id="Static05_00_00" taborder="10" text="입고처" left="-3" top="119" width="63" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
               <Button id="btn00" taborder="11" text="조회" left="429" top="119" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
               <Button id="btnInBound" taborder="12" text="입고 신청" left="930" top="119" width="75" height="28" visible="true" onclick="divInBound_btnInBound_onclick"/>
               <Static id="sta00" taborder="13" text="입고 권한이 있는지 확인." left="94" top="3" width="214" height="38" visible="false"/>
@@ -312,7 +312,7 @@ this.fnInBoundTransaction = function()
 	var sOutDs    = "";
 	var sParam    = ""
 	var sCallBack = "fnCallback";
-	trace(this.dsInBound.saveXML());
+//	trace(this.dsInBound.saveXML());
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
 }
 

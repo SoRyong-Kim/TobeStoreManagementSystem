@@ -13,7 +13,8 @@
 {
 	background : #ffffff;
 	color : #262626;
-	font : 12px "Verdana", "Malgun Gothic";
+	font : 12px/normal "Pretendard Variable";
+	letter-spacing : 1px;
 }
 .Form[userstatus=contents]
 {
@@ -2257,9 +2258,9 @@
 .Static.sta_WF_SearchLabel
 {	
 	-nexa-padding : 0px 10px 0px 20px;
-	font : bold 12px "Verdana", "Malgun Gothic";
-	-nexa-text-align : center;
-	letter-spacing : -1px;	
+	font : 15px/normal "Pretendard Variable SemiBold";
+	-nexa-text-align : left;
+	letter-spacing : 1px;
 }
 .Button.btn_WF_Find,
 .Button.btn_WF_Find[status=disabled],

@@ -7,19 +7,98 @@
           <Layouts>
             <Layout>
               <Static id="staTitle" taborder="0" text="직원 권한 설정" left="0" top="3" width="166" height="42" cssclass="sta_WF_Title"/>
-              <Tab id="tab00" taborder="1" tabindex="0" left="0" top="69" right="0" cssclass="tab_WF_Auth" bottom="3">
+              <Tab id="tabAuth" taborder="1" tabindex="0" left="0" top="69" right="0" cssclass="tab_WF_Auth" bottom="3">
                 <Tabpages>
-                  <Tabpage id="Tabpage1" text="직원">
+                  <Tabpage id="tabEmp" text="직원">
                     <Layouts>
                       <Layout>
-                        <Grid id="grd00" taborder="0" left="0" top="0" right="0" bottom="0"/>
-                        <Static id="sta00" taborder="1" text="이름, 아이디, 역할  역할에는 어떤 권한이 있는지 팝업창으로 오픈" left="92" top="95" width="491" height="74"/>
+                        <Grid id="grd00" taborder="0" left="0" top="48" right="359" bottom="0" binddataset="dsEmp" autofittype="col">
+                          <Formats>
+                            <Format id="default">
+                              <Columns>
+                                <Column size="142"/>
+                                <Column size="188"/>
+                                <Column size="317"/>
+                              </Columns>
+                              <Rows>
+                                <Row size="24" band="head"/>
+                                <Row size="40"/>
+                              </Rows>
+                              <Band id="head">
+                                <Cell text="아이디"/>
+                                <Cell col="1" text="이름"/>
+                                <Cell col="2" text="권한"/>
+                              </Band>
+                              <Band id="body">
+                                <Cell text="bind:id" textAlign="center"/>
+                                <Cell col="1" text="bind:name" textAlign="center"/>
+                                <Cell col="2" text="bind:role_name" displaytype="combocontrol" edittype="combo" combodisplaynulltype="nulltext" combodataset="gdsRole" combocodecol="role_id" combodatacol="role_name" textAlign="center"/>
+                              </Band>
+                            </Format>
+                          </Formats>
+                        </Grid>
+                        <Div id="divDetail" taborder="1" left="grd00:0" top="48" height="436" right="0">
+                          <Layouts>
+                            <Layout>
+                              <Static id="sta00" taborder="0" text="id" left="46" top="82" width="81" height="36"/>
+                              <Edit id="edt00" taborder="1" left="124" top="82" width="186" height="36"/>
+                              <Static id="sta00_00" taborder="2" text="이름" left="46" top="128" width="81" height="36"/>
+                              <Static id="sta00_01" taborder="3" text="전화번호" left="46" top="174" width="81" height="36"/>
+                              <Static id="sta00_02" taborder="4" text="이메일" left="46" top="220" width="81" height="36"/>
+                              <Static id="sta00_03" taborder="5" text="회원가입일" left="46" top="266" width="81" height="36"/>
+                              <Static id="sta00_04" taborder="6" text="권한" left="46" top="312" width="81" height="36"/>
+                              <Edit id="edt00_00" taborder="7" left="124" top="128" width="186" height="36"/>
+                              <Edit id="edt00_01" taborder="8" left="124" top="174" width="186" height="36"/>
+                              <Edit id="edt00_02" taborder="9" left="124" top="220" width="186" height="36"/>
+                              <Edit id="edt00_03" taborder="10" left="124" top="266" width="186" height="36"/>
+                              <Combo id="cmb00" taborder="11" left="124" top="312" width="186" height="36" value="" index="-1" innerdataset="gdsRole" codecolumn="role_id" datacolumn="role_name"/>
+                              <Button id="btn00" taborder="12" text="저장" left="270" top="387" width="76" height="36"/>
+                              <Static id="staTitle00_00" taborder="13" text="직원 정보" left="17" top="14" width="166" height="42" cssclass="sta_WF_TitleSub_Blue"/>
+                            </Layout>
+                          </Layouts>
+                        </Div>
+                        <Static id="staTitle00_00" taborder="2" text="직원 목록" left="9" top="3" width="166" height="42" cssclass="sta_WF_TitleSub"/>
                       </Layout>
                     </Layouts>
                   </Tabpage>
-                  <Tabpage id="Tabpage2" text="역할">
+                  <Tabpage id="tpgRole" text="역할">
                     <Layouts>
-                      <Layout/>
+                      <Layout>
+                        <Button id="btnAdd" taborder="0" text="권한 추가" left="805" top="10" width="91" height="32" onclick="divInBound_tabAuth_tpgRole_btn00_onclick"/>
+                        <Grid id="grdRole" taborder="1" left="10" top="55" binddataset="gdsRole" autofittype="col" oncellclick="divInBound_tabRole_Tabpage2_grdRole_oncellclick" right="10" bottom="0">
+                          <Formats>
+                            <Format id="default">
+                              <Columns>
+                                <Column size="197"/>
+                                <Column size="196"/>
+                                <Column size="48"/>
+                                <Column size="48"/>
+                                <Column size="0"/>
+                              </Columns>
+                              <Rows>
+                                <Row size="24" band="head"/>
+                                <Row size="30"/>
+                              </Rows>
+                              <Band id="head">
+                                <Cell text="역할 이름" textAlign="left" padding="5px"/>
+                                <Cell col="1" text="설명" textAlign="left" padding="5px"/>
+                                <Cell col="2"/>
+                                <Cell col="3"/>
+                                <Cell col="4"/>
+                              </Band>
+                              <Band id="body">
+                                <Cell text="bind:role_name"/>
+                                <Cell col="1" text="bind:description"/>
+                                <Cell col="2" displaytype="buttoncontrol" edittype="button" text="수정"/>
+                                <Cell col="3" displaytype="buttoncontrol" edittype="button" text="삭제"/>
+                                <Cell col="4" text="bind:role_id"/>
+                              </Band>
+                            </Format>
+                          </Formats>
+                        </Grid>
+                        <Button id="btnAuthRetrieve" taborder="2" text="권한 조회" left="704" top="10" width="91" height="32" onclick="divInBound_tabAuth_tpgRole_btnAuthRetrieve_onclick"/>
+                        <Button id="btn00_00" taborder="3" text="저장" left="906" top="10" width="91" height="32"/>
+                      </Layout>
                     </Layouts>
                   </Tabpage>
                 </Tabpages>
@@ -40,6 +119,27 @@
       <BindItem id="item6" compid="divInBound.form.divSearch.form.cmb_corp" propid="value" datasetid="dsSearch" columnid="supplier_id"/>
       <BindItem id="item7" compid="divInBound.form.divSearch.form.cmb_corp01" propid="value" datasetid="dsSearch" columnid="category_id"/>
       <BindItem id="item8" compid="divInBound.form.cmb_corp" propid="value" datasetid="dsSearch" columnid="supplier_id"/>
+      <BindItem id="item9" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.msk00" propid="value" datasetid="ds_emp" columnid="SALARY"/>
+      <BindItem id="item10" compid="div00.form.msk00_00" propid="value" datasetid="ds_emp" columnid="EMPL_ID"/>
+      <BindItem id="item11" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.msk00_00" propid="value" datasetid="ds_emp" columnid="EMPL_ID"/>
+      <BindItem id="item12" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.cal00" propid="value" datasetid="ds_emp" columnid="HIRE_DATE"/>
+      <BindItem id="item13" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.cal00" propid="accessibilityaction" datasetid="ds_emp" columnid="HIRE_DATE"/>
+      <BindItem id="item14" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.chk00" propid="value" datasetid="ds_emp" columnid="MARRIED"/>
+      <BindItem id="item15" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.txt00" propid="value" datasetid="ds_emp" columnid="MEMO"/>
+      <BindItem id="item16" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.cbo00" propid="value" datasetid="ds_emp" columnid="DEPT_CD"/>
+      <BindItem id="item17" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.cbo00" propid="text" datasetid="ds_dept" columnid="DEPT_NAME"/>
+      <BindItem id="item18" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.lst00" propid="value" datasetid="ds_emp" columnid="POS_CD"/>
+      <BindItem id="item19" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.lst00" propid="acceptvaluetype" datasetid="ds_pos" columnid="POS_NAME"/>
+      <BindItem id="item20" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.rdo00" propid="value" datasetid="ds_emp" columnid="GENDER"/>
+      <BindItem id="item21" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.rdo00" propid="acceptvaluetype" datasetid="ds_emp" columnid="GENDER"/>
+      <BindItem id="item22" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.edt00" propid="value" datasetid="dsEmp" columnid="id"/>
+      <BindItem id="item23" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.edt00_00" propid="value" datasetid="dsEmp" columnid="name"/>
+      <BindItem id="item24" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.edt00_01" propid="value" datasetid="dsEmp" columnid="phone_num"/>
+      <BindItem id="item25" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.edt00_02" propid="value" datasetid="dsEmp" columnid="email"/>
+      <BindItem id="item26" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.edt00_03" propid="value" datasetid="dsEmp" columnid="created_at"/>
+      <BindItem id="item27" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.edt00_04" propid="value" datasetid="dsEmp" columnid="role_name"/>
+      <BindItem id="item28" compid="divInBound.form.pdiv.form.spn00" propid="value" datasetid="ds_emp" columnid="SALARY"/>
+      <BindItem id="item29" compid="divInBound.form.tabAuth.tabEmp.form.divDetail.form.cmb00" propid="value" datasetid="dsEmp" columnid="role_id"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[/**
 *  Necacro EduPack
@@ -58,8 +158,8 @@
 /************************************************************************************************
  * FORM 변수 선언 영역
  ************************************************************************************************/
-
-
+this.nRow;
+var fvPopupUrl = "TSM::TSM1060pu_Authority.xfdl"; // 팝업창 주소
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
  ************************************************************************************************/
@@ -75,22 +175,43 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 /************************************************************************************************
  * CALLBACK 콜백 처리부분(Transaction, Popup)
  ************************************************************************************************/
+/**
+ * @param {String} svcID - 서비스 ID
+ * @param {Number} errorCode - 에러코드(정상 0, 에러 음수값)
+ * @param {String} [errorMsg] - 에러메시지
+ * @return N/A
+*/
+this.fnCallback = function(svcId, errCd, errMsg) {
+	
+//	trace(this.gdsRole.saveXML());
+}
+
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
 this.fnGetEmployees = function() 
 {
 	var sSvcID    = "selectEmp";
 	var sURL      = "SvcUrl::edu/selectEmp.do";
 	var sInDs     = "";
-	var sOutDs    = "dsEmp=dsEmp";
+	var sOutDs    = "dsEmp=dsEmp gdsRole=gdsRole dsRole=dsRole";
+	var sParam    = ""
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+	
+}
+
+this.fnGetRole = function() 
+{
+	var sSvcID    = "selectRoles";
+	var sURL      = "SvcUrl::edu/selectRoles.do";
+	var sInDs     = "";
+	var sOutDs    = "dsRole=dsRole";
 	var sParam    = ""
 	var sCallBack = "fn_callback";
 	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
 }
-
-/************************************************************************************************
- * CRUD 및 TRANSACTION 서비스 호출 처리
- ************************************************************************************************/
-
-
 /************************************************************************************************
  * 사용자 FUNCTION 영역
  ************************************************************************************************/
@@ -100,9 +221,118 @@ this.fnGetEmployees = function()
  * 각 COMPONENT 별 EVENT 영역
  ************************************************************************************************/
 
+this.divInBound_tabRole_Tabpage2_grdRole_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+// 	nRow = e.row;
+// 	
+// 	// 누른 셀의 role_id를 가져오고( dsRoleEmp로부터, 그리드에서 가져오면 안됨 )
+// 	var nRoleId = this.dsRole.getColumn(e.row, "role_id");
+// //	trace("nRoleId = " + nRoleId);
+// 	// 해당 id인 row만 필터를 걸어서 this.dsRoleEmp.filter("role_id == ''");
+// 	var nRowCnt = this.dsRoleEmp.copyData(this.dsEmp);	// 데이터셋 복사
+// 	this.dsRoleEmp.filter("role_id == '" +  nRoleId + "'");
+// //	trace(this.dsRoleEmp.saveXML());
+// 	// pdiv의 콤보에 바인딩	
+// 	this.divInBound.form.pdiv.form.cmbRole.set_innerdataset("dsRoleEmp");
+// 	this.divInBound.form.pdiv.form.cmbRole.set_codecolumn("id");
+// 	this.divInBound.form.pdiv.form.cmbRole.set_datacolumn("name");
+// 
+// 	// 콤보를 그리드의 위치에 동적 생성
+// 	if(obj.getCellProperty("body", e.cell, "id") == "body1"){
+// 			var objRect = obj.getCellRect(e.row, e.cell);
+// 			this.divInBound.form.pdiv.trackPopupByComponent(obj, objRect.left, objRect.top);
+// 	}
+	
+// 	this.divInBound.form.pdiv.form.cmbRole.set_innerdataset("dsRoleEmp");
+// 	this.divInBound.form.pdiv.form.cmbRole.set_codecolumn("id");
+// 	this.divInBound.form.pdiv.form.cmbRole.set_datacolumn("name");
+
+//	divInBound.form.tabAuth.tpgRole.form.grdRole
+
+//	trace(this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellValue(e.row, 4))
+
+// 	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "2");//아무도 삭제 못하게.
+// 	trace("권한 수정 : " +bChk);
+// 	if(bChk)
+// 	{
+// 
+// 	}
+// 수정버튼 Cell 인덱스 = 2
+	if ( this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellPos() == 2 )
+	{
+		// 클릭한 셀의 id값을 팝업에 넘겨주기
+		var objParam = this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellValue(e.row, 4);
+		// 팝업 열기
+		var sTitle = "권한 설정";	// 모달팝업
+		var oArg = {paramId:objParam};
+		var oOption = {title:sTitle};
+		var sPopupCallBack = "fnPopupCallback";	
+		this.gfnOpenPopup( "puAuth", fvPopupUrl, oArg, sPopupCallBack, oOption);
+	}
+};
+
+this.divInBound_tabAuth_tpgRole_btnAuthRetrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnGetRole();
+};
+this.divInBound_tabAuth_tpgRole_btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	sPopupId = "popup";
+	sUrl = "TSM::TSM1060pu_Authority.xfdl";
+	sPopupCallback = function() { this.btnAdd.setFocus(); }
+	// 권한 추가 팝업 띄우기
+	var sTitle = "권한 설정";	// 모달팝업
+	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬
+	
+	//함수 callback
+	this.gfnOpenPopup("puAuthAdd", fvPopupUrl, oArg, function() { this.btnAdd.setFocus(); }, oOption);
+};
 ]]></Script>
     <Objects>
-      <Dataset id="dsEmp"/>
+      <Dataset id="dsEmp">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="phone_num" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="created_at" type="STRING" size="256"/>
+          <Column id="salary" type="STRING" size="256"/>
+          <Column id="role_name" type="STRING" size="256"/>
+          <Column id="role_id" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRole">
+        <ColumnInfo>
+          <Column id="role_id" type="INT" size="256"/>
+          <Column id="role_name" type="STRING" size="256"/>
+          <Column id="description" type="STRING" size="256"/>
+          <Column id="user_id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRoleEmp">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTest">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Column0">1</Col>
+            <Col id="Column1">명칭1</Col>
+          </Row>
+          <Row>
+            <Col id="Column0">2</Col>
+            <Col id="Column1">명칭2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
     </Objects>
   </Form>
 </FDL>
