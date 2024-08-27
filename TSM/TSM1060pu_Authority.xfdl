@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="TSM1060pu_Authority" width="900" height="530" titletext="New Form" onload="TSM1060pu_Authority_onload">
+  <Form id="TSM1060pu_Authority" width="900" height="530" titletext="권한 관리" onload="TSM1060pu_Authority_onload">
     <Layouts>
       <Layout height="530" width="900">
         <Div id="divTitle" taborder="1" text="div01" left="0" top="0" height="70" right="0">

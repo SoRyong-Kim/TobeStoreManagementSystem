@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM1030pu_RequestDocument" width="900" height="550" titletext="요청서" onload="TSM1030pu_RequestDocument_onload">
+    <Layouts>
+      <Layout height="550" width="900">
+        <Div id="divTitle" taborder="1" text="div01" left="0" top="0" height="70" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle" taborder="0" text="신청" left="30" top="10" width="166" height="42" cssclass="sta_WF_Title"/>
+              <Static id="staHLine00" taborder="1" left="30" top="50" height="11" cssclass="sta_WF_HLine" text="" right="30"/>
+              <Button id="btnRequest" taborder="2" text="신청하기" left="703" top="10" height="37" right="123" onclick="divTitle_btnRequest_onclick"/>
+              <Button id="btnClose" taborder="3" text="닫기" left="790" top="10" height="37" right="30" onclick="divTitle_btnClose_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divPermission" taborder="0" text="" left="0" top="70" bottom="0" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="sta00_00_00" taborder="0" text="요청서 제목" left="33" top="8" width="102" height="29" cssclass="sta_WF_TitleSub"/>
+              <Edit id="edtName" taborder="1" left="110" top="4" height="37" displaynulltext="제목을 입력해주세요" right="30"/>
+              <Edit id="edtDesc" taborder="2" left="110" top="61" height="37" displaynulltext="[필수]설명을 입력해주세요" right="30" onchanged="divPermission_edtRDesc_onchanged"/>
+              <Static id="sta00_00_00_00" taborder="3" text="설명" left="71" top="65" width="102" height="29" cssclass="sta_WF_TitleSub"/>
+              <Grid id="grd00" taborder="4" left="30" top="150" right="30" bottom="10" binddataset="dsRequest" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="113"/>
+                      <Column size="250"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="상품 ID"/>
+                      <Cell col="1" text="상품 이름"/>
+                      <Cell col="2" text="거래처"/>
+                      <Cell col="3" text="카테고리"/>
+                      <Cell col="4" text="현재 수량"/>
+                      <Cell col="5" text="요청 수량"/>
+                      <Cell col="6" text="요청 후 수량"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:product_id"/>
+                      <Cell col="1" text="bind:product_name"/>
+                      <Cell col="2" text="bind:supplier_name"/>
+                      <Cell col="3" text="bind:category_name"/>
+                      <Cell col="4" text="bind:remain_count"/>
+                      <Cell col="5" text="bind:InBound_count"/>
+                      <Cell col="6" text="bind:total_count"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="staTitle00" taborder="5" text="요청 상품 목록" left="10" top="110" width="166" height="42" cssclass="sta_WF_SearchLabel"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\TSM\TSM1030pu_RequestDocument.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/27
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/27     	    Education 	             최초 생성
+********************************************************************************/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp 	  	= this.gfnGetApplication();
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.TSM1030pu_RequestDocument_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	// 부모의 데이터셋 받아오기
+	var strParam1 = this.parent.param1;
+	if(strParam1 == "OutBound")
+	{
+		this.divPermission.form.grd00.setCellProperty("body", 5, "text", "bind:OutBound_count");
+	}
+	var objParam  = this.parent.paramId;
+	this.dsRequest.copyData(objParam);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @param {String} svcID - 서비스 ID
+ * @param {Number} errorCode - 에러코드(정상 0, 에러 음수값)
+ * @param {String} [errorMsg] - 에러메시지
+ * @return N/A
+*/
+this.fnCallback = function(svcId, errCd, errMsg) {
+	if( svcId == "insertRequest" )
+	{
+		if(errCd == 0)
+		{
+			// {0}신청 완료
+			var arrArg = [this.divTitle.form.staTitle.text]
+			this.gfnAlert("msg.succ.request", arrArg)
+		}
+	}
+}
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+this.fnInsertRequest = function() 
+{
+	var sSvcID    = "insertRequest";
+	var sURL      = "SvcUrl::edu/insertRequest.do";
+	var sInDs     = "dsRequest=dsRequest";
+	var sOutDs    = "";
+	var sParam    = ""
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divTitle_btnRequest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sTime = this.gfnGetFullTime();
+	nRRow = this.dsRequest.rowcount;
+	var userId = this.fvObjApp.gdsUser.getColumn(0, "USER_ID");
+	
+	for(var i = 0; i<nRRow; i++) 
+	{
+		this.dsRequest.setColumn(i, "date", sTime);
+		this.dsRequest.setColumn(i, "user_id", userId);
+		this.dsRequest.setColumn(i, "request_name", this.divPermission.form.edtName.text);
+		this.dsRequest.setColumn(i, "description", this.divPermission.form.edtDesc.text);
+	}
+
+	this.fnInsertRequest();
+	
+};
+
+this.divTitle_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsRequest">
+        <ColumnInfo>
+          <Column id="product_id" type="STRING" size="256"/>
+          <Column id="supplier_name" type="STRING" size="256"/>
+          <Column id="category_name" type="STRING" size="256"/>
+          <Column id="product_name" type="STRING" size="256"/>
+          <Column id="remain_count" type="INT" size="256"/>
+          <Column id="product_url" type="STRING" size="256"/>
+          <Column id="InBound_count" type="INT" size="256"/>
+          <Column id="total_count" type="INT" size="256"/>
+          <Column id="date" type="STRING" size="256"/>
+          <Column id="user_id" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256" description="사용자 이름"/>
+          <Column id="request_name" type="STRING" size="256" description="요청 이름"/>
+          <Column id="description" type="STRING" size="256" description="설명"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divPermission.form.edtName" propid="value" datasetid="dsRequest" columnid="request_name"/>
+      <BindItem id="item1" compid="divPermission.form.edtDesc" propid="value" datasetid="dsRequest" columnid="description"/>
+    </Bind>
+  </Form>
+</FDL>

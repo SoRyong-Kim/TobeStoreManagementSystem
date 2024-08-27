@@ -263,7 +263,7 @@ this.divInBound_tabRole_Tabpage2_grdRole_oncellclick = function(obj:nexacro.Grid
 		// 클릭한 셀의 id값을 팝업에 넘겨주기
 		var objParam = this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellValue(e.row, 4);
 		// 팝업 열기
-		var sTitle = "권한 설정";	// 모달팝업
+		var sTitle = "권한 설정";
 		var oArg = {paramId:objParam};
 		var oOption = {title:sTitle};
 		var sPopupCallBack = "fnPopupCallback";	

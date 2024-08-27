@@ -3,7 +3,7 @@
   <Form id="TSM0010fm_Login" width="1050" height="750" titletext="New Form" onsize="TSM101_Login_onsize" onload="TSM101_Login_onload">
     <Layouts>
       <Layout height="750" width="1050">
-        <Div id="divLogin" taborder="0" top="0" left="310" cssclass="div_LogF_Bg" text="" width="500" height="750" background="#fffff">
+        <Div id="divLogin" taborder="0" top="0" left="310" cssclass="div_LogF_Bg" text="" width="500" height="750">
           <Layouts>
             <Layout>
               <Static id="staLogo" taborder="0" left="0" top="80" height="180" textAlign="center" cssclass="sta_LogF_Logo" right="0"/>

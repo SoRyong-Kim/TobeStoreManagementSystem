@@ -585,6 +585,11 @@
           <Col id="MSG_TEXT">{0}님 축하합니다! 회원가입이 성공적으로 완료되었습니다. 로그인 후 매장을 관리해보세요!</Col>
           <Col id="MSG_TYPE">A</Col>
         </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.request</Col>
+          <Col id="MSG_TEXT">{0}신청 완료</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
       </Rows>
     </Dataset>
     <Dataset id="gdsOpenMenu">
@@ -1947,6 +1952,22 @@
         </Row>
         <Row>
           <Col id="name">8</Col>
+        </Row>
+      </Rows>
+    </Dataset>
+    <Dataset id="gdsApproveStatus">
+      <ColumnInfo>
+        <Column id="status" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row>
+          <Col id="status">승인대기</Col>
+        </Row>
+        <Row>
+          <Col id="status">승인</Col>
+        </Row>
+        <Row>
+          <Col id="status">거부</Col>
         </Row>
       </Rows>
     </Dataset>
