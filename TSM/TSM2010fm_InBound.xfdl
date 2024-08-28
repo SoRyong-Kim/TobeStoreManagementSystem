@@ -40,7 +40,7 @@
                       <Cell rowspan="2" displaytype="imagecontrol" imagestretch="fixaspectratio" text="bind:product_url" autosizerow="none" autosizecol="none"/>
                       <Cell col="1" rowspan="2" text="bind:supplier_name"/>
                       <Cell col="2" rowspan="2" text="bind:category_name"/>
-                      <Cell col="3" rowspan="2" text="bind:product_name"/>
+                      <Cell col="3" rowspan="2" text="bind:product_name" wordWrap="char"/>
                       <Cell col="4" rowspan="2" text="bind:price"/>
                       <Cell col="5" rowspan="2" text="bind:remain_count" textAlign="right"/>
                       <Cell col="6" rowspan="2" text="bind:sale_count" textAlign="right"/>
@@ -84,7 +84,7 @@
                     </Band>
                     <Band id="body">
                       <Cell rowspan="2" displaytype="imagecontrol" imagestretch="fixaspectratio" text="bind:product_url" autosizerow="none" autosizecol="none"/>
-                      <Cell col="1" rowspan="2" text="bind:product_name"/>
+                      <Cell col="1" rowspan="2" text="bind:product_name" wordWrap="char"/>
                       <Cell col="2" rowspan="2" text="bind:price"/>
                       <Cell col="3" rowspan="2" text="bind:remain_count" textAlign="right"/>
                       <Cell col="4" rowspan="2" text="bind:sale_count" textAlign="right"/>
@@ -190,6 +190,7 @@
           <Column id="name" type="STRING" size="256" description="사용자 이름"/>
           <Column id="request_name" type="STRING" size="256" description="요청 이름"/>
           <Column id="description" type="STRING" size="256" description="설명"/>
+          <Column id="type" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>

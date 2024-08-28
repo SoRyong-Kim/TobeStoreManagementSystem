@@ -40,7 +40,7 @@
                       <Cell rowspan="2" displaytype="imagecontrol" imagestretch="fixaspectratio" text="bind:product_url" autosizerow="none" autosizecol="none"/>
                       <Cell col="1" rowspan="2" text="bind:supplier_name"/>
                       <Cell col="2" rowspan="2" text="bind:category_name"/>
-                      <Cell col="3" rowspan="2" text="bind:product_name"/>
+                      <Cell col="3" rowspan="2" text="bind:product_name" wordWrap="char"/>
                       <Cell col="4" rowspan="2" text="bind:price"/>
                       <Cell col="5" rowspan="2" text="bind:remain_count" textAlign="right"/>
                       <Cell col="6" rowspan="2" text="bind:sale_count" textAlign="right"/>
@@ -84,7 +84,7 @@
                     </Band>
                     <Band id="body">
                       <Cell rowspan="2" displaytype="imagecontrol" imagestretch="fixaspectratio" text="bind:product_url" autosizerow="none" autosizecol="none"/>
-                      <Cell col="1" rowspan="2" text="bind:product_name"/>
+                      <Cell col="1" rowspan="2" text="bind:product_name" wordWrap="char"/>
                       <Cell col="2" rowspan="2" text="bind:price"/>
                       <Cell col="3" rowspan="2" text="bind:remain_count" textAlign="right"/>
                       <Cell col="4" rowspan="2" text="bind:sale_count" textAlign="right"/>
@@ -107,8 +107,8 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Combo id="cmb_corp" taborder="9" left="78" top="119" width="123" height="28" innerdataset="gdsStore" codecolumn="store_id" datacolumn="store_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="true" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
-              <Static id="Static05_00_00" taborder="10" text="출고할 매장" left="-20" top="119" width="104" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="true"/>
+              <Combo id="cmb_corp" taborder="9" left="78" top="119" width="123" height="28" innerdataset="gdsStore" codecolumn="store_id" datacolumn="store_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="false" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
+              <Static id="Static05_00_00" taborder="10" text="출고할 매장" left="-20" top="119" width="104" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="false"/>
               <Button id="btn00" taborder="11" text="조회" left="429" top="119" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
               <Button id="btnOutBound" taborder="12" text="출고 신청" left="930" top="119" width="75" height="28" visible="true" onclick="divOutBound_btnOutBound_onclick"/>
               <Static id="sta00" taborder="13" text="출고 권한이 있는지 확인." left="94" top="3" width="214" height="38" visible="false"/>

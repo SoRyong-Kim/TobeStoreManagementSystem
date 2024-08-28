@@ -3,7 +3,7 @@
   <Form id="TSM1011_PopProductAdd" width="450" height="400" titletext="상품추가 팝업" onload="TSM1011_PopProductAdd_onload">
     <Layouts>
       <Layout height="400" width="450">
-        <Div id="divDetail" taborder="0" left="0" top="0" text="" bottom="0" right="0">
+        <Div id="divDetail" taborder="0" left="0" top="0" text="" right="0" bottom="0">
           <Layouts>
             <Layout>
               <ImageViewer id="imgProduct" taborder="0" left="345" top="59" width="85" height="85" cssclass="img_WF_Product" onclick="divDetail_imgProduct_onclick" stretch="fixaspectratio"/>

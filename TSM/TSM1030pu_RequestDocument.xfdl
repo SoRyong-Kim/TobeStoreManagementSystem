@@ -81,14 +81,14 @@
  * FORM 변수 선언 영역
  ************************************************************************************************/
 this.fvObjApp 	  	= this.gfnGetApplication();
-
+var strParam1 = this.parent.param1;
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
  ************************************************************************************************/
 this.TSM1030pu_RequestDocument_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	// 부모의 데이터셋 받아오기
-	var strParam1 = this.parent.param1;
+	
 	if(strParam1 == "OutBound")
 	{
 		this.divPermission.form.grd00.setCellProperty("body", 5, "text", "bind:OutBound_count");
@@ -146,13 +146,16 @@ this.divTitle_btnRequest_onclick = function(obj:nexacro.Button,e:nexacro.ClickEv
 	var sTime = this.gfnGetFullTime();
 	nRRow = this.dsRequest.rowcount;
 	var userId = this.fvObjApp.gdsUser.getColumn(0, "USER_ID");
-	
+	var sType = (strParam1=="OutBound"?"T20":"T10");
+	trace(sType);
 	for(var i = 0; i<nRRow; i++) 
 	{
 		this.dsRequest.setColumn(i, "date", sTime);
 		this.dsRequest.setColumn(i, "user_id", userId);
 		this.dsRequest.setColumn(i, "request_name", this.divPermission.form.edtName.text);
 		this.dsRequest.setColumn(i, "description", this.divPermission.form.edtDesc.text);
+		
+		this.dsRequest.setColumn(i, "type", sType);
 	}
 
 	this.fnInsertRequest();
@@ -180,6 +183,7 @@ this.divTitle_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
           <Column id="name" type="STRING" size="256" description="사용자 이름"/>
           <Column id="request_name" type="STRING" size="256" description="요청 이름"/>
           <Column id="description" type="STRING" size="256" description="설명"/>
+          <Column id="type" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>

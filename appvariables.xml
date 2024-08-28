@@ -281,6 +281,11 @@
           <Col id="MSG_TYPE">C</Col>
         </Row>
         <Row>
+          <Col id="MSG_ID">confirm.role.delete</Col>
+          <Col id="MSG_TEXT">해당 역할을 삭제하시겠습니까?</Col>
+          <Col id="MSG_TYPE">C</Col>
+        </Row>
+        <Row>
           <Col id="MSG_ID">msg.noselect</Col>
           <Col id="MSG_TEXT">{0} 을(를) 선택해 주십시요.</Col>
           <Col id="MSG_TEXT_EN">Please, select {0}</Col>
@@ -590,6 +595,31 @@
           <Col id="MSG_TEXT">{0}신청 완료</Col>
           <Col id="MSG_TYPE">A</Col>
         </Row>
+        <Row>
+          <Col id="MSG_ID">msg.err.delete</Col>
+          <Col id="MSG_TEXT">{0}역할을 삭제하려면 \n 권한을 가진 사용자를 모두 해제해야합니다.</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.save</Col>
+          <Col id="MSG_TEXT">저장되었습니다.</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.get</Col>
+          <Col id="MSG_TEXT">조회되었습니다.</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.add</Col>
+          <Col id="MSG_TEXT">{0}을 추가하였습니다.</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
+        <Row>
+          <Col id="MSG_ID">msg.succ.delete</Col>
+          <Col id="MSG_TEXT">삭제하였습니다.</Col>
+          <Col id="MSG_TYPE">A</Col>
+        </Row>
       </Rows>
     </Dataset>
     <Dataset id="gdsOpenMenu">
@@ -676,6 +706,15 @@
           <Col id="MENU_URL">TSM::TSM2020fm_OutBound.xfdl</Col>
           <Col id="USE_YN">Y</Col>
           <Col id="SORT_NO">3</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_GROUP">80</Col>
+          <Col id="MENU_ID">80</Col>
+          <Col id="MENU_PID">0</Col>
+          <Col id="MENU_LEVEL">0</Col>
+          <Col id="MENU_NAME">입/출고 승인</Col>
+          <Col id="USE_YN">Y</Col>
+          <Col id="MENU_URL">TSM::TSM7000fm_RequestApprove.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_GROUP">40</Col>

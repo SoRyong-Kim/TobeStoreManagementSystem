@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM7000fm_RequestApprove" width="1050" height="600" titletext="요청 승인" onload="TSM7000fm_RequestApprove_onload">
+    <Layouts>
+      <Layout height="600" width="1050">
+        <Static id="staHLine" taborder="0" left="0" top="65" height="11" cssclass="sta_WF_HLine" right="0" text=""/>
+        <Static id="staTitle" taborder="1" text="입/출고 승인" left="5" top="0" width="166" height="42" cssclass="sta_WF_Title"/>
+        <Div id="div00" taborder="4" text="" left="0" top="80" width="556" height="520">
+          <Layouts>
+            <Layout>
+              <Grid id="grd00" taborder="0" left="0" top="80" right="0" bottom="0" binddataset="dsRequestHistory" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="60"/>
+                      <Column size="95"/>
+                      <Column size="159"/>
+                      <Column size="53"/>
+                      <Column size="76"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="type"/>
+                      <Cell col="1" text="요청제목"/>
+                      <Cell col="2" text="date"/>
+                      <Cell col="3" text="요청상태"/>
+                      <Cell col="4" text="신청인"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:type" textAlign="center"/>
+                      <Cell col="1" text="bind:request_name" textAlign="center"/>
+                      <Cell col="2" text="bind:request_date" maskeditformat="####'년 '##'월 '##'일  '##':'##':'##" displaytype="mask" edittype="mask" textAlign="center" maskedittype="string"/>
+                      <Cell col="3" text="bind:status" textAlign="center" background="paleturquoise"/>
+                      <Cell col="4" text="bind:request_user_id" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta00" taborder="1" text="입출고 요청 목록" left="10" top="-10" width="347" height="43" cssclass="sta_WF_TitleSub"/>
+              <Combo id="cmb00" taborder="2" text="cmb00" left="5" top="37" width="107" height="36"/>
+              <Combo id="cmb01" taborder="3" text="cmb01" left="117" top="37" width="107" height="39"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staVLine" taborder="2" left="div00:-1" cssclass="sta_WF_VLine" text="" bottom="0" width="11" top="71"/>
+        <Div id="divDetail" taborder="3" left="staVLine:0" top="80" text="" height="520" right="0">
+          <Layouts>
+            <Layout>
+              <Grid id="grdProduct" taborder="0" left="0" top="80" binddataset="dsDetail" right="0" onheadclick="divDetail_grdProduct_onheadclick" oncellclick="divDetail_grdProduct_oncellclick" bottom="0" autofittype="col">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48"/>
+                      <Column size="68"/>
+                      <Column size="188"/>
+                      <Column size="48"/>
+                      <Column size="132"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell edittype="none" displaytype="checkboxcontrol"/>
+                      <Cell col="1" text="승인여부"/>
+                      <Cell col="2" text="상품명"/>
+                      <Cell col="3" text="수량"/>
+                      <Cell col="4" text="승인날짜"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell edittype="checkbox" displaytype="checkboxcontrol" text="bind:COL_CHK"/>
+                      <Cell col="1" text="bind:status" textAlign="center"/>
+                      <Cell col="2" text="bind:product_name" textAlign="center"/>
+                      <Cell col="3" text="bind:quantity" textAlign="center"/>
+                      <Cell col="4" text="bind:approved_date" textAlign="center" displaytype="mask" edittype="mask" maskedittype="string" maskeditformat="####'년 '##'월 '##'일  '##':'##':'##" maskeditclipmode="excludespace"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta00" taborder="1" text="요청된 상품 리스트" left="21" top="4" width="188" height="40" cssclass="sta_WF_TitleSub"/>
+              <Button id="btnApp" taborder="2" text="승인" left="253" top="34" width="61" height="28" visible="true" onclick="divDetail_btnApp_onclick"/>
+              <Button id="btnReject" taborder="3" text="거부" left="330" top="34" width="61" height="28" visible="true" onclick="divDetail_btnReject_onclick"/>
+              <Button id="btnSave" taborder="4" text="저장" left="411" top="34" width="61" height="28" visible="true" onclick="divDetail_btnSave_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnRetrieve" taborder="5" text="조회" left="979" top="22" width="61" height="28" visible="true" onclick="btnRetrieve_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item8" compid="divDetail.form.sta00_00" propid="text" datasetid="dsHistory" columnid="date"/>
+      <BindItem id="item9" compid="divDetail.form.msk00" propid="value" datasetid="dsHistory" columnid="date"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\TSM\TSM7000fm_History.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/19
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/19     	    Education 	             최초 생성
+********************************************************************************/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp 	  	= this.gfnGetApplication();
+
+/**
+ * @description 화면 로드 시 이벤트
+*/
+this.TSM7000fm_RequestApprove_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnSelect();
+};
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ /**
+ * @param {String} svcID - 서비스 ID
+ * @param {Number} errorCode - 에러코드(정상 0, 에러 음수값)
+ * @param {String} [errorMsg] - 에러메시지
+ * @return N/A
+*/
+this.fnCallback = function(svcId, errCd, errMsg) {
+	if (svcId == "selectRequestHistory" )
+	{
+		if(errCd == 0)
+		{
+			// dsDetail로 복사
+			this.dsDetail.copyData(this.dsRequestHistory);
+			nRow = this.dsRequestHistory.rowcount;
+			
+			arr = new Array(nRow).fill(0); // 첫 번째 배열
+			this.fnFilter();	// role 그리드 영역 필터링
+			
+			// 요청상태 변경
+			this.fnSetStatus();
+			
+			// 입출고 한글로 변경
+			var sExpr2 = "expr:type == 'T10' ? '입고' : '출고'"
+			this.div00.form.grd00.setCellProperty("body", 0, "text", sExpr2);
+			
+			
+		}
+	} else if ( svcId == "saveApprove" ) 
+	{
+		if(errCd == 0)
+		{
+			this.gfnAlert("msg.succ.save");
+		}
+	}
+}
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+/**
+ * @description 상품 조회 사용자 함수
+ * @param {String} sSvcID - 서비스 ID
+ * @param {String} sURL - 서비스 호출 URL 
+ * @param {String} [sInDs]	- 검색 조건을 담은 dsSearch
+ * @param {String} [sOutDs] - 조회된 데이터를 담은 dsProduct
+ * @param {String} [sParam]	- 서비스 호출시 전송할 sParam
+ * @param {String} [sCallBack] - 콜백 함수명
+ * @return N/A
+*/
+ this.fnSelect = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) 
+{
+	var sSvcID    = "selectRequestHistory";
+	var sURL      = "SvcUrl::edu/selectRequestHistory.do";
+	var sInDs     = "";
+	var sOutDs    = "dsRequestHistory=dsRequestHistory";
+	var sParam    = ""
+	var sCallBack = "fnCallback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+this.fnSave = function()
+{
+	var sSvcID    = "saveApprove";
+	var sURL      = "SvcUrl::edu/saveApprove.do";
+	var sInDs     = "dsDetail=dsDetail";
+	var sOutDs    = "";
+	var sParam    = ""
+	var sCallBack = "fnCallback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+}
+
+this.fnFilter = function ()
+{
+	var nTemp;
+	for ( var i = nRow - 1; i>=0; i--)
+	{
+		nTemp = this.dsRequestHistory.getColumn(i, "request_id");
+		if( i != 0 &&  nTemp == this.dsRequestHistory.getColumn( i - 1, "request_id"))
+		{
+			this.dsRequestHistory.filterRow(i);
+			//arr[i] = i;	// 같은 id의 행 인덱스를 저장
+		}
+	}
+};
+
+this.fnSetStatus = function ()
+{
+	// 만약 갯수가 똑같다면
+	nRow = this.dsRequestHistory.rowcount;
+	var sStat;
+	for(var i=0; i<nRow; i++)
+	{
+		var nCnt = this.dsRequestHistory.getColumn(i, "request_id");
+		var sText = this.dsRequestHistory.getColumn(i, "status");
+		if ( sText == "완료" )
+		{
+			return;
+		} else if( this.dsRequestHistory.getCaseCountNF("request_id == '" + nCnt +"'") 
+				== this.dsRequestHistory.getCaseCountNF("request_id == '" + nCnt +"' && status != '승인대기'"))
+			{
+				this.dsRequestHistory.setColumn( i, "status", "완료");
+//				this.dsRequestHistory.setColumn( i, "status", "완료"); // 색상 css 입히기
+			}
+	}
+	
+	// sText에 "승인 완료"를 넣어줌.
+	// 그리드의 text에 sText 변수 삽입.
+			
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+this.divSearch_Edit00_canchange = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	//####'년'-##'월'-##'일'-##':'##':'##
+};
+
+this.dsHistory_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+// 	// rowposition이 변경될 때 staTitle의 색 변경
+// 	// 1. ds에서 getColumn으로 판단하기.
+// 	// 2. 현재 셀의 row로 getColumn
+// 	var sType = this.dsHistory.getColumn(this.dsHistory.rowposition, "type");
+// //	var sText = this.lstHistory.getCellText(this.dsHistory.rowposition, "body", "CellType");
+// 	if( sType == "T10" )
+// 	{
+// 		this.divDetail.form.staTitle.set_cssclass("sta_WF_Blue");
+// 		this.divDetail.form.staTitle.set_text("입고내역");
+// 		this.divDetail.form.staHLine.set_cssclass("sta_WF_HLine_Blue");
+// 		
+// //		this.lstHistory.setCellProperty("body", "CellType", "text", "입고");
+// 	} else if ( sType == "T20" )
+// 	{
+// 		this.divDetail.form.staTitle.set_cssclass("sta_WF_Red");
+// 		this.divDetail.form.staTitle.set_text("출고내역");
+// 		this.divDetail.form.staHLine.set_cssclass("sta_WF_HLine_Red");
+// //		this.lstHistory.setCellProperty("body", "CellType", "text", "출고");
+// 	}
+	
+	
+};
+
+// 체크박스 전체선택.
+this.divDetail_grdProduct_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	// 전체 선택, 해제
+	if(e.cell == 0) 
+	{
+		var sHeadText = this.divDetail.form.grdProduct.getHeadValue(0);
+		this.dsRequestHistory.set_enableevent(false);
+		for(var i=0; i<this.dsRequestHistory.rowcount; i++)
+		{
+			this.dsRequestHistory.setColumn(i, "COL_CHK", sHeadText);
+		}
+		this.dsRequestHistory.set_enableevent(true);
+	}
+};
+
+this.divDetail_btnApp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.divDetail.form.grdProduct.rowcount;
+	for(var i=0; i<nRow; i++) 
+	{
+		// 체크되어있는 행인지 확인
+		if(this.divDetail.form.grdProduct.getCellPropertyValue(i, 0, "text") == 1)
+		{
+			this.dsDetail.setColumn(i, 6, "승인");
+		}
+			// 체크되어있으면 해당 행의 값을 승인으로 변경
+	}
+	this.divDetail.form.grdProduct.setCellProperty("body", 0, "text", 0);
+	
+};
+
+this.divDetail_btnReject_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.divDetail.form.grdProduct.rowcount;
+	for(var i=0; i<nRow; i++) 
+	{
+		// 체크되어있는 행인지 확인
+		if(this.divDetail.form.grdProduct.getCellPropertyValue(i, 0, "text") == 1)
+		{
+			this.dsDetail.setColumn(i, 6, "거부");
+		}
+			// 체크되어있으면 해당 행의 값을 거부로 변경
+	}
+	this.divDetail.form.grdProduct.setCellProperty("body", 0, "text", 0); // 버튼 클릭 후 선택 해제
+};
+
+this.divDetail_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 승인 날짜, 승인한 사람의 ID 넣어주기
+	var sTime = this.gfnGetFullTime();
+	var nDRow = this.dsDetail.rowcount;
+	for( var i = 0; i<nDRow; i++)
+	{
+		this.dsDetail.setColumn( i, "approved_by", this.fvObjApp.gdsUser.getColumn(0, "USER_ID"));
+		this.dsDetail.setColumn( i, "approved_date", sTime);
+	}
+	// transaction
+	this.fnSave();
+//	trace(this.dsDetail.saveXML());
+};
+
+
+this.dsRequestHistory_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	this.dsDetail.filter("");	// 필터 초기화
+	var nReqId = this.dsRequestHistory.getColumn(e.newrow, "request_id");
+	this.dsDetail.filter("request_id == '" + nReqId + "'");
+};
+this.btnRetrieve_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSelect();
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="type" type="STRING" size="256"/>
+          <Column id="product_id" type="STRING" size="256"/>
+          <Column id="product_name" type="STRING" size="256"/>
+          <Column id="total_count" type="STRING" size="256"/>
+          <Column id="remain_count" type="STRING" size="256"/>
+          <Column id="date" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRequestHistory" useclientlayout="true" onrowposchanged="dsRequestHistory_onrowposchanged">
+        <ColumnInfo>
+          <Column id="request_id" type="STRING" size="256"/>
+          <Column id="request_user_id" type="STRING" size="256"/>
+          <Column id="request_date" type="STRING" size="256"/>
+          <Column id="product_name" type="STRING" size="256"/>
+          <Column id="product_id" type="STRING" size="256"/>
+          <Column id="quantity" type="STRING" size="256"/>
+          <Column id="status" type="STRING" size="256"/>
+          <Column id="approved_by" type="STRING" size="256"/>
+          <Column id="approved_date" type="STRING" size="256"/>
+          <Column id="request_name" type="STRING" size="256" description="요청 이름"/>
+          <Column id="description" type="STRING" size="256" description="설명"/>
+          <Column id="type" type="STRING" size="256"/>
+          <Column id="COL_CHK" type="STRING" size="256"/>
+          <Column id="Column0" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDetail">
+        <ColumnInfo>
+          <Column id="request_id" type="STRING" size="256"/>
+          <Column id="request_user_id" type="STRING" size="256"/>
+          <Column id="request_date" type="STRING" size="256"/>
+          <Column id="product_name" type="STRING" size="256"/>
+          <Column id="product_id" type="STRING" size="256"/>
+          <Column id="quantity" type="STRING" size="256"/>
+          <Column id="status" type="STRING" size="256"/>
+          <Column id="approved_by" type="STRING" size="256"/>
+          <Column id="approved_date" type="STRING" size="256"/>
+          <Column id="request_name" type="STRING" size="256" description="요청 이름"/>
+          <Column id="description" type="STRING" size="256" description="설명"/>
+          <Column id="type" type="STRING" size="256"/>
+          <Column id="COL_CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

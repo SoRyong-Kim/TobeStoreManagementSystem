@@ -119,6 +119,13 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 			// 체크박스 채우기
 			this.fnChkPer();
 		}
+	} else if(svcId == "saveRolePermission") 
+	{
+		if(errCd == 0)
+		{
+			this.gfnAlert("msg.succ.save"); // 저장되었습니다
+			this.close();
+		}
 	}
 }
 
@@ -141,7 +148,6 @@ this.fnGetRolePermissionInfo = function() {
  * @description user_permissions 테이블에 저장
 */
 this.fnSave = function() {
-trace("fnSave");
 	this.gfnTransaction("saveRolePermission"
 						,"SvcUrl::edu/saveRolePermission.do"
 						,"dsInsert=dsInsert dsDelete=dsDelete dsRole=dsRole"
@@ -149,7 +155,17 @@ trace("fnSave");
 						,""
 						,"fnCallback");
 }
-
+/**
+ * @description user_permissions 테이블에 추가
+*/
+this.fnAdd = function() {
+	this.gfnTransaction("addNewRole"
+						,"SvcUrl::edu/addNewRole.do"
+						,"dsInsert=dsInsert"
+						,""
+						,""
+						,"fnCallback");
+}
 /**
  * @description user_permissions 테이블에 저장
 */
@@ -215,11 +231,17 @@ this.fnUpdateDsPermission = function ()
 			}
 		}
 	}
-	
-	nRRow = this.dsRole.addRow();
-	this.dsRole.setColumn(nRRow, "role_id", this.fv_RoleId);
-	this.dsRole.setColumn(nRRow, "role_name", this.divPermission.form.edtRName.value);
-	this.dsRole.setColumn(nRRow, "description", this.divPermission.form.edtRDesc.value);
+	if(this.gfnIsNull(this.fv_RoleId)) { // param이 없을 때
+		nRRow = this.dsRole.addRow();
+		this.dsInsert.setColumn(nRRow, "role_name", this.divPermission.form.edtRName.value);
+		this.dsInsert.setColumn(nRRow, "description", this.divPermission.form.edtRDesc.value);
+	}
+	else {	// param이 있을 때
+		nRRow = this.dsRole.addRow();
+		this.dsRole.setColumn(nRRow, "role_id", this.fv_RoleId);
+		this.dsRole.setColumn(nRRow, "role_name", this.divPermission.form.edtRName.value);
+		this.dsRole.setColumn(nRRow, "description", this.divPermission.form.edtRDesc.value);
+	}
 };
 
 /************************************************************************************************
@@ -232,7 +254,7 @@ this.divTitle_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 {
 	this.fnUpdateDsPermission();
 //	this.gfnSetValidation(this.Role, "role_id", "역할 이름을 최소 2글자 입력하세요", "required,minlength:1");
-	trace("wskfksdfks");
+
 // 	//조건 확인
 // 	if(this.divPermission.form.edtRName.value == "")
 // 	{
@@ -244,7 +266,16 @@ this.divTitle_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 // 	
 
 	//trace(this.dsRole.saveXML());
-	this.fnSave();
+	if(this.gfnIsNull(this.fv_RoleId)) { // param이 없을 때
+		this.dsPermission.addRow();
+		this.fnAdd();
+	}
+	else {	// param이 있을 때
+		// 멤버와 파일 정보를 get
+		this.fnGetRolePermissionInfo();
+		this.fnSave();
+	}
+	
 };
 ]]></Script>
     <Bind>
@@ -277,6 +308,8 @@ this.divTitle_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
         <ColumnInfo>
           <Column id="role_id" type="STRING" size="256"/>
           <Column id="permission_id" type="STRING" size="256"/>
+          <Column id="role_name" type="STRING" size="256"/>
+          <Column id="description" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="dsRole">

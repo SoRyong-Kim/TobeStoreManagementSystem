@@ -174,7 +174,32 @@ pForm.gfnGetWorkTime = function(startDateStr, endDateStr) {
     return formattedTime;
 }
 
+pForm.gfnGetWorkTimeMinute = function(startDateStr, endDateStr) {
+    // 문자열을 Date 객체로 변환
+    var startYear = parseInt(startDateStr.substring(0, 4));
+    var startMonth = parseInt(startDateStr.substring(4, 6)) - 1;
+    var startDay = parseInt(startDateStr.substring(6, 8));
+    var startHour = parseInt(startDateStr.substring(8, 10));
+    var startMinute = parseInt(startDateStr.substring(10, 12));
+    var startSecond = parseInt(startDateStr.substring(12, 14));
+    var startDate = new Date(startYear, startMonth, startDay, startHour, startMinute, startSecond);
 
+    var endYear = new Date().getFullYear();
+    var endMonth = new Date().getMonth();
+    var endDay = new Date().getDate();
+    var endHour = new Date().getHours();
+    var endMinute = new Date().getMinutes();
+    var endSecond = new Date().getSeconds();
+    var endDate = new Date(endYear, endMonth, endDay, endHour, endMinute, endSecond);
+
+    // 두 날짜의 차이를 분 단위로 계산
+    var differenceInTime = Math.abs(endDate - startDate) / 1000 / 60; // 초를 분으로 변환
+	trace("differenceInTime = " + differenceInTime);
+    // 소수점 버리기
+    var totalMinutes = Math.floor(differenceInTime);
+
+    return totalMinutes; // 분 단위로 반환
+};
 
 
 pForm.gfnGenerateId = function(nlength)

@@ -126,9 +126,14 @@ this.TSM101_Login_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 */
 this.fnLogin = function() 
 {	
+	// 시간 넣어주기
+	this.dsWorkTime.copyData(this.dsSearch);
+	var sTime = this.gfnGetFullTime();
+	this.dsWorkTime.setColumn(0, "startTime", sTime);
+	
 	var strSvcId    = "login";
 	var strSvcUrl   = "SvcUrl::edu/login.do";
-	var inData      = "dsSearch=dsSearch";
+	var inData      = "dsSearch=dsSearch dsWorkTime=dsWorkTime";
 	var outData     = "dsList=dsList gdsUserAuth=gdsUserAuth";
 	//dsList=dsList
 	var strArg      = "paramId=" + this.divLogin.form.edtId.value;
@@ -161,7 +166,7 @@ this.fnLoginAfter = function()
 	trace("sTime = " + sTime);
 	this.fvObjApp.gdsUser.setColumn(0, "startTime", sTime);
 	
-	trace(this.fvObjApp.gdsUserAuth.saveXML());
+//	trace(this.fvObjApp.gdsUserAuth.saveXML());
 	
 	// topframe argument setting
 	this.fvObjApp.avTopFrame.form.fnLoad();
@@ -306,6 +311,7 @@ this.divLogin_staRegister_onclick = function(obj:nexacro.Static,e:nexacro.ClickE
         <ColumnInfo>
           <Column id="USER_ID" type="STRING" size="256"/>
           <Column id="USER_PASSWORD" type="STRING" size="256"/>
+          <Column id="startTime" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
@@ -322,6 +328,13 @@ this.divLogin_staRegister_onclick = function(obj:nexacro.Static,e:nexacro.ClickE
         <Rows>
           <Row/>
         </Rows>
+      </Dataset>
+      <Dataset id="dsWorkTime">
+        <ColumnInfo>
+          <Column id="USER_ID" type="STRING" size="256"/>
+          <Column id="USER_PASSWORD" type="STRING" size="256"/>
+          <Column id="startTime" type="STRING" size="256"/>
+        </ColumnInfo>
       </Dataset>
     </Objects>
     <Bind>

@@ -2258,7 +2258,7 @@
 .Static.sta_WF_SearchLabel
 {	
 	-nexa-padding : 0px 10px 0px 20px;
-	font : 15px/normal "Pretendard Variable SemiBold";
+	font : 12px/normal "Pretendard Variable SemiBold";
 	-nexa-text-align : left;
 	letter-spacing : 1px;
 }
@@ -2906,7 +2906,7 @@
 }
 .Static.sta_WF_Title
 {
-	font : 20pt "Arial","Pretendard Medium";
+	font : 16pt "Arial","Pretendard Medium";
 	letter-spacing : 2px;
 	
 }
