@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="LeftFrame" left="0" top="0" width="200" height="760" onsize="Form_onsize" onload="form_onload" titletext="frameLeft" background="#f3f5f6">
+  <Form id="LeftFrame" left="0" top="0" width="200" height="760" onsize="Form_onsize" onload="form_onload">
     <Layouts>
       <Layout>
         <PopupDiv id="pdivMenuSearch" text="pdiv00" left="264" top="58" width="150" height="213">

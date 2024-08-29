@@ -21,19 +21,13 @@
               <Button id="btnSave" taborder="12" text="저장" left="349" top="2" width="95" height="48" onclick="divDetail_btnSave_onclick"/>
               <Static id="sta00_02_00_00" taborder="13" text="제조일" left="20" top="511" width="72" height="26" visible="false"/>
               <Static id="sta00_02_00_01" taborder="14" text="유통기한" left="20" top="547" width="72" height="26" visible="false"/>
-              <Static id="sta00_02_00_02" taborder="15" text="매장 ID" left="18" top="346" width="72" height="26" visible="false"/>
-              <Static id="sta00_02_00_03" taborder="16" text="매대 ID" left="18" top="382" width="72" height="26" visible="false"/>
-              <Edit id="edtEmail01_00" taborder="17" left="103" top="511" width="229" height="26" displaynulltext="ex) 20000809" visible="false"/>
-              <Edit id="edtEmail01_01" taborder="18" left="103" top="547" width="229" height="26" displaynulltext="ex) 20010809" visible="false"/>
-              <Edit id="edtEmail01_02" taborder="19" left="101" top="346" width="229" height="26" visible="false"/>
-              <Edit id="edtEmail01_03" taborder="20" left="101" top="382" width="229" height="26" visible="false"/>
-              <Combo id="cmb00" taborder="21" left="101" top="130" width="229" height="26" value="" index="-1" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name"/>
-              <Combo id="cmb00_00" taborder="22" left="101" top="166" width="229" height="26" value="" index="-1" innerdataset="gdsCategory" codecolumn="category_id" datacolumn="category_name"/>
-              <Edit id="edtEmail01_04" taborder="23" left="101" top="274" width="229" height="26"/>
-              <Static id="sta00_02_00_04" taborder="24" text="가격" left="18" top="274" width="72" height="26"/>
-              <Edit id="edtEmail01_05" taborder="25" left="101" top="310" width="229" height="26"/>
-              <Static id="sta00_02_00_05" taborder="26" text="할인 가격" left="18" top="310" width="72" height="26"/>
-              <Button id="btnAutoId" taborder="27" text="자동생성" left="270" top="58" width="60" height="26" onclick="divDetail_btnAutoId_onclick"/>
+              <Edit id="edtEmail01_00" taborder="15" left="103" top="511" width="229" height="26" displaynulltext="ex) 20000809" visible="false"/>
+              <Edit id="edtEmail01_01" taborder="16" left="103" top="547" width="229" height="26" displaynulltext="ex) 20010809" visible="false"/>
+              <Combo id="cmb00" taborder="17" left="101" top="130" width="229" height="26" value="" index="-1" innerdataset="gdsSupplier" codecolumn="supplier_id" datacolumn="supplier_name"/>
+              <Combo id="cmb00_00" taborder="18" left="101" top="166" width="229" height="26" value="" index="-1" innerdataset="gdsCategory" codecolumn="category_id" datacolumn="category_name"/>
+              <Edit id="edtEmail01_04" taborder="19" left="101" top="274" width="229" height="26"/>
+              <Static id="sta00_02_00_04" taborder="20" text="가격" left="18" top="274" width="72" height="26"/>
+              <Button id="btnAutoId" taborder="21" text="자동생성" left="270" top="58" width="60" height="26" onclick="divDetail_btnAutoId_onclick"/>
             </Layout>
           </Layouts>
         </Div>
@@ -132,25 +126,6 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 	
 	
 }
- 
-/************************************************************************************************
- * CRUD 및 TRANSACTION 서비스 호출 처리
- ************************************************************************************************/
- 
-
-/************************************************************************************************
- * 사용자 FUNCTION 영역
- ************************************************************************************************/
-
-/**
- * @description 이미지 업로드
- * @return N/A
-*/
-this.fnUploadImage = function() {
-	this.FileUpTransfer.setPostData("product", "product");
-	this.FileUpTransfer.setPostData("userPath", "nexa_edu\\product_images"); // 변경
-	this.FileUpTransfer.upload("SvcUrl::edu/uploadFile.do");
-}
 
 /**
  * @description 상품 추가 Transaction
@@ -170,7 +145,6 @@ this.fnInsertProduct = function() {
  * @return N/A
 */
 this.fnUpdateProduct = function() {
-trace("수정");
 	var strSvcUrl = "edu/updateProduct.do";
 	var inData    = "dsProduct=dsProduct:a";
 	var outData   = "";
@@ -190,6 +164,27 @@ this.fnGetProductInfo = function() {
 						,"paramID=" + this.fv_memId
 						,"fnCallback");
 }
+
+/**
+ * @description 이미지 업로드
+ * @return N/A
+*/
+this.fnUploadImage = function() {
+	this.FileUpTransfer.setPostData("product", "product");
+	this.FileUpTransfer.setPostData("userPath", "nexa_edu\\product_images"); // 변경
+	this.FileUpTransfer.upload("SvcUrl::edu/uploadFile.do");
+}
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ 
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+
+
 
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역

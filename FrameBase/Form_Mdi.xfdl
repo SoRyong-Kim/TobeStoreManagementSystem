@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
   <TypeDefinition url="..\default_typedef.xml"/>
-  <Form id="frameMDI" left="0" top="0" width="1058" height="40" onload="form_onload" scrolltype="none" titletext="frameMDI" onsize="form_onsize" scrollbartype="none" background="#f3f5f6">
+  <Form id="frameMDI" left="0" top="0" width="1058" height="40" onload="form_onload" scrolltype="none" onsize="form_onsize" scrollbartype="none">
     <Layouts>
       <Layout>
         <Static id="staBgLine" taborder="5" left="949" top="0" cssclass="sta_MDI_Line" right="10" bottom="0" border="0px none,0px none,1px solid #d3dce"/>

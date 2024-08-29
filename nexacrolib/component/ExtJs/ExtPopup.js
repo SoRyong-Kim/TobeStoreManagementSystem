@@ -163,7 +163,7 @@ pForm.gfnOpenPopup = function (sPopupId, sUrl, oArg, sPopupCallback, oOption)
 		//newChild.style.set_bordertype("round 10 10");
 		//newChild.style.set_background("white");    
 		//newChild.style.set_opacity(nOpacity);
-			
+		newChild.set_titlebarheight("40px");
 		if (sPopupType == "modalsync")
 		{			
 			// modalsync 팝업은 return이 없어 gfnClosePopup 함수에서 셋팅한 값으로 리턴처리

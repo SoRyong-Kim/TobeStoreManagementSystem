@@ -56,7 +56,7 @@
     <Service prefixid="TSM" type="form" url="./TSM/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="Cmm" type="form" url="./Cmm/" version="0" cachelevel="dynamic" include_subdir="false" communicationversion="0"/>
     <Service prefixid="ExtJs" type="js" url="./nexacrolib/component/ExtJs/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
-    <Service prefixid="SvcUrl" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://172.10.14.140:8088/edupack_egov/"/>
+    <Service prefixid="SvcUrl" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://192.168.35.230:8088/edupack_egov/"/>
     <Service prefixid="myLib" type="js" url="./nexacrolib/component/myLib/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
     <Service prefixid="Lib" type="js" url="./nexacrolib/component/Lib/" version="0" cachelevel="dynamic" include_subdir="false" communicationversion="0"/>
   </Services>

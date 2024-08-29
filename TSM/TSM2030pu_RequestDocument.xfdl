@@ -106,14 +106,15 @@ this.TSM1030pu_RequestDocument_onload = function(obj:nexacro.Form,e:nexacro.Load
  * @param {String} [errorMsg] - 에러메시지
  * @return N/A
 */
-this.fnCallback = function(svcId, errCd, errMsg) {
+this.fn_callback = function(svcId, errCd, errMsg) {
 	if( svcId == "insertRequest" )
 	{
 		if(errCd == 0)
 		{
 			// {0}신청 완료
-			var arrArg = [this.divTitle.form.staTitle.text]
+			var arrArg = [""]
 			this.gfnAlert("msg.succ.request", arrArg)
+			this.close();
 		}
 	}
 }

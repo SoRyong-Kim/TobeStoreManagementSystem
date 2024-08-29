@@ -23,9 +23,9 @@
                       <Row size="24"/>
                     </Rows>
                     <Band id="head">
-                      <Cell text="type"/>
+                      <Cell text="유형"/>
                       <Cell col="1" text="요청제목"/>
-                      <Cell col="2" text="date"/>
+                      <Cell col="2" text="날짜"/>
                       <Cell col="3" text="요청상태"/>
                       <Cell col="4" text="신청인"/>
                     </Band>
@@ -40,12 +40,12 @@
                 </Formats>
               </Grid>
               <Static id="sta00" taborder="1" text="입출고 요청 목록" left="10" top="-10" width="347" height="43" cssclass="sta_WF_TitleSub"/>
-              <Combo id="cmb00" taborder="2" text="cmb00" left="5" top="37" width="107" height="36"/>
-              <Combo id="cmb01" taborder="3" text="cmb01" left="117" top="37" width="107" height="39"/>
+              <Combo id="cmb00" taborder="2" text="cmb00" left="5" top="37" width="107" height="36" visible="false"/>
+              <Combo id="cmb01" taborder="3" text="cmb01" left="117" top="37" width="107" height="39" visible="false"/>
             </Layout>
           </Layouts>
         </Div>
-        <Static id="staVLine" taborder="2" left="div00:-1" cssclass="sta_WF_VLine" text="" bottom="0" width="11" top="71"/>
+        <Static id="staVLine" taborder="2" left="div00:-1" cssclass="sta_WF_VLine" text="" bottom="0" width="11" top="72"/>
         <Div id="divDetail" taborder="3" left="staVLine:0" top="80" text="" height="520" right="0">
           <Layouts>
             <Layout>
@@ -81,13 +81,13 @@
                 </Formats>
               </Grid>
               <Static id="sta00" taborder="1" text="요청된 상품 리스트" left="21" top="4" width="188" height="40" cssclass="sta_WF_TitleSub"/>
-              <Button id="btnApp" taborder="2" text="승인" left="253" top="34" width="61" height="28" visible="true" onclick="divDetail_btnApp_onclick"/>
-              <Button id="btnReject" taborder="3" text="거부" left="330" top="34" width="61" height="28" visible="true" onclick="divDetail_btnReject_onclick"/>
-              <Button id="btnSave" taborder="4" text="저장" left="411" top="34" width="61" height="28" visible="true" onclick="divDetail_btnSave_onclick"/>
+              <Button id="btnApp" taborder="2" text="승인" top="34" width="61" height="28" visible="true" onclick="divDetail_btnApp_onclick" right="33.06%"/>
+              <Button id="btnReject" taborder="3" text="거부" top="34" width="61" height="28" visible="true" onclick="divDetail_btnReject_onclick" right="17.15%"/>
+              <Button id="btnSave" taborder="4" text="저장" top="34" width="61" height="28" visible="true" onclick="divDetail_btnSave_onclick" right="1.86%"/>
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btnRetrieve" taborder="5" text="조회" left="979" top="22" width="61" height="28" visible="true" onclick="btnRetrieve_onclick"/>
+        <Button id="btnRetrieve" taborder="5" text="조회" top="22" width="61" height="28" visible="true" onclick="btnRetrieve_onclick" right="0.95%"/>
       </Layout>
     </Layouts>
     <Bind>
@@ -303,7 +303,10 @@ this.divDetail_btnApp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEvent
 		}
 			// 체크되어있으면 해당 행의 값을 승인으로 변경
 	}
-	this.divDetail.form.grdProduct.setCellProperty("body", 0, "text", 0);
+	for(var i=0; i<nRow; i++) 
+	{
+		this.dsDetail.setColumn(i, "COL_CHK", 0);
+	}
 	
 };
 
@@ -319,7 +322,10 @@ this.divDetail_btnReject_onclick = function(obj:nexacro.Button,e:nexacro.ClickEv
 		}
 			// 체크되어있으면 해당 행의 값을 거부로 변경
 	}
-	this.divDetail.form.grdProduct.setCellProperty("body", 0, "text", 0); // 버튼 클릭 후 선택 해제
+	for(var i=0; i<nRow; i++) 
+	{
+		this.dsDetail.setColumn(i, "COL_CHK", 0);
+	}
 };
 
 this.divDetail_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

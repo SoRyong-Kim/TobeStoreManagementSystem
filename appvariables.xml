@@ -275,6 +275,11 @@
           <Col id="MSG_TYPE">C</Col>
         </Row>
         <Row>
+          <Col id="MSG_ID">confirm.product.delete</Col>
+          <Col id="MSG_TEXT">해당 상품을 삭제하시겠습니까?</Col>
+          <Col id="MSG_TYPE">C</Col>
+        </Row>
+        <Row>
           <Col id="MSG_ID">confirm.before.save</Col>
           <Col id="MSG_TEXT">변경된 내역을 저장 하시겠습니까?</Col>
           <Col id="MSG_TEXT_EN">Would you like to save your changes?</Col>
@@ -587,12 +592,12 @@
         </Row>
         <Row>
           <Col id="MSG_ID">msg.succ.register</Col>
-          <Col id="MSG_TEXT">{0}님 축하합니다! 회원가입이 성공적으로 완료되었습니다. 로그인 후 매장을 관리해보세요!</Col>
+          <Col id="MSG_TEXT">{0}님 축하합니다! \n회원가입이 성공적으로 완료되었습니다. \n로그인 후 매장을 관리해보세요!</Col>
           <Col id="MSG_TYPE">A</Col>
         </Row>
         <Row>
           <Col id="MSG_ID">msg.succ.request</Col>
-          <Col id="MSG_TEXT">{0}신청 완료</Col>
+          <Col id="MSG_TEXT">{0}신청이 완료되었습니다.</Col>
           <Col id="MSG_TYPE">A</Col>
         </Row>
         <Row>
@@ -686,10 +691,18 @@
           <Col id="MENU_URL">TSM::TSM1010fm_ProductList.xfdl</Col>
         </Row>
         <Row>
+          <Col id="MENU_NAME">입출고 관리</Col>
           <Col id="MENU_GROUP">20</Col>
           <Col id="MENU_ID">20</Col>
           <Col id="MENU_PID">0</Col>
           <Col id="MENU_LEVEL">0</Col>
+          <Col id="USE_YN">Y</Col>
+        </Row>
+        <Row>
+          <Col id="MENU_GROUP">20</Col>
+          <Col id="MENU_ID">2010</Col>
+          <Col id="MENU_PID">10</Col>
+          <Col id="MENU_LEVEL">1</Col>
           <Col id="MENU_NAME">입고</Col>
           <Col id="MENU_NAME_EN">InBound</Col>
           <Col id="MENU_URL">TSM::TSM2010fm_InBound.xfdl</Col>
@@ -697,10 +710,10 @@
           <Col id="SORT_NO">2</Col>
         </Row>
         <Row>
-          <Col id="MENU_GROUP">30</Col>
-          <Col id="MENU_ID">30</Col>
-          <Col id="MENU_PID">0</Col>
-          <Col id="MENU_LEVEL">0</Col>
+          <Col id="MENU_GROUP">20</Col>
+          <Col id="MENU_ID">2020</Col>
+          <Col id="MENU_PID">20</Col>
+          <Col id="MENU_LEVEL">1</Col>
           <Col id="MENU_NAME">출고</Col>
           <Col id="MENU_NAME_EN">OutBound</Col>
           <Col id="MENU_URL">TSM::TSM2020fm_OutBound.xfdl</Col>
@@ -708,13 +721,13 @@
           <Col id="SORT_NO">3</Col>
         </Row>
         <Row>
-          <Col id="MENU_GROUP">80</Col>
-          <Col id="MENU_ID">80</Col>
-          <Col id="MENU_PID">0</Col>
-          <Col id="MENU_LEVEL">0</Col>
+          <Col id="MENU_GROUP">20</Col>
+          <Col id="MENU_ID">2030</Col>
+          <Col id="MENU_PID">30</Col>
+          <Col id="MENU_LEVEL">1</Col>
           <Col id="MENU_NAME">입/출고 승인</Col>
           <Col id="USE_YN">Y</Col>
-          <Col id="MENU_URL">TSM::TSM7000fm_RequestApprove.xfdl</Col>
+          <Col id="MENU_URL">TSM::TSM2040fm_RequestApprove.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_GROUP">40</Col>
@@ -733,7 +746,7 @@
           <Col id="MENU_PID">20</Col>
           <Col id="MENU_LEVEL">1</Col>
           <Col id="MENU_NAME">직원 권한</Col>
-          <Col id="MENU_URL">TSM::TSM1050fm_Authority.xfdl</Col>
+          <Col id="MENU_URL">TSM::TSM3010fm_Authority.xfdl</Col>
           <Col id="USE_YN">Y</Col>
         </Row>
         <Row>
@@ -746,7 +759,7 @@
           <Col id="USE_YN">Y</Col>
           <Col id="MENU_PATH">개발 실습 &gt; 실습2</Col>
           <Col id="SORT_NO">1</Col>
-          <Col id="MENU_URL">TSM::TSM1030fm_Employees.xfdl</Col>
+          <Col id="MENU_URL">TSM::TSM3020fm_Attendance.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_GROUP">60</Col>
@@ -755,9 +768,10 @@
           <Col id="MENU_LEVEL">0</Col>
           <Col id="MENU_NAME">분석</Col>
           <Col id="MENU_NAME_EN"/>
-          <Col id="USE_YN">N</Col>
+          <Col id="USE_YN">Y</Col>
           <Col id="MENU_PATH">개발 실습</Col>
           <Col id="SORT_NO">6</Col>
+          <Col id="MENU_URL">TSM::TSM5010fm_Analyze.xfdl</Col>
         </Row>
         <Row>
           <Col id="MENU_GROUP">70</Col>
@@ -769,7 +783,7 @@
           <Col id="USE_YN">Y</Col>
           <Col id="MENU_PATH">개발 실습</Col>
           <Col id="SORT_NO">7</Col>
-          <Col id="MENU_URL">TSM::TSM7000fm_History.xfdl</Col>
+          <Col id="MENU_URL">TSM::TSM4010fm_History.xfdl</Col>
         </Row>
       </Rows>
     </Dataset>
@@ -1880,6 +1894,7 @@
         <Column id="startTime" type="STRING" size="256"/>
         <Column id="endTime" type="STRING" size="256"/>
         <Column id="authority" type="INT" size="256"/>
+        <Column id="USER_PASSWORD" type="STRING" size="256"/>
       </ColumnInfo>
       <Rows>
         <Row/>

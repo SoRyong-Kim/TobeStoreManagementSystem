@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.1">
-  <Form id="TSM1001P_LoginAlert" width="600" height="200" titletext="근무지 알림">
-    <Layouts>
-      <Layout height="200" mobileorientation="landscape" width="600"/>
-    </Layouts>
-  </Form>
-</FDL>

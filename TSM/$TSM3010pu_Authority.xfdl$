@@ -15,49 +15,47 @@
         <Div id="divPermission" taborder="0" text="" left="0" top="70" height="460" width="900">
           <Layouts>
             <Layout>
-              <Static id="sta00" taborder="0" text="허용할 권한을 선택해 주세요." left="34" top="70" width="436" height="44"/>
-              <Static id="sta00_00_00" taborder="1" text="이름" left="33" top="-6" width="102" height="29"/>
+              <Static id="sta00" taborder="0" text="허용할 권한을 선택해 주세요." left="34" top="70" width="436" height="44" cssclass="sta_WF_TitleSub"/>
+              <Static id="sta00_00_00" taborder="1" text="이름" left="33" top="-6" width="102" height="29" cssclass="sta_WF_TitleSub"/>
               <Edit id="edtRName" taborder="2" left="33" top="24" width="197" height="37" displaynulltext="권한 이름을 입력해주세요"/>
               <Div id="divChkBox" taborder="3" text="" left="30" top="105" height="205" right="30">
                 <Layouts>
                   <Layout>
-                    <Static id="sta00_00" taborder="0" text="거래처 관리" left="709" top="12" height="30" right="36"/>
-                    <CheckBox id="chkPer21" taborder="1" text="거래처 조회" left="726" top="44" height="25" onclick="div00_div00_chk00_onclick" right="34"/>
-                    <CheckBox id="chkPer24" taborder="2" text="거래처 추가" left="726" top="79" height="25" right="34"/>
-                    <CheckBox id="chkPer22" taborder="3" text="거래처 수정" left="726" top="114" height="25" right="34"/>
-                    <CheckBox id="chkPer23" taborder="4" text="거래처 삭제" left="726" top="149" height="25" right="34"/>
-                    <Static id="sta00_00_00" taborder="5" text="근태 관리" left="574" top="12" height="30" right="171"/>
-                    <CheckBox id="chkPer11" taborder="6" text="근태 조회" left="595" top="44" height="25" onclick="div00_div00_chk00_onclick" right="165"/>
-                    <CheckBox id="chkPer13" taborder="7" text="근태 추가" left="595" top="79" height="25" right="165"/>
-                    <CheckBox id="chkPer12" taborder="8" text="근태 수정" left="595" top="114" height="25" right="165"/>
-                    <CheckBox id="chkPer14" taborder="9" text="근태 삭제" left="595" top="149" height="25" right="165"/>
-                    <Static id="sta00_00_01" taborder="10" text="기록 관리" left="439" top="12" height="30" right="306"/>
-                    <CheckBox id="chkPer17" taborder="11" text="기록 조회" left="458" top="44" height="25" onclick="div00_div00_chk00_onclick" right="302"/>
-                    <CheckBox id="chkPer20" taborder="12" text="기록 추가" left="458" top="79" height="25" right="302"/>
-                    <CheckBox id="chkPer18" taborder="13" text="기록 수정" left="458" top="114" height="25" right="302"/>
-                    <CheckBox id="chkPer19" taborder="14" text="기록 삭제" left="458" top="149" height="25" right="302"/>
-                    <Static id="sta00_00_02" taborder="15" text="상품 관련" left="304" top="12" height="30" right="441"/>
-                    <CheckBox id="chkPer7" taborder="16" text="직원 조회" left="320" top="44" height="25" onclick="div00_div00_chk00_onclick" right="440"/>
-                    <CheckBox id="chkPer10" taborder="17" text="직원 추가" left="320" top="79" height="25" right="440"/>
-                    <CheckBox id="chkPer8" taborder="18" text="직원 정보 수정" left="320" top="114" height="25" right="420"/>
-                    <CheckBox id="chkPer9" taborder="19" text="직원 삭제" left="320" top="149" height="25" right="440"/>
-                    <Static id="sta00_00_03" taborder="20" text="상품 관련" left="169" top="12" height="30" right="576"/>
-                    <CheckBox id="chkPer5" taborder="21" text="입고 요청" left="194" top="44" height="25" onclick="div00_div00_chk00_onclick" right="566"/>
-                    <CheckBox id="chkPer15" taborder="22" text="입고 승인" left="194" top="79" height="25" right="566"/>
-                    <CheckBox id="chkPer6" taborder="23" text="출고 요청" left="194" top="114" height="25" right="566"/>
-                    <CheckBox id="chkPer16" taborder="24" text="출고 승인" left="194" top="149" height="25" right="566"/>
-                    <Static id="sta00_00_04" taborder="25" text="상품 관련" left="34" top="12" height="30" right="711"/>
-                    <CheckBox id="chkPer1" taborder="26" text="상품 조회" left="49" top="44" height="25" onclick="div00_div00_chk00_onclick" right="711"/>
-                    <CheckBox id="chkPer2" taborder="27" text="상품 추가" left="49" top="79" height="25" right="711"/>
-                    <CheckBox id="chkPer4" taborder="28" text="상품 수정" left="49" top="114" height="25" right="711"/>
-                    <CheckBox id="chkPer3" taborder="29" text="상품 삭제" left="49" top="149" height="25" right="711"/>
-                    <Static id="sta00" taborder="30" text="가로 40" left="100" top="12" width="64" height="12" visible="false"/>
-                    <Static id="sta00_01" taborder="31" text="세로 10" left="139" top="63" width="20" height="92" visible="false" wordWrap="char"/>
+                    <Static id="sta00_00" taborder="0" text="거래처 관리" left="765" top="186" height="30" right="-20" visible="false"/>
+                    <CheckBox id="chkPer21" taborder="1" text="거래처 조회" left="782" top="218" height="25" onclick="div00_div00_chk00_onclick" right="-22" visible="false"/>
+                    <CheckBox id="chkPer24" taborder="2" text="거래처 추가" left="782" top="253" height="25" right="-22" visible="false"/>
+                    <CheckBox id="chkPer22" taborder="3" text="거래처 수정" left="782" top="288" height="25" right="-22" visible="false"/>
+                    <CheckBox id="chkPer23" taborder="4" text="거래처 삭제" left="782" top="323" height="25" right="-22" visible="false"/>
+                    <Static id="sta00_00_00" taborder="5" text="근태 관리" left="634" top="12" height="30" right="111" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer11" taborder="6" text="근태 조회" left="655" top="44" height="25" onclick="div00_div00_chk00_onclick" right="105"/>
+                    <CheckBox id="chkPer13" taborder="7" text="근태 추가" left="655" top="89" height="25" right="105"/>
+                    <CheckBox id="chkPer12" taborder="8" text="근태 수정" left="655" top="134" height="25" right="105"/>
+                    <CheckBox id="chkPer14" taborder="9" text="근태 삭제" left="655" top="179" height="25" right="105" visible="false"/>
+                    <Static id="sta00_00_01" taborder="10" text="기록 관리" left="499" top="12" height="30" right="246" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer17" taborder="11" text="기록 조회" left="518" top="44" height="25" onclick="div00_div00_chk00_onclick" right="242"/>
+                    <CheckBox id="chkPer20" taborder="12" text="기록 추가" left="518" top="89" height="25" right="242"/>
+                    <CheckBox id="chkPer18" taborder="13" text="기록 수정" left="518" top="134" height="25" right="242" visible="true"/>
+                    <CheckBox id="chkPer19" taborder="14" text="기록 삭제" left="518" top="179" height="25" right="242" visible="true"/>
+                    <Static id="sta00_00_02" taborder="15" text="직원 관리" left="364" top="12" height="30" right="381" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer7" taborder="16" text="직원 조회" left="380" top="44" height="25" onclick="div00_div00_chk00_onclick" right="380"/>
+                    <CheckBox id="chkPer10" taborder="17" text="직원 추가" left="380" top="89" height="25" right="380"/>
+                    <CheckBox id="chkPer8" taborder="18" text="직원 역할 수정" left="380" top="134" height="25" right="360"/>
+                    <CheckBox id="chkPer9" taborder="19" text="직원 삭제" left="380" top="179" height="25" right="380" visible="false"/>
+                    <Static id="sta00_00_03" taborder="20" text="입/출고 관리" left="229" top="12" height="30" right="516" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer5" taborder="21" text="입고 요청" left="254" top="44" height="25" onclick="div00_div00_chk00_onclick" right="506"/>
+                    <CheckBox id="chkPer15" taborder="22" text="입고 승인" left="254" top="89" height="25" right="506"/>
+                    <CheckBox id="chkPer6" taborder="23" text="출고 요청" left="254" top="134" height="25" right="506"/>
+                    <CheckBox id="chkPer16" taborder="24" text="출고 승인" left="254" top="179" height="25" right="506"/>
+                    <Static id="sta00_00_04" taborder="25" text="상품 관리" left="94" top="12" height="30" right="651" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer1" taborder="26" text="상품 조회" left="109" top="44" height="25" onclick="div00_div00_chk00_onclick" right="651"/>
+                    <CheckBox id="chkPer2" taborder="27" text="상품 추가" left="109" top="89" height="25" right="651"/>
+                    <CheckBox id="chkPer4" taborder="28" text="상품 수정" left="109" top="134" height="25" right="651"/>
+                    <CheckBox id="chkPer3" taborder="29" text="상품 삭제" left="109" top="179" height="25" right="651"/>
                   </Layout>
                 </Layouts>
               </Div>
               <Edit id="edtRDesc" taborder="4" left="268" top="24" width="602" height="37" displaynulltext="권한에 대한 설명을 입력해주세요"/>
-              <Static id="sta00_00_00_00" taborder="5" text="설명" left="268" top="-6" width="102" height="29"/>
+              <Static id="sta00_00_00_00" taborder="5" text="설명" left="268" top="-6" width="102" height="29" cssclass="sta_WF_TitleSub"/>
             </Layout>
           </Layouts>
         </Div>

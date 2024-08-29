@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="TSM0030fm_Register" width="1050" height="750" titletext="New Form" onload="TSM0030fm_Register_onload" onsize="TSM0030fm_Register_onsize">
+  <Form id="TSM0030fm_Register" width="1050" height="750" onload="TSM0030fm_Register_onload" onsize="TSM0030fm_Register_onsize">
     <Layouts>
       <Layout height="750" width="1050">
         <Div id="divRegister" taborder="0" top="0" left="138" text="" background="aliceblue" width="780" height="750">

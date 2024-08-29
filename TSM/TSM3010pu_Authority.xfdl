@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="TSM1060pu_Authority" width="900" height="530" titletext="권한 관리" onload="TSM1060pu_Authority_onload">
+    <Layouts>
+      <Layout height="530" width="900">
+        <Div id="divTitle" taborder="1" text="div01" left="0" top="0" height="70" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle00" taborder="0" text="제품 선택" left="30" top="0" width="166" height="42" cssclass="sta_WF_Title"/>
+              <Static id="staHLine00" taborder="1" left="30" top="40" height="11" cssclass="sta_WF_HLine" text="" right="30"/>
+              <Button id="btnSave" taborder="2" text="저장" left="802" top="5" width="69" height="37" onclick="divTitle_btnSave_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divPermission" taborder="0" text="" left="0" top="70" height="460" width="900">
+          <Layouts>
+            <Layout>
+              <Static id="sta00" taborder="0" text="허용할 권한을 선택해 주세요." left="34" top="70" width="436" height="44" cssclass="sta_WF_TitleSub"/>
+              <Static id="sta00_00_00" taborder="1" text="이름" left="33" top="-6" width="102" height="29" cssclass="sta_WF_TitleSub"/>
+              <Edit id="edtRName" taborder="2" left="33" top="24" width="197" height="37" displaynulltext="권한 이름을 입력해주세요"/>
+              <Div id="divChkBox" taborder="3" text="" left="30" top="105" height="205" right="30">
+                <Layouts>
+                  <Layout>
+                    <Static id="sta00_00" taborder="0" text="거래처 관리" left="765" top="186" height="30" right="-20" visible="false"/>
+                    <CheckBox id="chkPer21" taborder="1" text="거래처 조회" left="782" top="218" height="25" onclick="div00_div00_chk00_onclick" right="-22" visible="false"/>
+                    <CheckBox id="chkPer24" taborder="2" text="거래처 추가" left="782" top="253" height="25" right="-22" visible="false"/>
+                    <CheckBox id="chkPer22" taborder="3" text="거래처 수정" left="782" top="288" height="25" right="-22" visible="false"/>
+                    <CheckBox id="chkPer23" taborder="4" text="거래처 삭제" left="782" top="323" height="25" right="-22" visible="false"/>
+                    <Static id="sta00_00_00" taborder="5" text="근태 관리" left="634" top="12" height="30" right="111" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer11" taborder="6" text="근태 조회" left="655" top="44" height="25" onclick="div00_div00_chk00_onclick" right="105"/>
+                    <CheckBox id="chkPer13" taborder="7" text="근태 추가" left="655" top="89" height="25" right="105"/>
+                    <CheckBox id="chkPer12" taborder="8" text="근태 수정" left="655" top="134" height="25" right="105"/>
+                    <CheckBox id="chkPer14" taborder="9" text="근태 삭제" left="655" top="179" height="25" right="105" visible="false"/>
+                    <Static id="sta00_00_01" taborder="10" text="기록 관리" left="499" top="12" height="30" right="246" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer17" taborder="11" text="기록 조회" left="518" top="44" height="25" onclick="div00_div00_chk00_onclick" right="242"/>
+                    <CheckBox id="chkPer20" taborder="12" text="기록 추가" left="518" top="89" height="25" right="242"/>
+                    <CheckBox id="chkPer18" taborder="13" text="기록 수정" left="518" top="134" height="25" right="242" visible="true"/>
+                    <CheckBox id="chkPer19" taborder="14" text="기록 삭제" left="518" top="179" height="25" right="242" visible="true"/>
+                    <Static id="sta00_00_02" taborder="15" text="직원 관리" left="364" top="12" height="30" right="381" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer7" taborder="16" text="직원 조회" left="380" top="44" height="25" onclick="div00_div00_chk00_onclick" right="380"/>
+                    <CheckBox id="chkPer10" taborder="17" text="직원 추가" left="380" top="89" height="25" right="380"/>
+                    <CheckBox id="chkPer8" taborder="18" text="직원 역할 수정" left="380" top="134" height="25" right="360"/>
+                    <CheckBox id="chkPer9" taborder="19" text="직원 삭제" left="380" top="179" height="25" right="380" visible="false"/>
+                    <Static id="sta00_00_03" taborder="20" text="입/출고 관리" left="229" top="12" height="30" right="516" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer5" taborder="21" text="입고 요청" left="254" top="44" height="25" onclick="div00_div00_chk00_onclick" right="506"/>
+                    <CheckBox id="chkPer15" taborder="22" text="입고 승인" left="254" top="89" height="25" right="506"/>
+                    <CheckBox id="chkPer6" taborder="23" text="출고 요청" left="254" top="134" height="25" right="506"/>
+                    <CheckBox id="chkPer16" taborder="24" text="출고 승인" left="254" top="179" height="25" right="506"/>
+                    <Static id="sta00_00_04" taborder="25" text="상품 관리" left="94" top="12" height="30" right="651" cssclass="sta_WF_TitleSub"/>
+                    <CheckBox id="chkPer1" taborder="26" text="상품 조회" left="109" top="44" height="25" onclick="div00_div00_chk00_onclick" right="651"/>
+                    <CheckBox id="chkPer2" taborder="27" text="상품 추가" left="109" top="89" height="25" right="651"/>
+                    <CheckBox id="chkPer4" taborder="28" text="상품 수정" left="109" top="134" height="25" right="651"/>
+                    <CheckBox id="chkPer3" taborder="29" text="상품 삭제" left="109" top="179" height="25" right="651"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Edit id="edtRDesc" taborder="4" left="268" top="24" width="602" height="37" displaynulltext="권한에 대한 설명을 입력해주세요"/>
+              <Static id="sta00_00_00_00" taborder="5" text="설명" left="268" top="-6" width="102" height="29" cssclass="sta_WF_TitleSub"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Necacro EduPack
+*  @MenuPath		Script 표준
+*  @FileName		C:\TobeStoreManagement\TSM\TSM1060pu_Authority.xfdl
+*  @Creator			김소룡
+*  @CreateDate		2024/08/26
+*  @Desction		스크립트 표준 및 주석 표준 정의
+
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/08/26     	    Education 	             최초 생성
+********************************************************************************/
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fv_RoleId = "";	// 부모 화면에서 넘겨받은 역할 ID
+this.fv_Total_Permissions = 24;
+var OrgArray = new Array(this.fv_Total_Permissions+1).fill(0); // 첫 번째 배열
+var CurArray = new Array(this.fv_Total_Permissions+1).fill(0); // 두 번째 배열
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+this.TSM1060pu_Authority_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fv_RoleId = this.parent.paramId;
+	
+	if(this.gfnIsNull(this.fv_RoleId)) { // param이 없을 때
+		this.dsPermission.addRow();
+	}
+	else {	// param이 있을 때
+		// 멤버와 파일 정보를 get
+		this.fnGetRolePermissionInfo();
+	}
+	
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @param {String} svcID - 서비스 ID
+ * @param {Number} errorCode - 에러코드(정상 0, 에러 음수값)
+ * @param {String} [errorMsg] - 에러메시지
+ * @return N/A
+*/
+this.fnCallback = function(svcId, errCd, errMsg) {
+	if(svcId == "selectRolePermissions") {
+		if(errCd == 0)
+		{	
+			// 체크박스 채우기
+			this.fnChkPer();
+		}
+	} else if(svcId == "saveRolePermission") 
+	{
+		if(errCd == 0)
+		{
+			this.gfnAlert("msg.succ.save"); // 저장되었습니다
+			this.close();
+		}
+	}
+}
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * @description user_permissions 테이블 조회, id값 넘김
+*/
+this.fnGetRolePermissionInfo = function() {
+	this.gfnTransaction("selectRolePermissions"
+						,"SvcUrl::edu/selectRolePermissions.do"
+						,""
+						,"dsPermission=dsPermission"
+						,"paramID=" + this.fv_RoleId
+						,"fnCallback");
+}
+
+/**
+ * @description user_permissions 테이블에 저장
+*/
+this.fnSave = function() {
+	this.gfnTransaction("saveRolePermission"
+						,"SvcUrl::edu/saveRolePermission.do"
+						,"dsInsert=dsInsert dsDelete=dsDelete dsRole=dsRole"
+						,""
+						,""
+						,"fnCallback");
+}
+/**
+ * @description user_permissions 테이블에 추가
+*/
+this.fnAdd = function() {
+	this.gfnTransaction("addNewRole"
+						,"SvcUrl::edu/addNewRole.do"
+						,"dsInsert=dsInsert"
+						,""
+						,""
+						,"fnCallback");
+}
+/**
+ * @description user_permissions 테이블에 저장
+*/
+this.fnInsert = function() {
+
+	this.gfnTransaction("insertRolePermission"
+						,"SvcUrl::edu/insertRolePermission.do"
+						,""
+						,"dsPermission=dsPermission"
+						,"paramID=" + this.fv_RoleId
+						,"fnCallback");
+}
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+/**
+ * @description 수정 시 팝업 오픈할 때 역할이 가지고 있는 권한에 체크하는 함수
+*/
+this.fnChkPer = function ()
+{
+	var nRow = this.dsPermission.rowcount;
+	var ntemp;
+	for ( var i = 0; i<nRow; i++ )
+	{	
+		nTemp = this.dsPermission.getColumn(i, "permission_id");
+		var sObj = this.divPermission.form.divChkBox.form.components["chkPer"+nTemp];
+		sObj.set_value(true);
+		OrgArray[nTemp] = 1;	// 체크된 박스 인덱스에 값 삽입
+	}
+};
+
+/**
+ * @description 수정, 삽입시 데이터셋에 체크박스 정보 넣어주기
+*/
+this.fnUpdateDsPermission = function ()
+{
+	// i 번째 항목이 있다면
+	for( var i=1; i<=this.fv_Total_Permissions; i++)
+	{
+		if (this.divPermission.form.divChkBox.form.components["chkPer"+i].value == true)
+		{	// 현재 배열에 값을 넣어줌
+			CurArray[i] = 1;
+		}
+	}
+
+	for( var i=1; i<=this.fv_Total_Permissions; i++)
+	{	
+		// 배열 비교
+		if (OrgArray[i] !== CurArray[i]) {	// 체크박스에 변화가 있었을 때
+			//체크되어있고 && 권한 수정 팝업일 때
+			if(CurArray[i] == 1)	// 새로 생긴 권한
+			{
+				var nIRow = this.dsInsert.addRow();
+				this.dsInsert.setColumn(nIRow, "permission_id", i);
+				this.dsInsert.setColumn(nIRow, "role_id", this.fv_RoleId);
+				
+			} else if(!this.gfnIsNull(this.fv_RoleId))	// 없어진 권한
+			{
+				var nDRow = this.dsDelete.addRow();
+				this.dsDelete.setColumn(nDRow, "permission_id", i);
+				this.dsDelete.setColumn(nDRow, "role_id", this.fv_RoleId);
+			}
+		}
+	}
+	if(this.gfnIsNull(this.fv_RoleId)) { // param이 없을 때
+		nRRow = this.dsRole.addRow();
+		this.dsInsert.setColumn(nRRow, "role_name", this.divPermission.form.edtRName.value);
+		this.dsInsert.setColumn(nRRow, "description", this.divPermission.form.edtRDesc.value);
+	}
+	else {	// param이 있을 때
+		nRRow = this.dsRole.addRow();
+		this.dsRole.setColumn(nRRow, "role_id", this.fv_RoleId);
+		this.dsRole.setColumn(nRRow, "role_name", this.divPermission.form.edtRName.value);
+		this.dsRole.setColumn(nRRow, "description", this.divPermission.form.edtRDesc.value);
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * @description 저장 버튼 클릭
+*/
+this.divTitle_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnUpdateDsPermission();
+//	this.gfnSetValidation(this.Role, "role_id", "역할 이름을 최소 2글자 입력하세요", "required,minlength:1");
+
+// 	//조건 확인
+// 	if(this.divPermission.form.edtRName.value == "")
+// 	{
+// 		
+// 	} else
+// 	{
+// 		
+// 	}
+// 	
+
+	//trace(this.dsRole.saveXML());
+	if(this.gfnIsNull(this.fv_RoleId)) { // param이 없을 때
+		this.dsPermission.addRow();
+		this.fnAdd();
+	}
+	else {	// param이 있을 때
+		// 멤버와 파일 정보를 get
+		this.fnGetRolePermissionInfo();
+		this.fnSave();
+	}
+	
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divPermission.form.chk00" propid="text" datasetid="gdsPermission" columnid="name"/>
+      <BindItem id="item1" compid="divPermission.form.edtRName" propid="value" datasetid="dsPermission" columnid="role_name"/>
+      <BindItem id="item2" compid="divPermission.form.edtRDesc" propid="value" datasetid="dsPermission" columnid="description"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsPermission">
+        <ColumnInfo>
+          <Column id="role_id" type="STRING" size="256"/>
+          <Column id="permission_id" type="STRING" size="256"/>
+          <Column id="role_name" type="STRING" size="256"/>
+          <Column id="description" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSave">
+        <ColumnInfo>
+          <Column id="role_id" type="STRING" size="256"/>
+          <Column id="permission_id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDelete">
+        <ColumnInfo>
+          <Column id="role_id" type="STRING" size="256"/>
+          <Column id="permission_id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsInsert">
+        <ColumnInfo>
+          <Column id="role_id" type="STRING" size="256"/>
+          <Column id="permission_id" type="STRING" size="256"/>
+          <Column id="role_name" type="STRING" size="256"/>
+          <Column id="description" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRole">
+        <ColumnInfo>
+          <Column id="role_id" type="STRING" size="256"/>
+          <Column id="role_name" type="STRING" size="256"/>
+          <Column id="description" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

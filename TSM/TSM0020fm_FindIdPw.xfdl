@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="TSM101_Login" width="1050" height="750" titletext="New Form" onsize="TSM101_Login_onsize" onload="TSM101_Login_onload">
+  <Form id="TSM101_Login" width="1050" height="750" onsize="TSM101_Login_onsize" onload="TSM101_Login_onload">
     <Layouts>
       <Layout height="750" width="1050">
         <Div id="divLogin" taborder="0" top="0" left="310" cssclass="div_LogF_Bg" text="" background="aliceblue" width="430" height="750">

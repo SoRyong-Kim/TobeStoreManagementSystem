@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<FDL version="2.1">
-  <Form id="TSM_OutBound_Processing" width="1280" height="720" titletext="출고처리현황">
-    <Layouts>
-      <Layout height="720" width="1280"/>
-    </Layouts>
-  </Form>
-</FDL>

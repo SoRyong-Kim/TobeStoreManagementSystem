@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="shop1126fm" width="1038" height="650" onload="form_onload" onsize="join1100fm_onsize" titletext="일별 매출">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Div id="divOrderSearch" taborder="0" left="0" text="" right="0" top="0" bottom="10">
+          <Layouts>
+            <Layout>
+              <Div id="divSearch" taborder="0" left="10" cssclass="div_WF_SearchBg" text="" right="10" top="20" height="70" background="#f5f0fe" borderRadius="10px" border="0px none">
+                <Layouts>
+                  <Layout>
+                    <Static id="staOrderStateTitle" taborder="0" text="기간" cssclass="sta_WF_SearchLabel" left="3" top="7" width="100" height="50" wordWrap="char"/>
+                    <Button id="btnSearch" taborder="1" text="조회" left="374" top="15" width="69" height="43" onclick="div_Search_btnSearch_onclick" cssclass="btn_WF_basic02"/>
+                    <Calendar id="calFrom" taborder="2" left="73" top="15" width="130" height="40" dateformat="yyyy-MM-dd" autoselect="true"/>
+                    <Calendar id="calTo" taborder="3" left="229" top="15" width="130" height="40" dateformat="yyyy-MM-dd" autoselect="true" onkeyup="divOrderSearch_div_Search_calTo_onkeyup"/>
+                    <Static id="staCalender" taborder="4" text="~" left="208" top="15" width="16" height="40" textAlign="center"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="divChart" taborder="1" left="10" top="100" url="Cmm::CmmRmateChartAll.xfdl" cssclass="div_WF_Area" bottom="10" right="10" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro Professional Training Couse
+*  @MenuPath    000 > 000 > 000
+*  @FileName 	C:\EduPack\workspace\CampShop\Shop\shop1114fm.xfdl
+*  @Creator 	정인경
+*  @CreateDate 	2024/02/29
+*  @Desction    
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/02/29      		 정인경	 	  	최초 생성 
+*******************************************************************************
+*/
+include "Lib::rMateChartH5.xjs";
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp 		= this.gfnGetApplication();
+this.layoutStr1;
+this.chartData1;
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);  
+   	this.divOrderSearch.form.divSearch.form.calFrom.set_value(this.gfnAddDate(this.gfnGetDate(),-7));
+	this.divOrderSearch.form.divSearch.form.calTo.set_value(this.gfnGetDate());
+
+	// 스트링 형식으로 레이아웃 정의.
+	this.layoutStr1 = '<rMateChart backgroundColor="#FFFFFF"  borderThickness="1" borderStyle="none">'
+		 +'<Options>'
+			  +'<Caption text="Rainfall" textAlign="center" />'
+				+'<SubCaption text="( mm )" textAlign="right" />'
+			 +'<Legend />'
+		 +'</Options>'
+		 +'<NumberFormatter id="numFmt" precision="0"/>'
+		   +'<Line2DChart showDataTips="true" dataTipDisplayMode="axis" paddingTop="0">'
+			 +'<horizontalAxis>'
+				   +'<CategoryAxis categoryField="sDays"/>'
+			  +'</horizontalAxis>'
+			  +'<verticalAxis>'
+				 +'<LinearAxis minimum="0" maximum="10000,000" interval="10000000" />'
+			 +'</verticalAxis>'
+				+'<series>'
+				   +'<Line2DSeries yField="ORDER_PRICE" displayName="ORDER_PRICE">'
+				  +'</Line2DSeries>'
+				+'</series>'
+			  +'<annotationElements>'
+				   +'<CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{numFmt}" horizontalStrokeEnable="false"/>'
+			   +'</annotationElements>'
+		  +'</Line2DChart>'
+	 +'</rMateChart>';
+	 this.divOrderSearch.form.divChart.form.fnSetChart("chart1", this.layoutStr1, this.rMateChartDataSetToXml(this.dsData));   
+	 this.fnSearch();
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode != 0)
+	{
+		return;
+	}
+	switch(svcID)
+	{
+		case "svcAdminOrderChart":		
+			this.divOrderSearch.form.divChart.form.fnSetData(this.rMateChartDataSetToXml(this.dsData));   
+			break;
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * @description 조회
+*/
+this.fnSearch = function ()
+{
+ 	// dsSearch 데이터 초기화 
+ 	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+	var sOrderFromDate = this.divOrderSearch.form.divSearch.form.calFrom.value;
+	var sOrderToDate = this.divOrderSearch.form.divSearch.form.calTo.value;
+
+	this.dsSearch.setColumn(nRow, "DATE_FROM",sOrderFromDate); 
+	this.dsSearch.setColumn(nRow, "DATE_TO",sOrderToDate); 
+	
+ 	var strSvcId    = "svcAdminOrderChart";		
+	var strSvcUrl   = "SvcUrl::AdminOrderChart.do";
+	var inData      = "inSearch=dsSearch";
+	var outData     = "dsData=outData";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ /**
+ * @description 조회버튼
+*/
+this.div_Search_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.fnSearch(); //최초조회조건세팅
+};
+
+ /**
+ * @description 검색조건 입력후 엔터
+*/
+this.divOrderSearch_divSearch_calTo_onkeyup = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fnSearch();
+	}	
+};]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="DATE_FROM" type="STRING" size="256"/>
+          <Column id="DATE_TO" type="STRING" size="256"/>
+          <Column id="ORDER_STATE" type="STRING" size="256"/>
+          <Column id="RECORDS" type="INT" size="256"/>
+          <Column id="PAGE" type="STRING" size="256"/>
+          <Column id="RECORDSOFFSET" type="INT" size="256"/>
+          <Column id="PAGECOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="TOTALCOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="Month" type="STRING" size="256"/>
+          <Column id="Vancouver" type="INT" size="256"/>
+          <Column id="Toronto" type="STRING" size="256"/>
+          <Column id="Calgary" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Month">Jan</Col>
+            <Col id="Vancouver">91</Col>
+            <Col id="Toronto">85</Col>
+            <Col id="Calgary">45</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Feb</Col>
+            <Col id="Vancouver">87</Col>
+            <Col id="Toronto">75</Col>
+            <Col id="Calgary">75</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Mar</Col>
+            <Col id="Vancouver">88</Col>
+            <Col id="Toronto">87</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Apr</Col>
+            <Col id="Vancouver">86</Col>
+            <Col id="Toronto">78</Col>
+            <Col id="Calgary">78</Col>
+          </Row>
+          <Row>
+            <Col id="Month">May</Col>
+            <Col id="Vancouver">82</Col>
+            <Col id="Toronto">84</Col>
+            <Col id="Calgary">56</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Jun</Col>
+            <Col id="Vancouver">80</Col>
+            <Col id="Toronto">68</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Jul</Col>
+            <Col id="Vancouver">79</Col>
+            <Col id="Toronto">57</Col>
+            <Col id="Calgary">54</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Aug</Col>
+            <Col id="Vancouver">72</Col>
+            <Col id="Toronto">67</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Sep</Col>
+            <Col id="Vancouver">90</Col>
+            <Col id="Toronto">87</Col>
+            <Col id="Calgary">85</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Oct</Col>
+            <Col id="Vancouver">95</Col>
+            <Col id="Toronto">75</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Nov</Col>
+            <Col id="Vancouver">40</Col>
+            <Col id="Toronto">84</Col>
+            <Col id="Calgary">65</Col>
+          </Row>
+          <Row>
+            <Col id="Month">Dec</Col>
+            <Col id="Vancouver">60</Col>
+            <Col id="Toronto">65</Col>
+            <Col id="Calgary">79</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

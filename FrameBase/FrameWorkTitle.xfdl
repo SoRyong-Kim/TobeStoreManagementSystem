@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="frameWorkTitle" left="0" top="0" width="1048" height="38" scrolltype="none" onload="form_onload" titletext="frameWorkTitle">
+  <Form id="frameWorkTitle" left="0" top="0" width="1048" height="38" scrolltype="none" onload="form_onload">
     <Layouts>
       <Layout>
         <Button id="btnMyMenu" taborder="0" left="10" top="4" width="17" height="26" onclick="btnMyMenu_onclick" visible="true" cssclass="btn_WF_Mymnu"/>

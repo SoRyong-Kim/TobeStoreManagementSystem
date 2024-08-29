@@ -13,11 +13,9 @@
                   <Layout/>
                 </Layouts>
               </Div>
-              <Static id="staHLine00" taborder="3" left="0" top="105" height="11" cssclass="sta_WF_HLine" text="" width="495"/>
+              <Static id="staHLine00" taborder="3" left="0" top="105" height="11" cssclass="sta_WF_HLine" text="" width="49.01%"/>
               <Static id="staTitle00" taborder="4" text="제품 선택" left="0" top="58" width="166" height="42" cssclass="sta_WF_TitleSub"/>
-              <Static id="staHLine00_00" taborder="5" top="105" height="11" cssclass="sta_WF_HLine" text="" width="495" left="515"/>
-              <Static id="staTitle00_00" taborder="6" text="출고 제품" left="515" top="58" width="166" height="42" cssclass="sta_WF_TitleSub_Red"/>
-              <Grid id="grdProduct" taborder="7" left="3" top="168" binddataset="dsProduct" autofittype="col" cssclass="sta_WF_History" bottom="19" autosizingtype="none" width="495" oncellclick="divOutBound_grdProduct_oncellclick" oncelldblclick="divOutBound_grdProduct_oncelldblclick">
+              <Grid id="grdProduct" taborder="7" left="0.3%" top="168" binddataset="dsProduct" autofittype="col" cssclass="sta_WF_History" bottom="19" autosizingtype="none" width="49.01%" oncellclick="divOutBound_grdProduct_oncellclick" oncelldblclick="divOutBound_grdProduct_oncelldblclick">
                 <Formats>
                   <Format id="default">
                     <Columns>
@@ -51,7 +49,9 @@
                   </Format>
                 </Formats>
               </Grid>
-              <Grid id="grdOutBound" taborder="8" top="168" binddataset="dsOutBound" autofittype="col" cssclass="sta_WF_History" bottom="19" autosizingtype="none" width="495" left="515" oncellclick="divOutBound_grdOutBound_oncellclick" oncelldblclick="divOutBound_grdOutBound_oncelldblclick">
+              <Static id="staHLine00_00" taborder="5" top="105" height="11" cssclass="sta_WF_HLine" text="" left="grdProduct:16.96900000000005" right="0"/>
+              <Static id="staTitle00_00" taborder="6" text="출고 제품" left="grdProduct:16.96900000000005" top="58" width="166" height="42" cssclass="sta_WF_TitleSub_Red"/>
+              <Grid id="grdOutBound" taborder="8" top="168" binddataset="dsOutBound" autofittype="col" cssclass="sta_WF_History" bottom="19" autosizingtype="none" left="grdProduct:16.96900000000005" oncellclick="divOutBound_grdOutBound_oncellclick" oncelldblclick="divOutBound_grdOutBound_oncelldblclick" right="0">
                 <Formats>
                   <Format id="default">
                     <Columns>
@@ -109,8 +109,8 @@
               </Grid>
               <Combo id="cmb_corp" taborder="9" left="78" top="119" width="123" height="28" innerdataset="gdsStore" codecolumn="store_id" datacolumn="store_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="false" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
               <Static id="Static05_00_00" taborder="10" text="출고할 매장" left="-20" top="119" width="104" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="false"/>
-              <Button id="btn00" taborder="11" text="조회" left="429" top="119" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
-              <Button id="btnOutBound" taborder="12" text="출고 신청" left="930" top="119" width="75" height="28" visible="true" onclick="divOutBound_btnOutBound_onclick"/>
+              <Button id="btn00" taborder="11" text="조회" left="42.48%" top="119" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
+              <Button id="btnOutBound" taborder="12" text="출고 신청" top="119" width="75" visible="true" onclick="divOutBound_btnOutBound_onclick" bottom="443" right="0.59%"/>
               <Static id="sta00" taborder="13" text="출고 권한이 있는지 확인." left="94" top="3" width="214" height="38" visible="false"/>
             </Layout>
           </Layouts>
@@ -223,7 +223,7 @@
  * FORM 변수 선언 영역
  ************************************************************************************************/
 this.fvObjApp 	  	= this.gfnGetApplication();
-var fvPopupUrl = "TSM::TSM1030pu_RequestDocument.xfdl"; // 팝업창 주소
+var fvPopupUrl = "TSM::TSM2030pu_RequestDocument.xfdl"; // 팝업창 주소
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
  ************************************************************************************************/
@@ -347,17 +347,22 @@ this.divOutBound_grdProduct_oncellclick = function(obj:nexacro.Grid,e:nexacro.Gr
 */
 this.divOutBound_btnOutBound_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	sIn = "OutBound";
-	// 클릭한 셀의 id값을 팝업에 넘겨주기
-	var objParam = this.dsOutBound;
-	// 팝업 열기
-	var sTitle = "권한 설정";
-	var oArg = {param1:sIn
-				, paramId:objParam};
-	var oOption = {title:sTitle};
-	var sPopupCallBack = "fn_popupCallback";
-	this.gfnOpenPopup( "puRequest2", fvPopupUrl, oArg, sPopupCallBack, oOption);
-	
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, 6);
+//	trace("권한 여부 : " + bChk);
+	// transcation
+	if(bChk) 
+	{
+		sIn = "OutBound";
+		// 클릭한 셀의 id값을 팝업에 넘겨주기
+		var objParam = this.dsOutBound;
+		// 팝업 열기
+		var sTitle = "권한 설정";
+		var oArg = {param1:sIn
+					, paramId:objParam};
+		var oOption = {title:sTitle};
+		var sPopupCallBack = "fn_popupCallback";
+		this.gfnOpenPopup( "puRequest2", fvPopupUrl, oArg, sPopupCallBack, oOption);
+	}
 // 	// 출고 권한 확인	
 // 	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, 6);	
 // 	trace("권한 여부 : " + bChk);

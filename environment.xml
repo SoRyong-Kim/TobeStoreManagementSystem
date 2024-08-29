@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ENV version="2.1">
-  <Environment themeid="theme::tobeSM" datatyperule="2.0">
+  <Environment themeid="theme::tobeSM" datatyperule="2.0" icon="url('imagerc::box.png')">
     <ScreenDefinition>
       <Screen id="Desktop_screen" type="desktop" loadingimage="url('imagerc::loadingImage.gif')"/>
       <Screen id="Phone_screen" type="mobile_small"/>

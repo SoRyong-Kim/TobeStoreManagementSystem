@@ -97,10 +97,10 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btnRetrieve" taborder="4" text="조회" left="721" top="62" width="86" height="38" onclick="btnRetrieve_onclick"/>
+        <Button id="btnRetrieve" taborder="4" text="조회" top="70" width="75" height="30" onclick="btnRetrieve_onclick" right="205"/>
         <Static id="staTitle00" taborder="5" text="상품목록" left="11" top="staHLine:0" width="166" height="42" cssclass="sta_WF_TitleSub"/>
-        <Button id="btnAdd" taborder="6" text="상품추가" left="824" top="62" width="86" height="38" cssclass="btn_WF_Add" onclick="btnAdd_onclick"/>
-        <Button id="btnDel" taborder="7" left="928" top="62" width="86" height="38" cssclass="btn_WF_Del" onclick="btnDel_onclick" visible="true" text="삭제"/>
+        <Button id="btnAdd" taborder="6" text="상품추가" top="70" width="75" height="30" cssclass="btn_WF_Add" onclick="btnAdd_onclick" right="115"/>
+        <Button id="btnDel" taborder="7" top="70" width="75" height="30" cssclass="btn_WF_Del" onclick="btnDel_onclick" visible="true" text="삭제" right="25"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -222,6 +222,17 @@ this.fvObjApp 	  	= this.gfnGetApplication();
 */
 this.fnCallback = function(svcId, errCd, errMsg) {
 
+	if(svcId == "deleteProduct" ) 
+	{
+		if(errCd == 0)
+		{
+			var sMsgId = "msg.succ.delete";			//메세지ID
+			var arrArg = "";						//메세지취환될값 배열[생략가능]
+			var sPopId = sMsgId;					//메세지팝업ID[생략가능]	*해당화면에서 메시지 중복사용시 구분되는값을 넣어줘야함
+			var sMsgCallback = "fnMsgCallback";		//메세지콜백[생략가능] 		* confirm성 메시지를 사용 시 반드시 필요
+			this.gfnAlert(sMsgId, arrArg, sPopId, sCallback);	
+		}
+	}
 	var serverUrl = this.gfnGetServerUrl(); // http://localhost:8088/edupack_egov/
 	var sImageUrl = serverUrl + "upload_file/nexa_edu/product_images/";
 	for(var i=0; i<this.dsProduct.rowcount; i++)
@@ -229,11 +240,37 @@ this.fnCallback = function(svcId, errCd, errMsg) {
 		this.dsProduct.setColumn(i, "product_url",  sImageUrl+this.dsProduct.getColumn(i, "product_url") );
 	}
 }
- 
+/**
+ * @description 메세지 콜백
+*/
+this.fnMsgCallback = function (strId, strVal)
+{
+	if(strId == "confirm.product.delete"){
+		if(strVal){	// 삭제
+			trace("true");
+			// 상품 삭제
+			this.fnDeleteProduct();
+		} 
+		else{	// 취소
+			trace("false");
+		}		
+	}
+};
 /************************************************************************************************
  * CRUD 및 TRANSACTION 서비스 호출 처리
  ************************************************************************************************/
- 
+// 상품 삭제
+this.fnDeleteProduct = function ()
+{
+	// 실행 내용
+	var sSvcID    = "deleteProduct";
+	var sURL      = "SvcUrl::edu/deleteProduct.do";
+	var sInDs     = "";
+	var sOutDs    = "";
+	var sParam    = "paramID=" + this.dsProduct.getColumn(this.dsProduct.rowposition, "product_id");
+	var sCallBack = "fn_callback";
+	this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+};
 
 /************************************************************************************************
  * 사용자 FUNCTION 영역
@@ -304,12 +341,13 @@ this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.grdProduct_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 
-	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "4");//아무도 삭제 못하게.
-	trace("상품추가 권한 : " +bChk);
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "4");
+	trace("상품삭제 권한 : " +bChk);
 	if(bChk)
 	{
 		// 클릭한 셀의 id값을 팝업에 넘겨주기
-		var objParam = this.grdProduct.getCellValue(e.row, 9);
+		var objParam = this.grdProduct.getCellValue(e.row, 7);
+//		trace(objParam);
 		// 팝업 열기
 		var sTitle = "상품 상세정보";	// 모달팝업
 		var oArg = {paramId:objParam};
@@ -323,19 +361,18 @@ this.grdProduct_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
 */
 this.btnDel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "A1201");//아무도 삭제 못하게.
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, "3");//아무도 삭제 못하게.
 	trace("삭제 권한 : " +bChk);
 	// transcation
 	if(bChk)
 	{
-		// 실행 내용
-		var sSvcID    = "deleteProduct";
-		var sURL      = "SvcUrl::edu/deleteProduct.do";
-		var sInDs     = "";
-		var sOutDs    = "";
-		var sParam    = "paramID=" + this.dsProduct.getColumn(this.dsProduct.rowposition, "product_id");
-		var sCallBack = "fn_callback";
-		this.gfnTransaction(sSvcID, sURL, sInDs, sOutDs, sParam, sCallBack);
+		var sMsgId = "confirm.product.delete";			//메세지ID
+		var arrArg = "";						//메세지취환될값 배열[생략가능]
+		var sPopId = sMsgId;					//메세지팝업ID[생략가능]	*해당화면에서 메시지 중복사용시 구분되는값을 넣어줘야함
+		var sMsgCallback = "fnMsgCallback";		//메세지콜백[생략가능] 		* confirm성 메시지를 사용 시 반드시 필요
+		
+		// 해당 역할을 삭제하시겠습니까?
+		this.gfnAlert(sMsgId, arrArg, sPopId, sMsgCallback);
 	}
 	
 };

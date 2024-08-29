@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="frameWork" left="0" top="0" width="1050" height="600" onclose="form_onclose" onsize="form_onsize" onactivate="form_onactivate" onload="form_onload" titletext="frameWork" background="#f3f5f6">
+  <Form id="frameWork" left="0" top="0" width="1050" height="600" onclose="form_onclose" onsize="form_onsize" onactivate="form_onactivate" onload="form_onload" background="#f3f5f6">
     <Layouts>
       <Layout>
         <Div id="divWork" taborder="0" left="0" top="0" text="" background="#ffffff" cssclass="div_WF_Bg" right="0" bottom="0">

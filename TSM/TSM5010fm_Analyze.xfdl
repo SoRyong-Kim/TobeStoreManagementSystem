@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="shop1126fm" width="1038" height="650" onload="form_onload" onsize="join1100fm_onsize" titletext="분석">
+    <Layouts>
+      <Layout height="650" width="1038">
+        <Div id="divOrderSearch" taborder="0" left="0" text="" right="0" top="0" bottom="10">
+          <Layouts>
+            <Layout>
+              <Div id="divChart" taborder="1" left="10" top="100" url="Cmm::CmmRmateChartAll.xfdl" cssclass="div_WF_Area" bottom="10" right="10" text=""/>
+              <Static id="staTitle" taborder="1" text="상품 분석" left="5" top="0" width="166" height="42" cssclass="sta_WF_Title"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Nexacro Professional Training Couse
+*  @MenuPath    000 > 000 > 000
+*  @FileName 	C:\EduPack\workspace\CampShop\Shop\shop1114fm.xfdl
+*  @Creator 	정인경
+*  @CreateDate 	2024/02/29
+*  @Desction    
+************** 소스 수정 이력 ***********************************************
+*  date          		Modifier                Description
+*******************************************************************************
+*  2024/02/29      		 정인경	 	  	최초 생성 
+*******************************************************************************
+*/
+include "Lib::rMateChartH5.xjs";
+
+/************************************************************************************************
+ * FORM 변수 선언 영역
+ ************************************************************************************************/
+this.fvObjApp 		= this.gfnGetApplication();
+this.layoutStr1;
+this.chartData1;
+
+/************************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ************************************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);  
+//   	this.divOrderSearch.form.divSearch.form.calFrom.set_value(this.gfnAddDate(this.gfnGetDate(),-7));
+//	this.divOrderSearch.form.divSearch.form.calTo.set_value(this.gfnGetDate());
+
+	// 스트링 형식으로 레이아웃 정의.
+	this.layoutStr1 = '<rMateChart backgroundColor="#FFFFFF"  borderThickness="1" borderStyle="none">'
+		 +'<Options>'
+			  +'<Caption text="Rainfall" textAlign="center" />'
+				+'<SubCaption text="( mm )" textAlign="right" />'
+			 +'<Legend />'
+		 +'</Options>'
+		 +'<NumberFormatter id="numFmt" precision="0"/>'
+		   +'<Line2DChart showDataTips="true" dataTipDisplayMode="axis" paddingTop="0">'
+			 +'<horizontalAxis>'
+				   +'<CategoryAxis categoryField="category_name"/>'
+			  +'</horizontalAxis>'
+			  +'<verticalAxis>'
+				 +'<LinearAxis minimum="0" maximum="300" interval="100" />'
+			 +'</verticalAxis>'
+				+'<series>'
+				   +'<Line2DSeries yField="total_sale_count" displayName="판매수량">'
+				  +'</Line2DSeries>'
+				+'</series>'
+			  +'<annotationElements>'
+				   +'<CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{numFmt}" horizontalStrokeEnable="false"/>'
+			   +'</annotationElements>'
+		  +'</Line2DChart>'
+	 +'</rMateChart>';
+	 this.divOrderSearch.form.divChart.form.fnSetChart("chart1", this.layoutStr1, this.rMateChartDataSetToXml(this.dsData));   
+	 this.fnSearch();
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode != 0)
+	{
+		return;
+	}
+	switch(svcID)
+	{
+		case "getMostSaleProduct":		
+			this.divOrderSearch.form.divChart.form.fnSetData(this.rMateChartDataSetToXml(this.dsData));   
+			break;
+	}
+};
+
+/************************************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * @description 조회
+*/
+this.fnSearch = function ()
+{
+ 	// dsSearch 데이터 초기화 
+ 	this.dsSearch.clearData();
+	var nRow = this.dsSearch.addRow();
+//	var sOrderFromDate = this.divOrderSearch.form.divSearch.form.calFrom.value;
+//	var sOrderToDate = this.divOrderSearch.form.divSearch.form.calTo.value;
+
+//	this.dsSearch.setColumn(nRow, "DATE_FROM",sOrderFromDate); 
+//	this.dsSearch.setColumn(nRow, "DATE_TO",sOrderToDate); 
+	
+ 	var strSvcId    = "getMostSaleProduct";		
+	var strSvcUrl   = "SvcUrl::edu/getMostSaleProduct.do";
+	var inData      = "";
+	var outData     = "dsData=dsData";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId , 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl , 	// trabsaction을 요청할 주소
+						inData , 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData , 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+ /**
+ * @description 조회버튼
+*/
+this.div_Search_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.fnSearch(); //최초조회조건세팅
+};
+
+ /**
+ * @description 검색조건 입력후 엔터
+*/
+this.divOrderSearch_divSearch_calTo_onkeyup = function(obj:nexacro.Calendar,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13)
+	{
+		this.fnSearch();
+	}	
+};]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="category_name" type="STRING" size="256"/>
+          <Column id="remain_count" type="INT" size="256"/>
+          <Column id="category_id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPagingInfo">
+        <ColumnInfo>
+          <Column id="TOTALCOUNT" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="category_name" type="STRING" size="256"/>
+          <Column id="total_sale_count" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

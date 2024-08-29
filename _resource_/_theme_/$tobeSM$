@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<XCSS version="1.1">
-  <CSSData><![CDATA[/*******************************************************
+﻿/*******************************************************
   PROJECT NAME : 
   CREATION DATES : 2022.10.28
   DRAFTER :
@@ -3061,6 +3059,3 @@
 .Grid.cell_LF_Lev0 .body .row .cell
 {
 }
-]]></CSSData>
-  <Predefines/>
-</XCSS>
