@@ -110,7 +110,7 @@
               <Combo id="cmb_corp" taborder="9" left="78" top="119" width="123" height="28" innerdataset="gdsStore" codecolumn="store_id" datacolumn="store_name" onitemchanged="div_search_cmb_corp_onitemchanged" cssclass="cmb_WF_Search" visible="false" value="" index="-1" canitemchange="divSearch_cmb_corp_canitemchange"/>
               <Static id="Static05_00_00" taborder="10" text="출고할 매장" left="-20" top="119" width="104" height="28" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_SearchLabel" visible="false"/>
               <Button id="btn00" taborder="11" text="조회" left="42.48%" top="119" width="61" height="28" onclick="divSearch_btn00_onclick" visible="true"/>
-              <Button id="btnOutBound" taborder="12" text="출고 신청" top="119" width="75" visible="true" onclick="divOutBound_btnOutBound_onclick" bottom="443" right="0.59%"/>
+              <Button id="btnOutBound" taborder="12" text="출고 신청" top="119" width="75" visible="true" onclick="divOutBound_btnOutBound_onclick" bottom="grdOutBound:21" right="0.59%"/>
               <Static id="sta00" taborder="13" text="출고 권한이 있는지 확인." left="94" top="3" width="214" height="38" visible="false"/>
             </Layout>
           </Layouts>

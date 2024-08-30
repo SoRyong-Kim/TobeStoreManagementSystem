@@ -82,6 +82,7 @@ this.fv_RoleId = "";	// 부모 화면에서 넘겨받은 역할 ID
 this.fv_Total_Permissions = 24;
 var OrgArray = new Array(this.fv_Total_Permissions+1).fill(0); // 첫 번째 배열
 var CurArray = new Array(this.fv_Total_Permissions+1).fill(0); // 두 번째 배열
+this.fvObjApp 	  	= this.gfnGetApplication();
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
  ************************************************************************************************/

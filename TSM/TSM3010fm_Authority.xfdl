@@ -161,6 +161,7 @@
 this.nRow;
 var fvPopupUrl = "TSM::TSM3010pu_Authority.xfdl"; // 팝업창 주소
 var fvRow;
+this.fvObjApp 	  	= this.gfnGetApplication();
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
  ************************************************************************************************/
@@ -304,25 +305,34 @@ this.divInBound_tabRole_Tabpage2_grdRole_oncellclick = function(obj:nexacro.Grid
 
 	fvRow = e.row; // 전역변수에 현재 로우의 인덱스 넣기
 	// 수정버튼 Cell 인덱스 = 2
+	trace(nexacro.getApplication().gdsUserAuth.saveXML());
 	if ( this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellPos() == 2 )
 	{
-		// 클릭한 셀의 id값을 팝업에 넘겨주기
-		var objParam = this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellValue(e.row, 4);
-		// 팝업 열기
-		var sTitle = "권한 설정";
-		var oArg = {paramId:objParam};
-		var oOption = {title:sTitle};
-		var sPopupCallBack = "fnPopupCallback";	
-		this.gfnOpenPopup( "puAuth", fvPopupUrl, oArg, sPopupCallBack, oOption);
+		var bChk = this.gfnCheckAuth(nexacro.getApplication().gdsUserAuth, 29);
+		if(bChk)
+		{
+			// 클릭한 셀의 id값을 팝업에 넘겨주기
+			var objParam = this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellValue(e.row, 4);
+			// 팝업 열기
+			var sTitle = "권한 설정";
+			var oArg = {paramId:objParam};
+			var oOption = {title:sTitle};
+			var sPopupCallBack = "fnPopupCallback";	
+			this.gfnOpenPopup( "puAuth", fvPopupUrl, oArg, sPopupCallBack, oOption);
+		}
 	} else if (this.divInBound.form.tabAuth.tpgRole.form.grdRole.getCellPos() == 3)
 	{
-		var sMsgId = "confirm.role.delete";			//메세지ID
-		var arrArg = "";						//메세지취환될값 배열[생략가능]
-		var sPopId = sMsgId;					//메세지팝업ID[생략가능]	*해당화면에서 메시지 중복사용시 구분되는값을 넣어줘야함
-		var sMsgCallback = "fnMsgCallback";		//메세지콜백[생략가능] 		* confirm성 메시지를 사용 시 반드시 필요
-		
-		// 해당 역할을 삭제하시겠습니까?
-		this.gfnAlert(sMsgId, arrArg, sPopId, sMsgCallback);
+		var bChk2 = this.gfnCheckAuth(nexacro.getApplication().gdsUserAuth, 27);
+		if(bChk2)
+		{
+			var sMsgId = "confirm.role.delete";			//메세지ID
+			var arrArg = "";						//메세지취환될값 배열[생략가능]
+			var sPopId = sMsgId;					//메세지팝업ID[생략가능]	*해당화면에서 메시지 중복사용시 구분되는값을 넣어줘야함
+			var sMsgCallback = "fnMsgCallback";		//메세지콜백[생략가능] 		* confirm성 메시지를 사용 시 반드시 필요
+			
+			// 해당 역할을 삭제하시겠습니까?
+			this.gfnAlert(sMsgId, arrArg, sPopId, sMsgCallback);
+		}
 	}
 };
 
@@ -332,17 +342,21 @@ this.divInBound_tabAuth_tpgRole_btnAuthRetrieve_onclick = function(obj:nexacro.B
 };
 this.divInBound_tabAuth_tpgRole_btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-
-	sPopupId = "popup";
-	sUrl = "TSM::TSM1060pu_Authority.xfdl";
-	sPopupCallback = function() { this.btnAdd.setFocus(); }
-	// 권한 추가 팝업 띄우기
-	var sTitle = "권한 설정";	// 모달팝업
-	var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
-	var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬
-	
-	//함수 callback
-	this.gfnOpenPopup("puAuthAdd", fvPopupUrl, oArg, function() { this.btnAdd.setFocus(); }, oOption);
+	var bChk = this.gfnCheckAuth(nexacro.getApplication().gdsUserAuth, 26);
+	trace("상품추가 권한 : " +bChk);
+	if(bChk)
+	{
+		sPopupId = "popup";
+		sUrl = "TSM::TSM1060pu_Authority.xfdl";
+		sPopupCallback = function() { this.btnAdd.setFocus(); }
+		// 권한 추가 팝업 띄우기
+		var sTitle = "권한 설정";	// 모달팝업
+		var oArg = {paramCode:"abcd", paramNum:12345, paramDataset:this.dsTest};
+		var oOption = {title:sTitle};	//top, left를 지정하지 않으면 가운데정렬
+		
+		//함수 callback
+		this.gfnOpenPopup("puAuthAdd", fvPopupUrl, oArg, function() { this.btnAdd.setFocus(); }, oOption);
+	}
 };
 
 

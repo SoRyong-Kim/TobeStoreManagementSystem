@@ -293,38 +293,50 @@ this.divDetail_grdProduct_onheadclick = function(obj:nexacro.Grid,e:nexacro.Grid
 
 this.divDetail_btnApp_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var nRow = this.divDetail.form.grdProduct.rowcount;
-	for(var i=0; i<nRow; i++) 
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, 15);//아무도 삭제 못하게.
+	trace("상품추가 권한 : " +bChk);
+	if(bChk)
 	{
-		// 체크되어있는 행인지 확인
-		if(this.divDetail.form.grdProduct.getCellPropertyValue(i, 0, "text") == 1)
+		var nRow = this.divDetail.form.grdProduct.rowcount;
+		for(var i=0; i<nRow; i++) 
 		{
-			this.dsDetail.setColumn(i, 6, "승인");
+			// 체크되어있는 행인지 확인
+			if(this.divDetail.form.grdProduct.getCellPropertyValue(i, 0, "text") == 1)
+			{
+				this.dsDetail.setColumn(i, 6, "승인");
+			}
+				// 체크되어있으면 해당 행의 값을 승인으로 변경
 		}
-			// 체크되어있으면 해당 행의 값을 승인으로 변경
+		for(var i=0; i<nRow; i++) 
+		{
+			this.dsDetail.setColumn(i, "COL_CHK", 0);
+		}
 	}
-	for(var i=0; i<nRow; i++) 
-	{
-		this.dsDetail.setColumn(i, "COL_CHK", 0);
-	}
+	
 	
 };
 
+
 this.divDetail_btnReject_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var nRow = this.divDetail.form.grdProduct.rowcount;
-	for(var i=0; i<nRow; i++) 
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, 15);//아무도 삭제 못하게.
+	trace("상품추가 권한 : " +bChk);
+	if(bChk)
 	{
-		// 체크되어있는 행인지 확인
-		if(this.divDetail.form.grdProduct.getCellPropertyValue(i, 0, "text") == 1)
+		var nRow = this.divDetail.form.grdProduct.rowcount;
+		for(var i=0; i<nRow; i++) 
 		{
-			this.dsDetail.setColumn(i, 6, "거부");
+			// 체크되어있는 행인지 확인
+			if(this.divDetail.form.grdProduct.getCellPropertyValue(i, 0, "text") == 1)
+			{
+				this.dsDetail.setColumn(i, 6, "거부");
+			}
+				// 체크되어있으면 해당 행의 값을 거부로 변경
 		}
-			// 체크되어있으면 해당 행의 값을 거부로 변경
-	}
-	for(var i=0; i<nRow; i++) 
-	{
-		this.dsDetail.setColumn(i, "COL_CHK", 0);
+		for(var i=0; i<nRow; i++) 
+		{
+			this.dsDetail.setColumn(i, "COL_CHK", 0);
+		}
 	}
 };
 

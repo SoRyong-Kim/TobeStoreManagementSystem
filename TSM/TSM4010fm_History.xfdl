@@ -115,7 +115,8 @@
 this.TSM7000fm_History_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.gfnFormOnLoad(this);
-	this.fnSearch();
+	
+	
 };
 /************************************************************************************************
  * FORM EVENT 영역(onload, onbeforeclose)
@@ -204,7 +205,12 @@ this.dsHistory_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DS
 };
 this.divSearch_btn00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.fnSearch();
+	var bChk = this.gfnCheckAuth(this.fvObjApp.gdsUserAuth, 17);
+	trace("상품추가 권한 : " +bChk);
+	if(bChk)
+	{
+		this.fnSearch();
+	}
 };
 ]]></Script>
     <Objects>

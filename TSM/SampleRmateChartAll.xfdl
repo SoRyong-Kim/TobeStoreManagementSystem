@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
   <TypeDefinition url="..\default_typedef.xml"/>
-  <Form id="SampleRmateChartAll" left="0" top="0" width="1038" height="650" titletext="rMate 챠트(공통화면 방식)" onload="form_onload">
+  <Form id="SampleRmateChartAll" left="0" top="0" width="1038" height="650" titletext="rMate 챠트(공통화면 방식)" onload="form_onload" font="20px/normal &quot;Pretendard Variable&quot;">
     <Layouts>
       <Layout>
         <Div id="Div00" taborder="0" left="10" top="172" height="350" url="Cmm::CmmRmateChartAll.xfdl" cssclass="div_WF_Area" width="496"/>

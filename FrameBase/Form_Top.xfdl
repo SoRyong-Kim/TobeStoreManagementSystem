@@ -94,9 +94,9 @@ this.fnMsgCallback = function (strId, strVal)
 	if(strId == "confirm.logout"){
 		if(strVal){
 			this.fnUpdateWorkTime();
-			if(system.navigatorname != "nexacro"){		
-				window.top.location.reload(true);
-			}
+// 			if(system.navigatorname != "nexacro"){		
+// 				window.top.location.reload(true);
+// 			}
 		    this.fvObjApp.gvLogOut = "Y";
 			//this.fvObjApp.exit();	// NRE에서는 종료됨
 			//this.fnUpdateWorkTime();
